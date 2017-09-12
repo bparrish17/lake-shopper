@@ -78,20 +78,66 @@ describe('User routes', () => {
 
   });// end describe('/api/users/:id')
 
-    //got to revisit this test!!!
-    
+    //test adding a user
+
   describe('POST api/users', function () {
-    it('creates a new user', function () {
+    it('creates a new user when registering', function () {
       return agent
-      .post('/users')
+
+      //suppyling fake user object
+
+      .post('api/users')
       .send({
         email: 'sentEmail@email.com',
+        password: 'testing123'
       })
       .expect(200)
       .expect(function (res) {
         expect(res.body.email).to.equal('sentEmail@email.com');
+        expect(res.body.password).to.equal('testing123');
+      });
+    });
+  });
+
+    it('throws an error if email or password is empty', function () {
+
+      return agent
+      .post('api/users')
+      .send({
+        email: null,
+        password: null,
+      })
+      .expect(500)
+    });
+
+  describe('PUT api/users/:id', function () {
+    var userTest;
+
+    beforeEach(function () {
+
+      return User.create({
+        email: 'rando@test.com',
+        password: 'rando123',
+        isAdmin: false,
+      })
+      .then(function (createdUser){
+        userTest = createdUser;
       })
     })
-  })
 
+    //it will update the admin status
+
+    it('updates the admin status of the user', function () {
+
+      return agent
+      .put('/users/' + users.id)
+      .send({
+        isAdmin: true
+      })
+      .expect(200)
+      .expect(function(res) {
+        expect(res.body.isAdmin).to.equal(true)
+      });
+    });
+  })
 }); // end describe('User routes')
