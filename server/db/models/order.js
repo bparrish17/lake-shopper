@@ -13,9 +13,10 @@ const Order = db.define("order", {
     type: Sequelize.VIRTUAL,
     get() {
       let sum = 0;
-      this.productList.forEach(function(product) {
-          sum += product[price] * product[quantity]
-      });
+      console.log(this);
+      // this.productList.forEach(function(product) {
+      //     sum += product[price] * product[quantity]
+      // });
       return sum;
     }
   },
