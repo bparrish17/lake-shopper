@@ -12,3 +12,13 @@ router.get('/', (req, res, next) => {
     .then(users => res.json(users))
     .catch(next)
 })
+
+// additions
+
+// create users
+
+router.post('/', function(req, res, next){
+  User.create(req.body)
+    .then(result => res.send(result))
+    .catch(next);
+});
