@@ -33,7 +33,8 @@ describe('User routes', () => {
   }) //end describe('/api/users/)
    
   describe('GET api/users/:id', () => {
-
+    
+    //user goes to their my profile page
     //create fake user emails
 
     var emailTest;
@@ -81,7 +82,7 @@ describe('User routes', () => {
     //test adding a user
 
   describe('POST api/users', function () {
-    it('creates a new user when registering', function () {
+    it('creates a new user when signing up', function () {
       return agent
 
       //suppyling fake user object
@@ -123,21 +124,86 @@ describe('User routes', () => {
       .then(function (createdUser){
         userTest = createdUser;
       })
-    })
+    });
 
-    //it will update the admin status
+    //it will update the user password
 
     it('updates the admin status of the user', function () {
 
       return agent
       .put('/users/' + users.id)
       .send({
-        isAdmin: true
+        password: 'register123'
       })
       .expect(200)
       .expect(function(res) {
-        expect(res.body.isAdmin).to.equal(true)
+        expect(res.body.password).to.equal('register123')
       });
     });
-  })
+  });
+
+  describe('DELETE api/users/:id', function () {
+    
+    var deleteTest;
+    
+        beforeEach(function () {
+          
+          var createEmail = [
+        {email: 'emailTest@email.com'},
+        {email: 'anotherEmail@email.com'},
+        {email: 'thirdEmail@email.com'}
+        ]
+        .map(data => User.create(data));
+    
+        return Promise.all(createEmail)
+        .then(createdEmail => {
+          deleteTest = createdEmail;
+        });
+
+        it('deletes the user', function () {
+
+          return agent
+          .delete('/api/users/1')
+          .expect(204)
+          .expect(function () {
+            expect(deleteTest.to.have.length(2));
+          })
+
+        })
+      })
+    })
+
+  
+
 }); // end describe('User routes')
+
+
+
+/*
+
+GET
+all products *product*
+products by category *product*
+products by id *product*
+all reviews by foreign product id 
+all orders by user id *user* *done from get userid*
+all orders 
+single order by order id 
+all users *user* *done*
+
+POST
+single order
+single review
+single product *product*
+product category
+single user *user* *done*
+
+DELETE
+single user *user* *done*
+
+PUT
+single user by user id to update user pw
+single product *product*
+single user *user* *done*
+
+*/
