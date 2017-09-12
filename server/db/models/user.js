@@ -10,10 +10,10 @@ const User = db.define(
       unique: true,
       validate: { isEmail: true }
     },
-    ipAddress: {
-      type: Sequelize.STRING,
-      allowNull: false
-    },
+    // ipAddress: {
+    //   type: Sequelize.STRING,
+    //   allowNull: false
+    // },
     password: {
       type: Sequelize.STRING
     },
