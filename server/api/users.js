@@ -49,7 +49,7 @@ router.put('/:id', function(req, res, next){
 router.delete('/:id', function(req, res, next){
   var currentId = req.params.id;
 
-  User.destroy({ where: { id: currentId })
+  User.destroy({ where: { id: currentId }})
     .then(result => res.sendStatus(204))
     .catch(next);
 });
