@@ -35,3 +35,20 @@ router.post('/', function(req, res, next){
     .then(result => res.send(result))
     .catch(next);
 });
+
+// edit product
+
+router.put('/:id', function(req, res, next){
+  var currentId = req.params.id;
+
+  Product.findById(currentId)
+    .then(product => {
+      if (product) {
+        user.update(req.body, { returning: true })
+      } else {
+        res.sendStatus(404)
+      }
+    })
+    .then(updatedProduct => res.json(updatedProduct[1]))
+    .catch(next);
+});
