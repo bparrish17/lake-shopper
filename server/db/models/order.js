@@ -11,14 +11,14 @@ const Order = db.define("order", {
   },
   subtotal: {
     type: Sequelize.VIRTUAL,
-    get() {
-      let sum = 0;
-      console.log(this);
-      // this.productList.forEach(function(product) {
-      //     sum += product[price] * product[quantity]
-      // });
-      return sum;
-    }
+    // get() {
+    //   let sum = 0;
+    //   console.log(this);
+    //   this.productList.forEach(function(product) {
+    //       sum += product[price] * product[quantity]
+    //   });
+    //   return sum;
+    // }
   },
   checkoutDate: Sequelize.DATE
 });

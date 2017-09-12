@@ -17,9 +17,6 @@ const Product = db.define(
       type: Sequelize.STRING,
       defaultValue:
         "http://www.familypoolfun.com/images/toys_swimaids/nt240.jpg",
-      validate: {
-        isUrl: true
-      }
     },
     description: { 
         type: Sequelize.TEXT, 
@@ -28,21 +25,8 @@ const Product = db.define(
     quantity: { 
         type: Sequelize.INTEGER, 
         allowNull: false 
-    },
-    category: {
-      type: Sequelize.ARRAY(Sequelize.STRING)
     }
-  },
-  {
-    validate: {
-      categoryLength() {
-        if (this.category.length < 1) {
-          throw new Error("Category length must be greater than 1");
-        }
-      }
-    }
-  }
-);
+});
 
 
 module.exports = Product;

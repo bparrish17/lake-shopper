@@ -2,7 +2,9 @@
 
 const {expect} = require('chai')
 const db = require('../index')
-const {User, Order, Review} = require('./index')
+const {User, Order, Review, Category, Product} = require('./index')
+
+//USER TESTS
 
 describe('User model', () => {
   let user = User.build({
@@ -51,6 +53,8 @@ describe('User model', () => {
     });
   });
 
+//ORDER TESTS
+
 describe('Order model', () => {
   let order = Order.build({
     //array of strings or integers?
@@ -80,11 +84,42 @@ describe('Order model', () => {
         expect(savedOrder.status).to.equal('created');
       });
     });
-    it('2: cannot have a status that is not within the options list', function () {
-      order.status = 'this wont work dawg';
-      return order.validate()
+  });
+});
+
+//REVIEW TESTS
+
+describe('Review model', () => {
+  let review = Review.build({
+    //array of strings or integers?
+    //productList: ["jet ski", "noodle", "motorboat"],
+    rating: '3',
+    comments: 'these are comments, blah blah blah it has to be more than 100 characters but like this should be more than that I hope idk if Im that far yet we will have to see'
+  });
+  beforeEach(() => {
+    return db.sync({force: true})
+  })
+
+  afterEach(function () {
+    return Promise.all([
+      Review.truncate({ cascade: true })
+    ]);
+  });
+
+  describe('review definition', function(){
+    it('1: fields are all filled out', function () {
+      return review.save()
+      .then(function (savedReview) {
+        //expect(savedOrder.productList).to.equal(['jet ski', 'noodle', 'motorboat'])
+        expect(savedReview.rating).to.equal('3');
+        expect(savedReview.comments).to.equal('these are comments, blah blah blah it has to be more than 100 characters but like this should be more than that I hope idk if Im that far yet we will have to see');
+      });
+    });
+    it('2: cannot have comment of length less than 100', function () {
+      review.comments = 'this should not work';
+      return review.validate()
       .then(function () {
-        throw new Error('validation should fail when status is wrong');
+        throw new Error('validation should prevent comment with length less than 100');
       },
       function(result) {
         expect(result).to.be.an.instanceOf(Error);
@@ -93,4 +128,64 @@ describe('Order model', () => {
   });
 });
 
+//CATEGORY Model
 
+describe('Category model', () => {
+  let category = Category.build({
+    name: ''
+  });
+  beforeEach(() => {
+    return db.sync({force: true})
+  })
+
+  afterEach(function () {
+    return Promise.all([
+      Category.truncate({ cascade: true })
+    ]);
+  });
+
+  describe('category definition', function(){
+    it('it cannot have an empty name', function () {
+      return category.validate()
+      .then(function () {
+        throw new Error('validation should prevent comment with length less than 100');
+      },
+      function(result) {
+        expect(result).to.be.an.instanceOf(Error);
+      });
+    });
+  });
+});
+
+//PRODUCT tests
+
+// describe('Product model', () => {
+//   let product = Product.build({
+//     name: 'Jet Ski',
+//     price: 2000.00,
+//     image: '',
+//     description: 'this is a jet ski',
+//     quantity: 4
+//   });
+//   beforeEach(() => {
+//     return db.sync({force: true})
+//   })
+
+//   afterEach(function () {
+//     return Promise.all([
+//       Product.truncate({ cascade: true })
+//     ]);
+//   });
+
+//   describe('product definition', function(){
+//     it('name, price, description, quantity are not false', function () {
+//       return product.save()
+//       .then(function (savedProduct) {
+//         expect(savedProduct.name).to.equal('Jet Ski');
+//         //expect(savedProduct.price).to.equal(2000.00);
+//         //expect(savedProduct.description).to.equal('this is a jet ski');
+//         //expect(savedProduct.quantity).to.equal(4);
+//       });
+//     })
+//   });
+// });
