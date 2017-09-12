@@ -42,17 +42,17 @@ describe('User model', () => {
             expect(savedUser.isAdmin).to.equal(false);
           });
         });
-        it('1: cannot have an empty ip address', function () {
-          user.ipAddress = null;
+        // it('1: cannot have an empty ip address', function () {
+        //   user.ipAddress = null;
           
-          return user.validate()
-          .then(function () {
-            throw new Error('validation should fail when content is null');
-          },
-          function(result) {
-            expect(result).to.be.an.instanceOf(Error);
-          });
-        });
+        //   return user.validate()
+        //   .then(function () {
+        //     throw new Error('validation should fail when content is null');
+        //   },
+        //   function(result) {
+        //     expect(result).to.be.an.instanceOf(Error);
+        //   });
+        // });
         it('2: cannot be both isGuest and isAdmin', function () {
           return user2.validate()
           .then(function () {
