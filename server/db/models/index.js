@@ -2,7 +2,6 @@ const User = require('./user')
 const Review = require('./review')
 const Product = require('./product')
 const Order = require('./order')
-const orderProduct = require('./orderProduct')
 const Category = require('./category');
 
 /**
@@ -22,9 +21,8 @@ const Category = require('./category');
 Review.belongsTo(User)
 Review.hasOne(Product)
 Order.belongsTo(User)
-Category.belongsTo(Product)
-// Order.hasMany(Product)
-
+Category.belongsToMany(Product, { through: 'productCategory' })
+Product.belongsToMany(Category, { through: 'productCategory' })
 
 Order.belongsToMany(Product, { through: 'orderProduct'})
 Product.belongsToMany(Order, { through: 'orderProduct'});
@@ -35,5 +33,5 @@ Product.belongsToMany(Order, { through: 'orderProduct'});
 //redundancies?
 
 module.exports = {
-  User, Review, Product, Order
+  User, Review, Product, Order, Category
 }
