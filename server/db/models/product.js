@@ -13,7 +13,7 @@ const Product = db.define(
       allowNull: false
     },
     image: {
-      type: Sequelize.URL,
+      type: Sequelize.STRING,
       defaultValue:
         "http://www.familypoolfun.com/images/toys_swimaids/nt240.jpg",
       validate: {
@@ -25,11 +25,11 @@ const Product = db.define(
         allowNull: false 
     },
     quantity: { 
-        type: Sequelize.NUMBER, 
+        type: Sequelize.INTEGER, 
         allowNull: false 
     },
     category: {
-      type: Sequelize.ARRAY
+      type: Sequelize.ARRAY(Sequelize.STRING)
     }
   },
   {
@@ -42,4 +42,9 @@ const Product = db.define(
     }
   }
 );
+
+const orderProduct = db.define('orderProduct', {
+  orderPrice: Sequelize.DECIMAL
+});
+
 module.exports = Product;

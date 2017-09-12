@@ -20,7 +20,11 @@ const Order = require('./order')
 Review.belongsTo(User)
 Review.hasOne(Product)
 Order.belongsTo(User)
-Order.hasMany(Product)
+// Order.hasMany(Product)
+
+
+Order.belongsToMany(Product, { through: 'orderProduct'})
+Product.belongsToMany(Order, { through: 'orderProduct'});
 //Product.hasMany(Review)
 //User.hasMany(Review)
 
