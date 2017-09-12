@@ -6,16 +6,16 @@ const {User, Order, Review} = require('./index')
 
 describe('User model', () => {
   let user = User.build({
-    ipAddress: '172.00.11.01',
+    // ipAddress: '172.00.11.01',
     email: 'email@email.com',
     password: '12345kjsdf',
     isAdmin: false,
     isGuest: false
   });
   let user2 = User.build({
-    ipAddress: '',
+    // ipAddress: '',
     email: '',
-    password: '',
+    // password: '',
     isAdmin: true,
     isGuest: true
   })
@@ -33,9 +33,9 @@ describe('User model', () => {
       it('1: fields are all filled out', function () {
         return user.save()
         .then(function (savedUser) {
-          expect(savedUser.ipAddress).to.equal('172.00.11.01')
+          // expect(savedUser.ipAddress).to.equal('172.00.11.01')
           expect(savedUser.email).to.equal('email@email.com');
-          expect(savedUser.password).to.equal('12345kjsdf');
+          //expect(savedUser.password).to.equal('12345kjsdf');
           expect(savedUser.isAdmin).to.equal(false);
         });
       })
@@ -54,11 +54,11 @@ describe('User model', () => {
 describe('Order model', () => {
   let order = Order.build({
     //array of strings or integers?
-    productList: ['jet ski', 'noodle', 'motorboat'],
+    //productList: ["jet ski", "noodle", "motorboat"],
     address: '1601 Tree Lane',
-    status: 'created',
+    status: "created",
     subtotal: 80.75,
-    checkoutDate: ''
+    checkoutDate: Date.now()
   });
   beforeEach(() => {
     return db.sync({force: true})
@@ -74,7 +74,7 @@ describe('Order model', () => {
     it('1: fields are all filled out', function () {
       return order.save()
       .then(function (savedOrder) {
-        expect(savedOrder.productList).to.equal(['jet ski', 'noodle', 'motorboat'])
+        //expect(savedOrder.productList).to.equal(['jet ski', 'noodle', 'motorboat'])
         expect(savedOrder.address).to.equal('1601 Tree Lane');
         expect(savedOrder.subtotal).to.equal(80.75);
         expect(savedOrder.status).to.equal('created');

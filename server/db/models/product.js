@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../db");
+
 const Product = db.define(
   "product",
   {
@@ -43,8 +44,5 @@ const Product = db.define(
   }
 );
 
-const orderProduct = db.define('orderProduct', {
-  orderPrice: Sequelize.DECIMAL
-});
 
 module.exports = Product;
