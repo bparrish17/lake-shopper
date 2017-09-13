@@ -33,16 +33,18 @@ router.post('/', function(req, res, next){
 
 router.put('/:id', function(req, res, next){
   var currentId = req.params.id;
-
   User.findById(currentId)
     .then(user => {
       if (user) {
-        user.update(req.body, { returning: true })
+        return user.update(req.body, { returning: true })
       } else {
         res.sendStatus(404)
       }
     })
-    .then(updatedUser => res.json(updatedUser[1]))
+    .then(updatedUser => {
+      console.log('updatedUser', updatedUser)
+      res.json(updatedUser)
+    })
     .catch(next);
 });
 
