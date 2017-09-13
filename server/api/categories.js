@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Category} = require('../db/models')
+const {Category, Product} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
@@ -22,6 +22,19 @@ router.get('/:id', (req, res, next) => {
     })
     .catch(next)
 })
+
+//get all products within that category
+
+router.get('/:categoryId/products', (req, res, next) => {
+    const categoryId = req.params.categoryId;
+    Category.findById(categoryId)
+    .then(category => {
+        return category.getProducts()
+    })
+    .then(result => res.json(result))
+    .catch(next)
+})
+
 
 router.post('/', (req, res, next) => {
     Category.create(req.body)
