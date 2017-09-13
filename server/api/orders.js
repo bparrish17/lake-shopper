@@ -2,8 +2,13 @@ const router = require('express').Router()
 const {Order} = require('../db/models')
 module.exports = router
 
-// get all orders
+// get all orders - admin only
 
+router.get('/', (req, res, next) => {
+  Order.findAll()
+    .then(orders => res.json(orders))
+    .catch(next)
+})
 
 // get order by ID
 
@@ -20,6 +25,8 @@ router.get('/:id', (req, res, next) => {
     })
     .catch(next)
 })
+
+
 
 // create order
 
