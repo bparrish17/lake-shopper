@@ -19,7 +19,7 @@ const Category = require('./category');
  */
 
 Review.belongsTo(User)
-Review.hasOne(Product)
+Review.belongsTo(Product)
 Order.belongsTo(User)
 Category.belongsToMany(Product, { through: 'productCategory' })
 Product.belongsToMany(Category, { through: 'productCategory' })

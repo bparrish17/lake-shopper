@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Product} = require('../db/models')
+const {Product, Review} = require('../db/models')
 module.exports = router
 
 // TO DO: get by category
@@ -16,7 +16,6 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
   var currentId = req.params.id;
-
   Product.findById(currentId)
     .then(product => {
       if (product){
@@ -40,15 +39,40 @@ router.post('/', function(req, res, next){
 
 router.put('/:id', function(req, res, next){
   var currentId = req.params.id;
-
   Product.findById(currentId)
     .then(product => {
       if (product) {
-        user.update(req.body, { returning: true })
+        return product.update(req.body, { returning: true })
       } else {
         res.sendStatus(404)
       }
     })
-    .then(updatedProduct => res.json(updatedProduct[1]))
+    .then(updatedProduct => res.json(updatedProduct))
     .catch(next);
 });
+
+//REVIEWS
+// post review on this product
+
+router.post('/:id', (req, res, next) => {
+  let currentId = req.params.id;
+  req.body.productId = currentId;
+  Review.create(req.body)
+  .then(result => res.send(result))
+  .catch(next);
+})
+
+// get all of the reviews for this product
+
+router.get('/:id/reviews', (req, res, next) => {
+  let currentId = req.params.id
+  Review.findAll({ where: { productId: currentId } })
+  .then(review => {
+    if (review){
+      res.json(review);
+    } else {
+      res.sendStatus(404);
+    }
+  })
+  .catch(next)
+})
