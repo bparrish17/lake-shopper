@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
+import {getProductsThunk} from '../store/product';
 
 /**
  * COMPONENT
@@ -12,10 +13,11 @@ import {logout} from '../store'
  */
 const Main = (props) => {
   const {children, handleClick, isLoggedIn, products} = props
-  console.log('PROPS PRODUCTS', props)
+  console.log('PROPS', props)
+
   return (
     <div>
-      <h1>{BOILERMAKER}</h1>
+      <h1>BOILERMAKER</h1>
       <nav>
         {
           isLoggedIn
@@ -51,7 +53,7 @@ const mapDispatch = (dispatch) => {
   return {
     handleClick () {
       dispatch(logout())
-    }
+    }, 
   }
 }
 

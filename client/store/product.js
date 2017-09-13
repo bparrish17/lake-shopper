@@ -10,15 +10,14 @@ const GET_PRODUCTS = 'GET_PRODUCTS'
  * INITIAL STATE
  */
 const products = {
-    hello: 'world'
 }
 
 /**
  * ACTION CREATORS
  */
-const getProduct = product => ({
+const getProducts = products => ({
     type: GET_PRODUCTS, 
-    product
+    products
 });
 
 /**
@@ -37,7 +36,8 @@ export const getProductsThunk = () =>
 export default function (state = products, action) {
   switch (action.type) {
     case GET_PRODUCTS:
-      return action.product
+    return Object.assign({}, state, {products: action.products})
+      return action.products
     default:
       return state
   }
