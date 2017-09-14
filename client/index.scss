@@ -28,7 +28,7 @@ img-fluid {
 #main-caption {
   text-align: center;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-20%);
   font-size: 50px;
 }
 
@@ -37,6 +37,24 @@ img-fluid {
   padding: 10px;
 }
 
+#our-products-container {
+  background-color: #1414C2;
+  height: 50px;
+}
+
+
 #our-products {
   text-align: center;
+  color: white;
+}
+#product-name-price {
+  text-align: center;
+}
+#add-to-cart-btn {
+  float: left;
+  width: 49%;
+}
+#view-details-btn {
+  float: right;
+  width: 49%;
 }

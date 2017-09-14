@@ -11,13 +11,15 @@ function SingleProduct (props) {
     <div>
        <ul id="product-comp">       
             <li>
-                <h5>{product.name}</h5>
+                <h3 id="product-name-price">{product.name}</h3>
                 <img src={`${product.image}`} className="img-responsive"/>
-                <h5>Price: ${product.price}</h5>
-                <button type="button" className="btn btn-outline-info">Add To Cart</button>
-                <NavLink to={`/product/${product.id}`} activeClassName="active">
-                <button type="button" className="btn btn-outline-info">View Details</button>
-                </NavLink>
+                <h4 id="product-name-price">${product.price}</h4>
+                <div className="row container-fluid">
+                    <button type="button" id="add-to-cart-btn" className="btn btn-outline-info">Add To Cart</button>
+                    <NavLink to={`/product/${product.id}`} activeClassName="active">
+                        <button type="button" id="view-details-btn" className="btn btn-outline-info">View Details</button>
+                    </NavLink>
+                </div>
             </li>
        </ul> 
     </div>

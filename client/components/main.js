@@ -14,10 +14,10 @@ import SingleProduct from './singleProduct'
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  const {children, hanpmndleClick, isLoggedIn, products} = props
+  const {children, handleClick, isLoggedIn, products, categories} = props
   return (
     <div>
-      <NavbarRouter />
+      <NavbarRouter/>
       <div id="mycarousel" className="carousel slide" data-ride="carousel">
         <div className="carousel-inner">
           <div className="item active">
@@ -32,11 +32,9 @@ const Main = (props) => {
         </div>
       </div>
 
-      <div className="row container-fluid">
-          <h2 id="our-products">Our Products</h2>
+      <div id="our-products-container" className="row container-fluid">
       </div>
       <div className="row container-fluid">
-      <br />
       {/* do category checking below? cant render the all products component in main instead */}
       {
         props.products.map(product => {
