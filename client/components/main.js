@@ -48,7 +48,7 @@ const Main = (props) => {
       }
       <br />
       </div>
-        <nav>
+        <nav id="signuplogin" className = "signup navbar-fixed-top navbar-right">
           {
             isLoggedIn
               ? <div>

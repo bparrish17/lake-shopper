@@ -12,6 +12,7 @@ body {
   nav a {
     display: inline-block;
     margin: 1em;
+    float: right;
   }
 
   form div {
@@ -68,6 +69,3 @@ img-fluid {
   background-color: rgba(204, 202, 202, 0.68);
 }
 
-#temp {
-  height: 60px;
-}
