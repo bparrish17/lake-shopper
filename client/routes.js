@@ -5,7 +5,7 @@ import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, UserHome, ProductList} from './components'
-import Navbar from './components/navbar'
+// import Navbar from './components/navbar'
 import {me, getProductsThunk} from './store'
 
 /**

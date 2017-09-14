@@ -8,11 +8,7 @@ export default class Navbar extends Component {
     return (
       <div>
         <ul id="categoryDropdown" className="dropdownContent">
-          {Categories.map(category => {
-            <li key={category.id}>
-              <NavLink to={`/categories/${category.id}`}>{category.name}</NavLink>
-            </li>
-          })}
+          <h1>Hello World</h1>
         </ul>
       </div>
     );
