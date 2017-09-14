@@ -14,7 +14,7 @@ import SingleProduct from './singleProduct'
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  const {children, handleClick, isLoggedIn, products} = props
+  const {children, hanpmndleClick, isLoggedIn, products} = props
   return (
     <div>
       <Navbar />
@@ -33,7 +33,7 @@ const Main = (props) => {
       </div>
 
       <div className="row container-fluid">
-          <h2 id="our-products" >Our Products</h2>
+          <h2 id="our-products">Our Products</h2>
       </div>
       <div className="row container-fluid">
       <br />
