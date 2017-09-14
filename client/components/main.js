@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
 import {getProductsThunk} from '../store/product';
-import Navbar from './navbar'
+import NavbarRouter from './navbar'
 import SingleProduct from './singleProduct'
 
 /**
@@ -17,7 +17,7 @@ const Main = (props) => {
   const {children, hanpmndleClick, isLoggedIn, products} = props
   return (
     <div>
-      <Navbar />
+      <NavbarRouter />
       <div id="mycarousel" className="carousel slide" data-ride="carousel">
         <div className="carousel-inner">
           <div className="item active">

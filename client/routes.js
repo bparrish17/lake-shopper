@@ -5,7 +5,7 @@ import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, UserHome, ProductList} from './components'
-// import Navbar from './components/navbar'
+import Navbar from './components/navbar'
 import {me, getProductsThunk, fetchCategories} from './store'
 
 /**
@@ -16,8 +16,13 @@ class Routes extends Component {
     this.props.loadInitialData()
   }
 
+  componentWillMount(){
+    this.props.loadInitialData()
+  }
+
   render () {
     const {isLoggedIn, products, categories} = this.props
+    console.log(this.props)
     console.log('ROUTES PROPS', this.props);
     return (
       <Router history={history}>
