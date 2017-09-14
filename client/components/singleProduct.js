@@ -8,9 +8,8 @@ function SingleProduct (props) {
     const {products} = props;
     let product = props.product;
   return (
-    <div>
-       <ul id="product-comp">       
-            <li>
+    <div>      
+            <li id="product-comp">
                 <h3 id="product-name-price">{product.name}</h3>
                 <img src={`${product.image}`} className="img-responsive"/>
                 <h4 id="product-name-price">${product.price}</h4>
@@ -21,7 +20,6 @@ function SingleProduct (props) {
                     </NavLink>
                 </div>
             </li>
-       </ul> 
     </div>
   );
 }
