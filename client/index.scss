@@ -19,3 +19,24 @@ body {
     display: inline-block;
   }
 }
+
+img-fluid {
+  width: 100%;
+  height: auto;
+}
+
+#main-caption {
+  text-align: center;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 50px;
+}
+
+#product-comp {
+  list-style-type: none;
+  padding: 10px;
+}
+
+#our-products {
+  text-align: center;
+}

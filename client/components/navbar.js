@@ -21,8 +21,6 @@ function Navbar (props) {
       </div>
     );
   }
-
-
 const mapStateToProps = (state, ownProps) => {
   return ({
     categories: state.categories,
@@ -31,3 +29,9 @@ const mapStateToProps = (state, ownProps) => {
   
 const NavbarRouter =  withRouter(connect(mapStateToProps)(Navbar));
 export default NavbarRouter 
+=======
+// {Categories.map(category => {
+//   <li key={category.id}>
+//     <NavLink to={`/categories/${category.id}`}>{category.name}</NavLink>
+//   </li>
+// })}
