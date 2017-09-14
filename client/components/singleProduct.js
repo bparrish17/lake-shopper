@@ -35,11 +35,9 @@ function StudentProfile (props) {
                         <button type="button" className="btn btn-outline-info">Add To Cart</button>
                         <NavLink to={`/product/${product.id}`} activeClassName="active">
                         <button type="button" className="btn btn-outline-info">View Details</button>
-                        </NavLink >
+                        </NavLink>
                      </span>
-                     
                    </li>
-                
                )
            })}
          
