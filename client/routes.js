@@ -6,7 +6,7 @@ import PropTypes from 'prop-types'
 import history from './history'
 import {Main, Login, Signup, UserHome, ProductList} from './components'
 // import Navbar from './components/navbar'
-import {me, getProductsThunk} from './store'
+import {me, getProductsThunk, fetchCategories} from './store'
 
 /**
  * COMPONENT
@@ -17,7 +17,8 @@ class Routes extends Component {
   }
 
   render () {
-    const {isLoggedIn, products} = this.props
+    const {isLoggedIn, products, categories} = this.props
+    console.log('ROUTES PROPS', this.props);
     return (
       <Router history={history}>
         <Main>
@@ -37,7 +38,8 @@ const mapState = (state) => {
     // Being 'logged in' for our purposes will be defined has having a state.user that has a truthy id.
     // Otherwise, state.user will be an empty object, and state.user.id will be falsey
     isLoggedIn: !!state.user.id,
-    products: state.products
+    products: state.products,
+    categories: state.categories
   }
 }
 
@@ -46,6 +48,7 @@ const mapDispatch = (dispatch) => {
     loadInitialData () {
       dispatch(me())
       dispatch(getProductsThunk())
+      dispatch(fetchCategories())
     }
   }
 }
