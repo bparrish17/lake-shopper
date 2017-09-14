@@ -19,14 +19,21 @@ const Main = (props) => {
     <div>
       <Navbar />
       <h1>Lake Shopper</h1>
+      <div className="row container-fluid">
+          <h1>PRODUCTS</h1>
+      </div>
+      <div className="row container-fluid">
+      <br />
       {/* do category checking below? cant render the all products component in main instead */}
       {
         props.products.map(product => {
           return (
-              <div key={product.id}>
-                  <h3>{product.name}</h3>
-                  {/* DOMS SINGLE PRODUCT GOES HERE */}
+            <div key={product.id}>
+              <div className="col-xs-3" key={product.id}>
+                <h5>{product.name}</h5>
+                {/* DOMS SINGLE PRODUCT GOES HERE */}
               </div>
+            </div> 
           )
       })
     }
@@ -47,6 +54,7 @@ const Main = (props) => {
       </nav>
       <hr />
       {children}
+    </div>
     </div>
   )
 }
