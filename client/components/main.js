@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
 import {getProductsThunk} from '../store/product';
+import Navbar from './navbar'
 
 /**
  * COMPONENT
@@ -13,11 +14,22 @@ import {getProductsThunk} from '../store/product';
  */
 const Main = (props) => {
   const {children, handleClick, isLoggedIn, products} = props
-  console.log('PROPS', props)
-
+  console.log(props);
   return (
     <div>
-      <h1>BOILERMAKER</h1>
+      <Navbar />
+      <h1>Lake Shopper</h1>
+      {/* do category checking below? cant render the all products component in main instead */}
+      {
+        props.products.map(product => {
+          return (
+              <div key={product.id}>
+                  <h3>{product.name}</h3>
+                  {/* DOMS SINGLE PRODUCT GOES HERE */}
+              </div>
+          )
+      })
+    }
       <nav>
         {
           isLoggedIn

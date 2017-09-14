@@ -11,12 +11,10 @@ const mapStateToProps = (state) => {
     });
   };
 
-//   const mapDispatchToProps = () => {
-
-//   }
   
 export const ProductList = (props) => {
-    console.log('THESE ARE PROPS', props.products);
+    console.log('THESE ARE PROPS', props);
+    console.log('THIS STATE');
     return (
         <div>
             <h1>ProductList Component Says Hey</h1>
