@@ -8,7 +8,10 @@ module.exports = router
 
 router.get('/', (req, res, next) => {
   Product.findAll()
-    .then(products => res.json(products))
+    .then(products => {
+      // console.log(req.session.cart);
+      res.json(products)
+    })
     .catch(next)
 })
 
@@ -19,6 +22,7 @@ router.get('/:id', (req, res, next) => {
   Product.findById(currentId)
     .then(product => {
       if (product){
+        // req.session.cart.push(product);
         res.json(product);
       } else {
         res.sendStatus(404);
