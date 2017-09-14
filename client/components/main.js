@@ -5,6 +5,7 @@ import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
 import {getProductsThunk} from '../store/product';
 import Navbar from './navbar'
+import SingleProduct from './singleProduct'
 
 /**
  * COMPONENT
@@ -14,13 +15,25 @@ import Navbar from './navbar'
  */
 const Main = (props) => {
   const {children, handleClick, isLoggedIn, products} = props
-  console.log(props);
   return (
     <div>
       <Navbar />
-      <h1>Lake Shopper</h1>
+      <div id="mycarousel" className="carousel slide" data-ride="carousel">
+        <div className="carousel-inner">
+          <div className="item active">
+            <img src="http://rvcoutdoors.com/lake-raystown-resort/wp-content/uploads/2013/11/lake-raystown-resort-pennsylvania.jpg" 
+                alt="" 
+                className="img-responsive">
+            </img>
+            <div id="main-caption" className="carousel-caption">
+              Lake Shopper
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="row container-fluid">
-          <h1>PRODUCTS</h1>
+          <h2 id="our-products" >Our Products</h2>
       </div>
       <div className="row container-fluid">
       <br />
@@ -28,35 +41,33 @@ const Main = (props) => {
       {
         props.products.map(product => {
           return (
-            <div key={product.id}>
-              <div className="col-xs-3" key={product.id}>
-                <h5>{product.name}</h5>
-                {/* DOMS SINGLE PRODUCT GOES HERE */}
-              </div>
-            </div> 
+            <div className="col-xs-3" key={product.id}>
+              <SingleProduct product={product}/>
+            </div>
           )
-      })
-    }
-      <nav>
-        {
-          isLoggedIn
-            ? <div>
-              {/* The navbar will show these links after you log in */}
-              <Link to='/home'>Home</Link>
-              <a href='#' onClick={handleClick}>Logout</a>
-            </div>
-            : <div>
-              {/* The navbar will show these links before you log in */}
-              <Link to='/login'>Login</Link>
-              <Link to='/signup'>Sign Up</Link>
-            </div>
-        }
-      </nav>
-      <hr />
-      {children}
-    </div>
-    </div>
-  )
+        })
+      }
+      <br />
+      </div>
+        <nav>
+          {
+            isLoggedIn
+              ? <div>
+                {/* The navbar will show these links after you log in */}
+                <Link to='/home'>Home</Link>
+                <a href='#' onClick={handleClick}>Logout</a>
+              </div>
+              : <div>
+                {/* The navbar will show these links before you log in */}
+                <Link to='/login'>Login</Link>
+                <Link to='/signup'>Sign Up</Link>
+              </div>
+          }
+        </nav>
+        <hr />
+        {children}
+      </div>
+    )
 }
 
 /**
@@ -91,3 +102,8 @@ Main.propTypes = {
 }
 
 //<Navbar />
+
+//<img src="http://rvcoutdoors.com/lake-raystown-resort/wp-content/uploads/2013/11/lake-raystown-resort-pennsylvania.jpg" 
+// className="img-fluid img-responsive" 
+// alt="Responsive image">
+// </img>
