@@ -4,9 +4,6 @@ import { NavLink, withRouter } from "react-router-dom";
 import Category from "../store/category";
 
 function Navbar(props) {
-  console.log("props.categories", props.categories);
-  console.log("navbar was hit");
-  // cons
   return (
     <nav className="navbar navbar-default navbar-fixed-top">
       <div className="dropdown">
@@ -36,6 +33,8 @@ function Navbar(props) {
     </nav>
   );
 }
+
+
 const mapStateToProps = (state, ownProps) => {
   return {
     categories: state.categories

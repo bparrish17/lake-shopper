@@ -12,6 +12,7 @@ body {
   nav a {
     display: inline-block;
     margin: 1em;
+    float: right;
   }
 
   form div {
@@ -66,4 +67,8 @@ img-fluid {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   background-color: rgba(204, 202, 202, 0.68);
+}
+
+#signuplogin{
+  float: right !important
 }
