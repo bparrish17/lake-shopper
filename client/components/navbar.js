@@ -49,4 +49,4 @@ export default NavbarRouter;
 //     <NavLink to={`/categories/${category.id}`}>{category.name}</NavLink>
 //   </li>
 // })}
-//
+//<NavLink to={`/categories/${category.id}`}>{category.name}</NavLink>

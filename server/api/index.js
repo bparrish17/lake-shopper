@@ -5,6 +5,7 @@ router.use('/users', require('./users'))
 
 // additions
 
+router.use('/cart', require('./cart'))
 router.use('/products', require('./products'))
 router.use('/reviews', require('./reviews'))
 router.use('/orders', require('./orders'))

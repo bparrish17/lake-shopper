@@ -4,9 +4,9 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, ProductList} from './components'
-import Navbar from './components/navbar'
-import {me, getProductsThunk, fetchCategories} from './store'
+import {Main, Login, Signup, UserHome, ProductList, ViewCart} from './components'
+import NavbarRouter from './components/navbar'
+import {me, getProductsThunk, fetchCategories, getCartItemsThunk} from './store'
 
 /**
  * COMPONENT
@@ -22,14 +22,17 @@ class Routes extends Component {
 
   render () {
     const {isLoggedIn, products, categories} = this.props
-    console.log(this.props)
-    console.log('ROUTES PROPS', this.props);
     return (
       <Router history={history}>
-        <Main>
-          <Switch>
-          </Switch>
-        </Main>
+        <div>
+          <NavbarRouter categories={categories}/>
+          <div>
+            <Switch>
+              <Route exact path="/" component={Main} />
+              <Route exact path="/cart" component={ViewCart} />
+            </Switch>
+          </div>
+        </div>
       </Router>
     )
   }
@@ -54,6 +57,7 @@ const mapDispatch = (dispatch) => {
       dispatch(me())
       dispatch(getProductsThunk())
       dispatch(fetchCategories())
+      dispatch(getCartItemsThunk())
     }
   }
 }

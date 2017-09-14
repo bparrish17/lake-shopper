@@ -10,8 +10,6 @@ router.get('/', (req, res, next) => {
 
 router.get('/:id', (req, res, next) => {
     const currentId = req.params.id;
-
-
     Category.findById(currentId)
       .then(category => {
         if (category){
