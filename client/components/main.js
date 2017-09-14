@@ -4,7 +4,7 @@ import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
 import {getProductsThunk} from '../store/product';
-import Navbar from './navbar'
+import NavbarRouter from './navbar'
 
 /**
  * COMPONENT
@@ -17,7 +17,7 @@ const Main = (props) => {
   console.log(props);
   return (
     <div>
-      <Navbar />
+      <NavbarRouter />
       <h1>Lake Shopper</h1>
       {/* do category checking below? cant render the all products component in main instead */}
       {
