@@ -8,17 +8,19 @@ import Category from "../store/category";
 function Navbar (props) {
   console.log("props.categories", props.categories)
   console.log("navbar was hit")
-  const {categories} = props;
+  // cons
     return (
-      <div>
-        <ul id="categoryDropdown" className="dropdownContent">
-          {props.categories.map(category => {
-            <li key={category.id}>
-              <NavLink to={`/categories/${category.id}`}>{category.name}</NavLink>
-            </li>
-          })}
-        </ul>
+      <nav className="navbar navbar-default navbar-fixed-top">
+      <div className="container">
+      <h1>MADE TO NAVBAR</h1>
+        {props.categories.map(category => {
+          <li key={category.id}>
+            <h1>{category.name}</h1>
+            <NavLink to={`/categories/${category.id}`}>{category.name}</NavLink>
+          </li>
+        })}
       </div>
+    </nav>
     );
   }
 const mapStateToProps = (state, ownProps) => {
@@ -28,10 +30,11 @@ const mapStateToProps = (state, ownProps) => {
 };
   
 const NavbarRouter =  withRouter(connect(mapStateToProps)(Navbar));
-export default NavbarRouter 
-=======
+export default NavbarRouter;
+
 // {Categories.map(category => {
 //   <li key={category.id}>
 //     <NavLink to={`/categories/${category.id}`}>{category.name}</NavLink>
 //   </li>
 // })}
+//

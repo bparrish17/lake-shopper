@@ -28,15 +28,42 @@ img-fluid {
 #main-caption {
   text-align: center;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-20%);
   font-size: 50px;
 }
 
 #product-comp {
   list-style-type: none;
-  padding: 10px;
+  border: 10px;
+}
+
+#our-products-container {
+  background-color: #1414C2;
+  height: 50px;
 }
 
 #our-products {
   text-align: center;
+  color: white;
+}
+#product-name-price {
+  text-align: center;
+}
+#add-to-cart-btn {
+  float: left;
+  width: 49%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: rgba(204, 202, 202, 0.68);
+}
+#view-details-btn {
+  float: right;
+  width: 49%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: rgba(204, 202, 202, 0.68);
 }
