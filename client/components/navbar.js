@@ -24,7 +24,7 @@ function Navbar(props) {
         <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
           {props.categories.map(category => {
             return (
-              <li>
+              <li key={category.id.toString()}>
                 <NavLink to={`/categories/${category.id}`}>
                   {category.name}
                 </NavLink>
