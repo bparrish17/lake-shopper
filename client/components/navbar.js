@@ -3,31 +3,46 @@ import { connect } from "react-redux";
 import { NavLink, withRouter } from "react-router-dom";
 import Category from "../store/category";
 
-
-
-function Navbar (props) {
-  console.log("props.categories", props.categories)
-  console.log("navbar was hit")
+function Navbar(props) {
+  console.log("props.categories", props.categories);
+  console.log("navbar was hit");
   // cons
-    return (
-      <nav className="navbar navbar-default navbar-fixed-top">
-        <div className="container">
+  return (
+    <nav className="navbar navbar-default navbar-fixed-top">
+      <div className="dropdown">
+        <button
+          className="btn btn-default dropdown-toggle"
+          type="button"
+          id="dropdownMenu1"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="true"
+        >
+          Categories
+          <span className="caret" />
+        </button>
+        <ul className="dropdown-menu" aria-labelledby="dropdownMenu1">
           {props.categories.map(category => {
-            <li key={category.id}>
-              <h1>{category.name}</h1>
-            </li>
+            return (
+              <li key={category.id.toString()}>
+                <NavLink to={`/categories/${category.id}`}>
+                  {category.name}
+                </NavLink>
+              </li>
+            );
           })}
-        </div>
-      </nav>
-    );
-  }
+        </ul>
+      </div>
+    </nav>
+  );
+}
 const mapStateToProps = (state, ownProps) => {
-  return ({
-    categories: state.categories,
-  });
+  return {
+    categories: state.categories
+  };
 };
-  
-const NavbarRouter =  withRouter(connect(mapStateToProps)(Navbar));
+
+const NavbarRouter = withRouter(connect(mapStateToProps)(Navbar));
 export default NavbarRouter;
 
 // {Categories.map(category => {
