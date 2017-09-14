@@ -3,9 +3,10 @@ import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {withRouter, Link} from 'react-router-dom'
 import {logout} from '../store'
-import {getProductsThunk} from '../store/product';
+import {getProductsThunk} from '../store/product'
 import NavbarRouter from './navbar'
 import SingleProduct from './singleProduct'
+import ViewCart from './ViewCart'
 
 /**
  * COMPONENT
@@ -14,10 +15,9 @@ import SingleProduct from './singleProduct'
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  const {children, handleClick, isLoggedIn, products, categories} = props
+  const {children, handleClick, isLoggedIn, products, categories, cart} = props
   return (
     <div>
-      <NavbarRouter categories={categories}/>
       <div id="mycarousel" className="carousel slide" data-ride="carousel">
         <div className="carousel-inner">
           <div className="item active">
@@ -33,6 +33,7 @@ const Main = (props) => {
       </div>
 
       <div id="our-products-container" className="row container-fluid">
+        <Link to="/cart"><button type="button" className="btn btn-default">View Cart</button></Link>
       </div>
       <div className="row container-fluid">
       {/* do category checking below? cant render the all products component in main instead */}
@@ -74,7 +75,8 @@ const Main = (props) => {
 const mapState = (state) => {
   return {
     isLoggedIn: !!state.user.id,
-    products: state.products
+    products: state.products, 
+    cart: state.cart
   }
 }
 

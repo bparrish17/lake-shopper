@@ -5,7 +5,7 @@ import {connect} from 'react-redux';
 
 
 function SingleProduct (props) {
-    const {products} = props;
+    const {products, cart} = props;
     let product = props.product;
   return (
     <div>      
@@ -32,16 +32,17 @@ function SingleProduct (props) {
 const mapStateToProps = (state, ownProps) => {
     return {
         products: state.products,
+        cart: state.cart
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-      handleClick () {
-        dispatch(logout())
-      }
-    }
-  }
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//       handleClick () {
+//         dispatch(logout())
+//       }
+//     }
+// }
 
 const SingleProductContainer = connect(mapStateToProps)(SingleProduct);
 
