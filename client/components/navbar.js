@@ -16,7 +16,6 @@ function Navbar (props) {
         {props.categories.map(category => {
           <li key={category.id}>
             <h1>{category.name}</h1>
-            <NavLink to={`/categories/${category.id}`}>{category.name}</NavLink>
           </li>
         })}
       </div>
@@ -37,4 +36,4 @@ export default NavbarRouter;
 //     <NavLink to={`/categories/${category.id}`}>{category.name}</NavLink>
 //   </li>
 // })}
-//
+//<NavLink to={`/categories/${category.id}`}>{category.name}</NavLink>

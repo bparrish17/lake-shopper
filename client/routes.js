@@ -22,8 +22,6 @@ class Routes extends Component {
 
   render () {
     const {isLoggedIn, products, categories} = this.props
-    console.log(this.props)
-    console.log('ROUTES PROPS', this.props);
     return (
       <Router history={history}>
         <Main>

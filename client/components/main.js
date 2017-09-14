@@ -17,7 +17,7 @@ const Main = (props) => {
   const {children, handleClick, isLoggedIn, products, categories} = props
   return (
     <div>
-      <NavbarRouter/>
+      <NavbarRouter categories={categories}/>
       <div id="mycarousel" className="carousel slide" data-ride="carousel">
         <div className="carousel-inner">
           <div className="item active">
