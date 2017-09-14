@@ -10,7 +10,7 @@ const Product = db.define(
       allowNull: false
     },
     price: {
-      type: Sequelize.DECIMAL,
+      type: Sequelize.INTEGER,
       allowNull: false
     },
     image: {
@@ -27,6 +27,10 @@ const Product = db.define(
         allowNull: false 
     }
 });
+
+//get average rating instance method
+
+//add a changing inventory quantity instance method
 
 
 module.exports = Product;

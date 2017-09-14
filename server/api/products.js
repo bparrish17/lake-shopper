@@ -29,15 +29,19 @@ router.get('/:id', (req, res, next) => {
 
 // add product
 
-router.post('/', function(req, res, next){
+router.post('/', (req, res, next) => {
+  //req.body.categoryId = 1;
   Product.create(req.body)
+    .then(result => {
+      return result.addCategory(req.body.categoryId)
+    })
     .then(result => res.send(result))
     .catch(next);
 });
 
 // edit product
 
-router.put('/:id', function(req, res, next){
+router.put('/:id', (req, res, next) => {
   var currentId = req.params.id;
   Product.findById(currentId)
     .then(product => {
@@ -54,7 +58,7 @@ router.put('/:id', function(req, res, next){
 //REVIEWS
 // post review on this product
 
-router.post('/:id', (req, res, next) => {
+router.post('/:id/reviews', (req, res, next) => {
   let currentId = req.params.id;
   req.body.productId = currentId;
   Review.create(req.body)

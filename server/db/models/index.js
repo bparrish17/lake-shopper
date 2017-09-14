@@ -20,14 +20,14 @@ const Category = require('./category');
 
 Review.belongsTo(User)
 Review.belongsTo(Product)
+
 Order.belongsTo(User)
+
 Category.belongsToMany(Product, { through: 'productCategory' })
 Product.belongsToMany(Category, { through: 'productCategory' })
 
 Order.belongsToMany(Product, { through: 'orderProduct'})
 Product.belongsToMany(Order, { through: 'orderProduct'});
-//Product.hasMany(Review)
-//User.hasMany(Review)
 
 
 //redundancies?
