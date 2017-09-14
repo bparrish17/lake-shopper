@@ -4,9 +4,36 @@ import store from '../store';
 import {connect} from 'react-redux';
 
 
-function StudentProfile (props) {
-
+function SingleProduct (props) {
     const {products} = props;
+    let product = props.product;
+  return (
+    <div>
+       <ul id="product-comp">       
+            <li>
+                <h5>{product.name}</h5>
+                <img src={`${product.image}`} className="img-responsive"/>
+                <h5>Price: ${product.price}</h5>
+                <button type="button" className="btn btn-outline-info">Add To Cart</button>
+                <NavLink to={`/product/${product.id}`} activeClassName="active">
+                <button type="button" className="btn btn-outline-info">View Details</button>
+                </NavLink>
+            </li>
+       </ul> 
+    </div>
+  );
+}
+
+const mapStateToProps = (state, ownProps) => {
+    return {
+        products: state.products,
+    }
+};
+
+const SingleProductContainer = connect(mapStateToProps)(SingleProduct);
+
+export default SingleProductContainer;
+
 
     // let filteredArr = props.studentsList.filter((student) => {
     //     if(student.id === Number(props.match.params.studentId)){
@@ -20,40 +47,3 @@ function StudentProfile (props) {
     // console.log('studentCampus', studentCampus)
     // console.log('***filteredArr', filteredArr);
     // console.log('campuslist', campusList)
-
-  return (
-    <div>
-       <ul>
-           {   
-
-               products.map(product => {
-                   
-               return (
-                   <li key={product.id}>
-                       <img src={`${product.image}`} />
-                     <span>Name: {product.name} Price: {product.price}
-                        <button type="button" className="btn btn-outline-info">Add To Cart</button>
-                        <NavLink to={`/product/${product.id}`} activeClassName="active">
-                        <button type="button" className="btn btn-outline-info">View Details</button>
-                        </NavLink >
-                     </span>
-                     
-                   </li>
-                
-               )
-           })}
-         
-       </ul> 
-    </div>
-  );
-}
-
-const mapStateToProps = (state, ownProps) => {
-    return {
-        products: state.products,
-    }
-};
-
-const SingleProductContainer = connect(mapStateToProps)(singleProduct);
-
-export default SingleProductContainer;
