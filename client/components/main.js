@@ -16,6 +16,7 @@ import ViewCart from './ViewCart'
  */
 const Main = (props) => {
   const {children, handleClick, isLoggedIn, products, categories, cart} = props
+  console.log("categories", categories)
   return (
     <div>
       <div id="mycarousel" className="carousel slide" data-ride="carousel">
@@ -48,7 +49,7 @@ const Main = (props) => {
       }
       <br />
       </div>
-        <nav id="signuplogin" className = "signup navbar-fixed-top navbar-right">
+        <div id="signuplogin" className = "signup navbar-fixed-top navbar-right">
           {
             isLoggedIn
               ? <div>
@@ -58,11 +59,11 @@ const Main = (props) => {
               </div>
               : <div>
                 {/* The navbar will show these links before you log in */}
-                <Link to='/login'>Login</Link>
-                <Link to='/signup'>Sign Up</Link>
+                <div><Link to='/login'>Login</Link></div>
+                <div><Link to='/signup'>Sign Up</Link></div>
               </div>
           }
-        </nav>
+        </div>
         <hr />
         {children}
       </div>
@@ -76,7 +77,8 @@ const mapState = (state) => {
   return {
     isLoggedIn: !!state.user.id,
     products: state.products, 
-    cart: state.cart
+    cart: state.cart,
+    categories: state.categories
   }
 }
 
