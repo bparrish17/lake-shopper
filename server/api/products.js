@@ -22,7 +22,6 @@ router.get('/:id', (req, res, next) => {
   Product.findById(currentId)
     .then(product => {
       if (product){
-        // req.session.cart.push(product);
         res.json(product);
       } else {
         res.sendStatus(404);

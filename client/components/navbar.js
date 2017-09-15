@@ -4,6 +4,7 @@ import { NavLink, withRouter } from "react-router-dom";
 import Category from "../store/category";
 
 function Navbar(props) {
+  console.log("props", props)
   return (
     <nav className="navbar navbar-default navbar-fixed-top">
       <div className="dropdown">
@@ -30,14 +31,20 @@ function Navbar(props) {
           })}
         </ul>
       </div>
+      <div className="cartDisplay" id="cartdiv">
+        <button type="button" className="btn btn-default btn-sm">
+          <span className="glyphicon glyphicon-shopping-cart" />{" "}
+          { props.cart > 1 ? `${props.cart.length} Items in Cart` : 'No Items in Cart'}
+        </button>
+      </div>
     </nav>
   );
 }
 
-
 const mapStateToProps = (state, ownProps) => {
   return {
-    categories: state.categories
+    categories: state.categories,
+    cart: state.cart
   };
 };
 
