@@ -5,13 +5,10 @@ import store from '../store';
 import {connect} from 'react-redux';
 import SingleProduct from './singleProduct'
 import {removeItemThunk, editItemThunk} from '../store/cart';
-const _ = require('lodash');
-const countBy = require('lodash.countby')
 
 const ViewCart = (props) => { 
-    //get count of number of each item
-    const cartQuantities = _.countBy((Array.prototype.slice.call(props.cart)), 'id')
     const removeItem = props.removeItem;
+    const editItem = props.editItem;
     // console.log('REMOVE ITEM', removeItem);
     //on rendering the products through the map, we want each product to be unique,
     //but it doesn't like that because it thinks limiting products to the id is an
@@ -33,7 +30,9 @@ const ViewCart = (props) => {
                                         <input 
                                         type="text" 
                                         className="input-quantity form-control" 
-                                        defaultValue={cartQuantities[product.id]}>
+                                        value={product.cartQuantity}
+                                        name={product.id}
+                                        onChange={editItem}>
                                         </input>
                                     <span className="input-group-addon">Quantity</span>
                                 </li>
@@ -63,12 +62,27 @@ const mapDispatchToProps = (dispatch) => {
         removeItem(id) {
             dispatch(removeItemThunk(id))
         }, 
-        editItem(event, id, amount) {
-            console.log(event.target.value)
-            dispatch(editItemThunk(id, amount))
+        editItem(event) {
+            let quantity = Number(event.target.value);
+            let productId = event.target.name;
+            dispatch(editItemThunk(productId, quantity));
         }
     }
 }
 
 const ViewCartContainer = connect(mapStateToProps, mapDispatchToProps)(ViewCart);
 export default ViewCartContainer;
+
+// <div className="center">
+// <li>
+//     <div className="cart-quantity-input input-group">
+//       <span className="input-group-btn">
+          
+//       </span>
+//       <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
+//       <span class="input-group-btn">
+//           <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
+//               <span class="glyphicon glyphicon-plus"></span>
+//           </button>
+//       </span>
+//   </li>
