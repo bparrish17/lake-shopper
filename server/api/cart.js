@@ -66,7 +66,7 @@ router.put('/:productId', (req, res, next) => {
             res.json(req.session.cart);
         }
     })
-    .catch(next);
+    .catch(next)
 })
 
 

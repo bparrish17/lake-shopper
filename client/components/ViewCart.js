@@ -18,7 +18,7 @@ const ViewCart = (props) => {
             <div id="temp">
             </div>
             <div className="row container-fluid">
-                <div className="col-xs-8">
+                <div className="col-xs-9">
                 <h1 id="your-cart-header">Your Cart</h1>
                 {
                     props.cart.map(product => {
@@ -36,6 +36,15 @@ const ViewCart = (props) => {
                                         </input>
                                     <span className="input-group-addon">Quantity</span>
                                 </li>
+                                <li className="cart-price-value input-group">
+                                    <span className="input-group-addon">$</span>
+                                        <input 
+                                        type="text" 
+                                        className="input-quantity form-control" 
+                                        value={product.price*product.cartQuantity}>
+                                        </input>
+                                    <span className="input-group-addon">Price</span>
+                                </li>   
                                 <li 
                                     className="cart-item-delete btn btn-danger remove btn-circle"
                                     onClick={() => removeItem(product.id)}
@@ -44,6 +53,17 @@ const ViewCart = (props) => {
                         )
                     })
                 }
+                <ul className="cart-item-list list-group">
+                    <li className="cart-subtotal input-group">
+                        <span className="input-group-addon">$</span>
+                            <input 
+                            type="text" 
+                            className="input-quantity form-control" 
+                            value={100}>
+                            </input>
+                        <span className="input-group-addon">Subtotal</span>
+                    </li>
+                </ul>
                 </div>
             </div>
         </div>
