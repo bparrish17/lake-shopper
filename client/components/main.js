@@ -57,10 +57,10 @@ const Main = (props) => {
                 <Link to='/home'>Home</Link>
                 <a href='#' onClick={handleClick}>Logout</a>
               </div>
-              : <div>
+              : <div id="loginsignup" className="signup">
                 {/* The navbar will show these links before you log in */}
-                <div><Link to='/login'>Login</Link></div>
-                <div><Link to='/signup'>Sign Up</Link></div>
+                <Link to='/login'>Login</Link>
+                <Link to='/signup'>Sign Up</Link>
               </div>
           }
         </div>
