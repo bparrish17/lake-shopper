@@ -9,6 +9,7 @@ let cart = [];
 const GET_CART = "GET_CART";
 const REMOVE_ITEM = "REMOVE_ITEM";
 const ADD_TO_CART = "ADD_TO_CART";
+const EDIT_ITEM_QUANTITY = "EDIT_ITEM_QUANTITY";
 
 /**
  * ACTION CREATORS
@@ -34,6 +35,13 @@ const addToCart = cart => {
   }
 }
 
+const editItem = cart => {
+  return {
+    type: EDIT_ITEM_QUANTITY,
+    cart
+  }
+}
+
 /**
  * THUNK CREATORS
  */
@@ -47,7 +55,7 @@ export const getCartItemsThunk = () =>
 
 export const removeItemThunk = (itemId) => 
     dispatch => 
-        axios.get('/api/cart')
+        axios.delete(`/api/cart/${itemId}`)
         .then(result => result.data)
         .then(ourCart => {
           let cart = Array.prototype.slice.call(ourCart);
@@ -62,11 +70,9 @@ export const removeItemThunk = (itemId) =>
 
 export const addToCartThunk = (itemId) => 
     dispatch => 
-      axios.get('/api/cart')
+      axios.post(`/api/cart/${itemId}`)
       .then(result => result.data)
       .then(ourCart => {
-          let cart = Array.prototype.slice.call(ourCart);
-          cart.push()
           dispatch(addToCart(ourCart));
       })
 
@@ -77,9 +83,9 @@ export default function reducer(state = cart, action) {
   switch (action.type) {
     case GET_CART: 
       return action.cart;
-    // case ADD_PRODUCT_TO_CART:
-    //   return action.cart;
     case REMOVE_ITEM:
+      return action.cart;
+    case ADD_TO_CART:
       return action.cart;
     default:
       return state;

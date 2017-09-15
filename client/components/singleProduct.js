@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
 import store from '../store';
 import {connect} from 'react-redux';
-
+import {addToCartThunk} from '../store/cart';
 
 function SingleProduct (props) {
-    const {products, cart} = props;
+    const {products, cart, addToCart} = props;
     let product = props.product;
   return (
     <div>      
@@ -18,6 +18,7 @@ function SingleProduct (props) {
                 type="button" 
                 id="add-to-cart-btn" 
                 className="btn btn-outline-info"
+                onClick={() => addToCart(product.id)}
                 >Add To Cart</button>
 
                 <NavLink to={`/product/${product.id}`} activeClassName="active">
@@ -36,15 +37,15 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//       handleClick () {
-//         dispatch(logout())
-//       }
-//     }
-// }
+const mapDispatchToProps = (dispatch) => {
+    return {
+      addToCart(id) {
+        dispatch(addToCartThunk(id))
+      }
+    }
+}
 
-const SingleProductContainer = connect(mapStateToProps)(SingleProduct);
+const SingleProductContainer = connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
 
 export default SingleProductContainer;
 
