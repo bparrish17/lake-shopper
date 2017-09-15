@@ -22,7 +22,7 @@ const ViewCart = (props) => {
                                 <li className="cart-quantity-input input-group">
                                     <span className="input-group-addon">#</span>
                                         <input type="text" className="input-quantity form-control" aria-label="Change Quantity"></input>
-                                    <span className="input-group-addon">Edit Quantity</span>
+                                    <span className="input-group-addon">Quantity</span>
                                 </li>
                                 <li className="cart-item-delete btn btn-danger remove btn-circle">Remove Item</li>
                             </ul>
