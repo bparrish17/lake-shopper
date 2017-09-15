@@ -73,7 +73,16 @@ export const addToCartThunk = (itemId) =>
       axios.post(`/api/cart/${itemId}`)
       .then(result => result.data)
       .then(ourCart => {
+          console.log('OUR CART BEFORE ADD', ourCart)
           dispatch(addToCart(ourCart));
+      })
+
+export const editItemThunk = (itemId, newQuantity) => 
+    dispatch => 
+      axios.put(`/api/cart/${itemId}`)
+      .then(result => result.data)
+      .then(ourCart => {
+        console.log('our cart is here');
       })
 
 /**

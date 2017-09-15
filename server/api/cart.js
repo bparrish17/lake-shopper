@@ -35,7 +35,7 @@ router.delete('/:productId', (req, res, next) => {
 })
 
 router.put('/:productId', (req, res, next) => {
-    let productId = Number(req, params.productId);
+    let productId = Number(req.params.productId);
     Product.findById(productId)
         .then(product => {
           if (product){

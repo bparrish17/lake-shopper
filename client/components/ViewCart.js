@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import store from '../store';
 import {connect} from 'react-redux';
 import SingleProduct from './singleProduct'
-import {removeItemThunk} from '../store/cart';
+import {removeItemThunk, editItemThunk} from '../store/cart';
 const _ = require('lodash');
 const countBy = require('lodash.countby')
 
@@ -62,6 +62,10 @@ const mapDispatchToProps = (dispatch) => {
     return {
         removeItem(id) {
             dispatch(removeItemThunk(id))
+        }, 
+        editItem(event, id, amount) {
+            console.log(event.target.value)
+            dispatch(editItemThunk(id, amount))
         }
     }
 }
