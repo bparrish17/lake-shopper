@@ -4,9 +4,16 @@ import { Link } from 'react-router-dom';
 import store from '../store';
 import {connect} from 'react-redux';
 import SingleProduct from './singleProduct'
+const _ = require('lodash');
+const countBy = require('lodash.countby')
 
 const ViewCart = (props) => { 
-    //NEED TO FIND COUNT OF EACH OF THE PRODUCTS TO RETURN QUANTITY
+    //get count of number of each item
+    const cartQuantities = _.countBy((Array.prototype.slice.call(props.cart)), 'id')
+
+    //on rendering the products through the map, we want each product to be unique,
+    //but it doesn't like that because it thinks limiting products to the id is an
+    //issue, find solution to this that removes error instead of cartQuantities hack
     return (
         <div>      
             <div id="temp">
@@ -21,7 +28,11 @@ const ViewCart = (props) => {
                                 <li className="cart-item-name list-group-item">{product.name}</li>
                                 <li className="cart-quantity-input input-group">
                                     <span className="input-group-addon">#</span>
-                                        <input type="text" className="input-quantity form-control" aria-label="Change Quantity"></input>
+                                        <input 
+                                        type="text" 
+                                        className="input-quantity form-control" 
+                                        defaultValue={cartQuantities[product.id]}>
+                                        </input>
                                     <span className="input-group-addon">Quantity</span>
                                 </li>
                                 <li className="cart-item-delete btn btn-danger remove btn-circle">Remove Item</li>
