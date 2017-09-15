@@ -32,7 +32,7 @@ export const signup = (user, ownProps) => dispatch =>
     .post("/api/users", user)
     .then(() => {
       dispatch();
-      ownProps.history.push("/shop");
+      ownProps.history.push("/login");
     })
     .catch(() => dispatch());
 
