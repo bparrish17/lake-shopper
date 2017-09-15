@@ -13,13 +13,19 @@ class CheckoutOrder extends React.Component {
         this.handlePost = this.handlePost.bind(this)
     }
 
-        handleChange() {
+        handleChange(e) {
             this.setState((prevState, props) => ({
                 newAddressEntry: e.target.value
             }))
         }
 
+        handlePost(e) {
+            e.preventDefault();
+
+        }
+
         render() {
+            console.log('checkout component has hit')
             return (
                 <form onSubmit={handlePost}>
                 <div className="form-group">
@@ -41,8 +47,6 @@ class CheckoutOrder extends React.Component {
 
         const mapStateToProps = function (state, ownProps) {
             return {
-                newEmailEntry: state.newEmailEntry,
-                newAddressEntry: state.newAddressEntry,
                 user: state.user,
             }
         }
