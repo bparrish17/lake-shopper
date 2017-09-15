@@ -34,7 +34,7 @@ function Navbar(props) {
       <div id="cartdiv">
         <button type="button" className="btn btn-default btn-sm">
           <span className="glyphicon glyphicon-shopping-cart" />{" "}
-          { props.cart > 1 ? `${props.cart} Items in Cart` : 'No Items in Cart'}
+          { props.cart > 1 ? `${props.cart.length} Items in Cart` : 'No Items in Cart'}
         </button>
       </div>
     </nav>
