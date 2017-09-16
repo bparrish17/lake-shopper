@@ -9,6 +9,13 @@ import {removeItemThunk, editItemThunk} from '../store/cart';
 const ViewCart = (props) => { 
     const removeItem = props.removeItem;
     const editItem = props.editItem;
+    let totalCart = Array.prototype.splice.call(props.cart);
+    let total = 0;
+    for(var i=0; i<props.cart.length; i++) {
+        console.log(props.cart[i]);
+        total += (props.cart[i].cartQuantity*props.cart[i].price)
+    }
+
     // console.log('REMOVE ITEM', removeItem);
     //on rendering the products through the map, we want each product to be unique,
     //but it doesn't like that because it thinks limiting products to the id is an
@@ -25,6 +32,15 @@ const ViewCart = (props) => {
                         return (
                             <ul className="cart-item-list list-group" key={product.id}>
                                 <li className="cart-item-name list-group-item">{product.name}</li>
+                                <li className="cart-item-price input-group">
+                                    <span className="input-group-addon">$</span>
+                                        <input 
+                                        type="text" 
+                                        className="input-quantity form-control" 
+                                        value={product.price}>
+                                        </input>
+                                    <span className="input-group-addon">Price</span>
+                                </li>   
                                 <li className="cart-quantity-input input-group">
                                     <span className="input-group-addon">#</span>
                                         <input 
@@ -34,16 +50,16 @@ const ViewCart = (props) => {
                                         name={product.id}
                                         onChange={editItem}>
                                         </input>
-                                    <span className="input-group-addon">Quantity</span>
+                                    <span className="input-group-addon">In Cart</span>
                                 </li>
-                                <li className="cart-price-value input-group">
+                                <li className="cart-item-subtotal input-group">
                                     <span className="input-group-addon">$</span>
                                         <input 
                                         type="text" 
                                         className="input-quantity form-control" 
                                         value={product.price*product.cartQuantity}>
                                         </input>
-                                    <span className="input-group-addon">Price</span>
+                                    <span className="input-group-addon">Subtotal</span>
                                 </li>   
                                 <li 
                                     className="cart-item-delete btn btn-danger remove btn-circle"
@@ -53,15 +69,17 @@ const ViewCart = (props) => {
                         )
                     })
                 }
+                <hr />
                 <ul className="cart-item-list list-group">
+                    <li className="cart-checkout btn btn-primary">Checkout</li>
                     <li className="cart-subtotal input-group">
                         <span className="input-group-addon">$</span>
                             <input 
                             type="text" 
                             className="input-quantity form-control" 
-                            value={100}>
+                            value={total}>
                             </input>
-                        <span className="input-group-addon">Subtotal</span>
+                        <span className="input-group-addon">Total</span>
                     </li>
                 </ul>
                 </div>
