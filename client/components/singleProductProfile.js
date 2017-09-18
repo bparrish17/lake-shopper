@@ -8,20 +8,18 @@ import {ReviewForm} from './index';
 function SingleProductProfile (props) {
 
     const {products, categories, reviews} = props;
-
     let filteredArr = products.filter((product) => {
-        if(product.id === Number(props.match.params.productId)){
+        if(product.id === Number(props.match.params.id)){
             return product;
         }
     })
-
     //get categories for products
     //let productCategory = categories.filter(category => category.id === filteredArr[0].categoryId)[0].name;
     
 console.log(props.reviews);
   return (
     <div>
-       <ul>
+       
            {   
                filteredArr.map(product => {
                return (
@@ -42,7 +40,7 @@ console.log(props.reviews);
                )
            })}
          
-       </ul> 
+      
     </div>
   );
 }

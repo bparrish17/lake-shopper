@@ -1,126 +1,108 @@
-import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import {postOrder, writeAddress, writeEmail} from '../reducers';
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
+import { postGuest } from '../store'
 
-class CheckoutOrder extends React.Component {
+
+// *** SMART COMPONENT ***
+
+class Checkout extends React.Component {
     constructor(props) {
         super(props);
+        this.handleChange = this.handleChange.bind(this)
+        this.handleSubmit = this.handleSubmit.bind(this)
         this.state = {
             newAddressEntry: '',
             newEmailEntry: '',
         }
-        this.handleChange = this.handleChange.bind(this)
-        this.handlePost = this.handlePost.bind(this)
     }
 
-        handleChange(e) {
-            this.setState((prevState, props) => ({
-                newAddressEntry: e.target.value
-            }))
-        }
+    handleChange(e) {
 
-        handlePost(e) {
-            e.preventDefault();
+        let name = e.target.name;
+        name === 'emailName' ?
+            this.setState({ newEmailEntry: e.target.value }) :
+            this.setState({ newAddressEntry: e.target.value })
 
-        }
+    }
 
-        render() {
-            console.log('checkout component has hit')
-            return (
-                <form onSubmit={handlePost}>
+    handleSubmit(e) {
+        e.preventDefault()
+        let email = this.state.newEmailEntry
+        let address = this.state.newAddressEntry
+        this.props.handlePost({email})
+        this.setState({newEmailEntry: '',
+                       newAddressEntry: ''})
+    }
+
+    /*
+
+    IF USER EXIST:
+    create new order and use his userid
+    IMPLEMENTATION:
+    - get user info as props (set statetoProps)
+    - filter that user with email written in form, if there is a match, extract that id
+    - dispatch(newOrder and use user id)
+
+    IF GUEST:
+    create a new user with guest access and use that new user id for orders
+    IMPLEMENTATION:
+    -dispatch(newuser)
+    -dispatch(newOrder and use that newuser id)
+
+    */
+
+    render() {
+
+        const handleSubmit = this.handleSubmit
+        const handleChange = this.handleChange
+
+        return (
+            <form onSubmit={handleSubmit} className="checkout-form">
                 <div className="form-group">
                     <label>Email</label>
-                    <input value={newEmailEntry} name="emailName" onChange={handleChange} type="text" className="form-control" aria-describedby="nameHelp" placeholder={placeholderUser.email} />
-                    </div>
-                    <div className="form-group">
-                        <label>Address</label>
-                        <input type="text" value={newAddressEntry} onChange={handleChange} name="orderAddress" className="form-control" aria-describedby="emailHelp" placeholder={placeholderOrder.address} />
-                    </div>
-                    <div className="form-group">
+                    <input name="emailName" value={this.state.newEmailEntry} onChange={handleChange} type="email" className="form-control" aria-describedby="nameHelp" placeholder="Enter your Email" />
+                </div>
+                <div className="form-group">
+                    <label>Address</label>
+                    <input type="text" value={this.state.newAddressEntry} onChange={handleChange} name="orderAddress" className="form-control" aria-describedby="emailHelp" placeholder="Enter your Address" />
+                </div>
+                <div className="form-group">
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
-            );
-          }
+        );
+    }
+}
+
+
+const mapStateToProps = function (state, ownProps) {
+    return {
+        user: state.user,
+    }
+}
+
+const mapDispatchToProps = function (dispatch, ownProps) {
+    return ({
+        handlePost(email) {
+
+            // check if user exist through email
+            // create new guest user in db, use userid for order
+
+            // *** FOR GUESTS ***
+
+            dispatch(postGuest(email));
+
+            
+            // AFTER DISPATCH TO DB
+
+            ownProps.history.push('/');
+
         }
-
-
-        const mapStateToProps = function (state, ownProps) {
-            return {
-                user: state.user,
-            }
-        }
-        
-        // const mapDispatchToProps = function (dispatch, ownProps) {
-        //     return ({ 
-        //         handleChange (e) {
-        //           const name = e.target.name;
-        //           name === "studentName" ? 
-        //           dispatch(writeStudent(e.target.value)) : name === "studentEmail" ? 
-        //           dispatch(writeEmail(e.target.value)) : dispatch(writeCampusId(e.target.value))
-        //           console.log('etrgvalupdate', e.target.value)
-        //         },
-        //         handlePost (e) {
-        //             e.preventDefault();
-        //             console.log('etargetvalName', e.target.studentName.value)
-        //             console.log('etargetvalEmail', e.target.studentEmail.value)
-        //             console.log('etargetvalCampus', e.target.campusId.value)
-        
-        //             let email= e.target.studentEmail.value;
-        //             let name= e.target.studentName.value;
-        //             let campusId = Number(e.target.campusId.value);
-        //             let id = Number(ownProps.match.params.id);
-        //             console.log('idofparams', id)
-                          
-        //             dispatch(editStudent({id, name, email, campusId}))
-        //             dispatch(writeStudent(''));
-        //             dispatch(writeEmail(''));
-        //             ownProps.history.push('/students')
-        //         }
-        // })
-        // }
-
-
-export default connect(mapStateToProps)(CheckoutOrder)
+    })
+}
 
 
 
+const CheckoutContainer = connect(mapStateToProps, mapDispatchToProps)(Checkout)
+export default CheckoutContainer
 
-
-
-
-
-
-
-
-// function CheckoutOrder (props) {
-//     const {handlePost, handleChange, newEmailEntry, newAddressEntry, user} = props
-
-//     //identify student and make placeholder
-
-//     let placeholderStudent = studentsList.filter(student => student.id === Number(props.match.params.id))[0];
-//     console.log('placeholderStudent', placeholderStudent)
-    
-//     return (
-    // <form onSubmit={handleUpdate}>
-    //     <div className="form-group">
-    //         <label>Name</label>
-    //         <input value={newStudentEntry} name="studentName" onChange={handleChange} type="text" className="form-control" aria-describedby="nameHelp" placeholder={placeholderStudent.name} />
-    //         </div>
-    //         <div className="form-group">
-    //             <label>Email address</label>
-    //             <input type="email" value={newEmailEntry} onChange={handleChange} name="studentEmail" className="form-control" aria-describedby="emailHelp" placeholder={placeholderStudent.email} />
-    //         </div>
-    //         <div className="form-group">
-    //         <select onChange={handleChange} name="campusId" value={newCampusId} className="custom-select">
-    //         {campusList.map(campus => {
-    //             return (
-    //             <option key={campus.id} value={campus.id}>{campus.name}</option>
-    //             )
-    //         })}
-    //         </select>
-    //     </div>
-    //     <button type="submit" className="btn btn-primary">Submit</button>
-    // </form>
-//     ) 
-// }
