@@ -76,6 +76,14 @@ export const addToCartThunk = (itemId) =>
           dispatch(addToCart(ourCart));
       })
 
+export const editItemThunk = (itemId, newQuantity) => 
+    dispatch => 
+      axios.put(`/api/cart/${itemId}`, {newQuantity})
+      .then(result => result.data)
+      .then(ourCart => {
+        dispatch(editItem(ourCart))
+      })
+
 /**
  * REDUCER
  */
@@ -86,6 +94,8 @@ export default function reducer(state = cart, action) {
     case REMOVE_ITEM:
       return action.cart;
     case ADD_TO_CART:
+      return action.cart;
+    case EDIT_ITEM_QUANTITY:
       return action.cart;
     default:
       return state;
