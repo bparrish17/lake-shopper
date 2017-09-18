@@ -16,6 +16,7 @@ const ViewCart = (props) => {
     //on rendering the products through the map, we want each product to be unique,
     //but it doesn't like that because it thinks limiting products to the id is an
     //issue, find solution to this that removes error instead of cartQuantities hack
+    console.log('viewcart component was hit')
     return (
         <div>      
             <div id="temp">

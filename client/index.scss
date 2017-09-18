@@ -96,11 +96,23 @@ img-fluid {
   float: left;
   width: 25%;
   height: 100%;
-
+}
 #cartdiv{
   float: right;
 }
 
 #signuplogin{
   margin-left: 120px;
+}
+
+.form-group {
+  display: block;
+  position: relative;
+  top: 60px;
+}
+
+.btn-primary {
+  display: block;
+  position: relative;
+  top: 60px;
 }

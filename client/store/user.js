@@ -47,6 +47,18 @@ export const logout = () =>
       })
       .catch(err => console.log(err))
 
+export const postGuest = (email) => {
+  return dispatch => {
+    axios.post('/api/users/', email)
+      .then(res => {
+        return res.data
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+}
+
 /**
  * REDUCER
  */
