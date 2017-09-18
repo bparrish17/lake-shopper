@@ -27,9 +27,9 @@ const addReview = review => {
 /**
  * THUNK CREATORS
  */
-export const fetchReviews = product => dispatch =>
+export const fetchReviews = (productId) => dispatch =>
   axios
-    .get(`/api/reviews/${product.id}`)
+    .get(`/api/reviews/${productId}`)
     .then(result => result.data)
     .then(reviews => {
       dispatch(getReviews(reviews));
@@ -37,11 +37,14 @@ export const fetchReviews = product => dispatch =>
     .catch(error => console.log("Unable to fetch reviews", error));
 
 
-export const postReview = (product, review) => 
+export const postReview = (productId, rating, comment) => 
   dispatch =>
     axios
-      .post(`/api/${product.id}/reviews`, review)
-      .then(result => result.data)
+      .post(`/api/reviews/${productId}`, {rating: rating, comments: comment})
+      .then(result => {
+        console.log('GETTING HERE FINE');
+        return result.data;
+      })
       .then(newReview => {
         dispatch(addReview(newReview));
       })

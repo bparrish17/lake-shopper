@@ -127,7 +127,6 @@ img-fluid {
   width: 12%;
   font-size: 14px;
   height: 100%;
-  padding-top: 9px;
 }
 .cart-total {
   width: 24%;
@@ -140,6 +139,19 @@ img-fluid {
 
 #signuplogin {
   margin-left: 120px;
+}
+
+
+.form-group {
+  display: block;
+  position: relative;
+  top: 60px;
+}
+
+.btn-primary {
+  display: block;
+  position: relative;
+  top: 60px;
 }
 
 .temp {
