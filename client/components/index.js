@@ -7,6 +7,8 @@
 export {default as Main} from './main'
 export {default as ViewCart} from './ViewCart'
 export {default as UserHome} from './user-home'
+export {default as SingleReview} from './singleReview';
+export {default as AdminPortal} from './adminPortal'
 export {Login, Signup} from './auth-form'
 export {default as Checkout} from './CheckoutPage'
 export {default as singleProductProfile} from './singleProductProfile'

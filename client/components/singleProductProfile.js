@@ -19,13 +19,11 @@ function SingleProductProfile (props) {
     <div>
        
            {   
-                
                filteredArr.map(product => {
-                   
                return (
                    <li key={product.id}>
                        <img src={`${product.image}`} />
-                     <span>Name: {product.name} Price: {product.price} Description: {product.description}
+                        <span>Name: {product.name} Price: {product.price} Description: {product.description}
                         <button type="button" className="btn btn-outline-info">Add To Cart</button>
                         <NavLink to={`/product/${product.id}`} activeClassName="active">
                         <button type="button" className="btn btn-outline-info">Checkout</button>

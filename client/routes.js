@@ -4,9 +4,9 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, ProductList, ViewCart, Checkout, singleProductProfile} from './components'
+import {Main, Login, Signup, UserHome, ProductList, ViewCart, Checkout, SingleReview, AdminPortal} from './components'
 import NavbarRouter from './components/navbar'
-import {me, getProductsThunk, fetchCategories, getCartItemsThunk} from './store'
+import {me, getProductsThunk, fetchCategories, getCartItemsThunk, fetchReviews} from './store'
 import {AdminPortal} from './components/adminPortal'
 
 /**
@@ -26,14 +26,18 @@ class Routes extends Component {
     return (
       <Router history={history}>
         <div>
+          <Route exact path = "/reviewtest" component={SingleReview} />
           <NavbarRouter categories={categories}/>
           <div>
             <Switch>
-              <Route exact path="/" component={Main} />
-              <Route exact path="/cart" component={ViewCart} />
-              <Route exact path="/admin" component={AdminPortal} />
-              <Route exact path="/checkout" component={Checkout} />
-              <Route path="/product/:id" component={singleProductProfile} />
+                <Route exact path="/" component={Main} />
+                <Route exact path="/home" component={Main} />
+                <Route exact path="/cart" component={ViewCart} />
+                <Route exact path="/admin" component={AdminPortal} />
+                <Route exact path="/checkout" component={Checkout} />
+                <Route path="/product/:id" component={singleProductProfile} />
+                <Route exact path = "/signup" component={Signup} />
+                <Route exact path = "/login" component={Login} />
             </Switch>
           </div>
         </div>
