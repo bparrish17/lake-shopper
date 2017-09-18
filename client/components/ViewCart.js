@@ -106,6 +106,7 @@ const mapDispatchToProps = (dispatch) => {
             dispatch(removeItemThunk(id))
         }, 
         editItem(event) {
+            event.preventDefault();
             let quantity = Number(event.target.value);
             let productId = event.target.name;
             dispatch(editItemThunk(productId, quantity));

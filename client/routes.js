@@ -4,10 +4,9 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, ProductList, ViewCart, CheckoutOrder, SingleReview, AdminPortal} from './components'
+import {Main, Login, Signup, UserHome, ProductList, ViewCart, CheckoutOrder, ReviewForm, AdminPortal, SingleProductProfile} from './components'
 import NavbarRouter from './components/navbar'
 import {me, getProductsThunk, fetchCategories, getCartItemsThunk, fetchReviews} from './store'
-import {AdminPortal} from './components/adminPortal'
 
 /**
  * COMPONENT
@@ -26,7 +25,6 @@ class Routes extends Component {
     return (
       <Router history={history}>
         <div>
-          <Route exact path = "/reviewtest" component={SingleReview} />
           <NavbarRouter categories={categories}/>
           <div>
             <Switch>
@@ -37,6 +35,7 @@ class Routes extends Component {
                 <Route exact path="/checkout" component={CheckoutOrder} />
                 <Route exact path = "/signup" component={Signup} />
                 <Route exact path = "/login" component={Login} />
+                <Route path="/products/:productId" component={SingleProductProfile} />
             </Switch>
           </div>
         </div>
@@ -93,3 +92,5 @@ Routes.propTypes = {
 // }
 // {/* Displays our Login component as a fallback */}
 // <Route component={Login} />
+
+// // <Route exact path = "/reviewtest" component={SingleReview} />
