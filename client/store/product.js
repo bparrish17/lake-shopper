@@ -30,7 +30,7 @@ const getProductsFromCategory = category => ({
  */
 export const getProductsThunk = () =>
   dispatch =>
-    axios.get('api/products')
+    axios.get('/api/products')
       .then(res => res.data)
       .then(products => {
         dispatch(getProducts(products))
@@ -39,7 +39,7 @@ export const getProductsThunk = () =>
 
 export const getProductsFromCategoryThunk = category =>
   dispatch =>
-    axios.get(`api/categories/${category.id}/products`)
+    axios.get(`/api/categories/${category.id}/products`)
       .then(res => res.data)
       .then(products => {
         dispatch(getProductsFromCategory(category))

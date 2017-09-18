@@ -142,12 +142,19 @@ img-fluid {
   margin-left: 120px;
 }
 
-#temp {
+.temp {
   height: 60px;
 }
 
 #signup {
   float: inherit;
 }
+.navbar {
+  position: fixed;
+}
 
+//reviews
+#star-select {
+  width: 100%;
+}
 

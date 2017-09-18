@@ -16,7 +16,7 @@ import ViewCart from './ViewCart'
  */
 const Main = (props) => {
   const {children, handleClick, isLoggedIn, products, categories, cart} = props
-  console.log("categories", categories)
+  //console.log("categories", categories)
   return (
     <div>
       <div id="mycarousel" className="carousel slide" data-ride="carousel">
