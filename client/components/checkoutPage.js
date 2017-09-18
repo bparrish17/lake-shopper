@@ -175,6 +175,8 @@ export default CheckoutContainer
                     // dispatch(writeStudent(''));
                     // dispatch(writeEmail(''));
                     // ownProps.history.push('/students')
+
+                    //this.props.dispatch r the other one
         //         }
         // })
         // }
