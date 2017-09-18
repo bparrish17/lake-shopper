@@ -51,22 +51,23 @@ router.delete('/:productId', (req, res, next) => {
 router.put('/:productId', (req, res, next) => {
     let productId = Number(req.params.productId);
     let newQuantity = Number(req.body.newQuantity);
-    Product.findById(productId)
-    .then(product => {
-        if(product.dataValues.quantity < newQuantity) {
-            res.sendStatus(404);
-        } else {
-            let cart = Array.prototype.slice.call(req.session.cart);
-            for(var i=0; i<cart.length; i++) {
-                if(cart[i].id === productId) {
-                    cart[i].cartQuantity = newQuantity;
-                }
+    // Product.findById(productId)
+    // .then(product => {
+    //     if(product.dataValues.quantity < newQuantity) {
+    //         res.sendStatus(404);
+    //     } else {
+    let cart = Array.prototype.slice.call(req.session.cart);
+    for(var i=0; i<cart.length; i++) {
+        if(cart[i].id === productId) {
+            if(cart[i].quantity < newQuantity) res.sendStatus(404);
+            else {
+                cart[i].cartQuantity = newQuantity;
             }
-            req.session.cart = cart
-            res.json(req.session.cart);
         }
-    })
-    .catch(next)
+    }
+    req.session.cart = cart
+    res.json(req.session.cart);
+    // .catch(next)
 })
 
 

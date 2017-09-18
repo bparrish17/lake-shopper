@@ -115,17 +115,3 @@ const mapDispatchToProps = (dispatch) => {
 
 const ViewCartContainer = connect(mapStateToProps, mapDispatchToProps)(ViewCart);
 export default ViewCartContainer;
-
-// <div className="center">
-// <li>
-//     <div className="cart-quantity-input input-group">
-//       <span className="input-group-btn">
-          
-//       </span>
-//       <input type="text" name="quant[1]" class="form-control input-number" value="1" min="1" max="10">
-//       <span class="input-group-btn">
-//           <button type="button" class="btn btn-default btn-number" data-type="plus" data-field="quant[1]">
-//               <span class="glyphicon glyphicon-plus"></span>
-//           </button>
-//       </span>
-//   </li>
