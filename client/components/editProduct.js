@@ -3,8 +3,7 @@ import {NavLink} from 'react-router-dom';
 import store from '../store';
 import {connect} from 'react-redux';
 
-class EditProduct extends Component (props) {
-  const {products} = props;
+export default class EditProduct extends Component {
 
   constructor(props){
     super(props)
@@ -14,7 +13,7 @@ class EditProduct extends Component (props) {
       newDescription: '',
       newImage: '',
       newQuantity: '',
-      categoryId:
+      categoryId: 0
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -28,20 +27,17 @@ class EditProduct extends Component (props) {
     })
   }
 
-  let product = props.product;
-
-  let productId = this.props.match.params.id
-
   render () {
 
     const handleChange = this.handleChange;
-    const handleSubmit = this.handleSubmit;
+    // const handleSubmit = this.handleSubmit;
 
-    const campuses = this.state.campuses;
+    // const productId = this.props.match.params.id
+
 
     return (
       <div>
-          <form onSubmit={handleSubmit}>
+          <form>
             <div>
               <label>Edit Product: </label>
                 <br></br>
@@ -73,19 +69,19 @@ class EditProduct extends Component (props) {
                   placeholder="Enter new description"
                   onChange={handleChange} />
                 <br></br>
-                <select onChange={(e) => this.setState({campusId : Number(e.target.value)})}>
+                {/* <select onChange={(e) => this.setState({categoryId : Number(e.target.value)})}>
                   <option defaultValue>Select a Category</option>
                   {
                     categories.map(category => {
                       return (
                         <option key={category.id}
-                                name="category"
+                                name="categoryId"
                                 value={category.id}
                                 > {category.name} </option>
                       )
                     })
                   }
-                </select>
+                </select> */}
             </div>
             <div className="form-group">
               <button type="submit" className="button" >Edit Product</button>
@@ -97,16 +93,16 @@ class EditProduct extends Component (props) {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        products: state.products,
-        newProductName: state.newProductName,
-        newPrice: state.newPrice,
-        newDescription: state.newDescription,
-        newImage: state.newImage,
-        newQuantity: state.newQuantity
-    }
-};
+// const mapStateToProps = (state, ownProps) => {
+//     return {
+//         products: state.products,
+//         newProductName: state.newProductName,
+//         newPrice: state.newPrice,
+//         newDescription: state.newDescription,
+//         newImage: state.newImage,
+//         newQuantity: state.newQuantity
+//     }
+// };
 
 // const mapDispatchToProps = (dispatch) => {
 //     return {
@@ -116,9 +112,9 @@ const mapStateToProps = (state, ownProps) => {
 //     }
 // }
 
-const EditProductContainer = connect(mapStateToProps, mapDispatchToProps)(EditProduct);
+// const EditProductContainer = connect(mapStateToProps, mapDispatchToProps)(EditProduct);
 
-export default EditProductContainer;
+// export default EditProductContainer;
 
 
     // let filteredArr = props.studentsList.filter((student) => {
