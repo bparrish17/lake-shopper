@@ -4,7 +4,7 @@ import { NavLink, withRouter } from "react-router-dom";
 import Category from "../store/category";
 
 function Navbar(props) {
-  console.log("HELLO", props)
+  console.log("props", props);
   return (
     <nav>
       <div className="dropdown">
@@ -32,10 +32,24 @@ function Navbar(props) {
         </ul>
       </div>
       <div className="cartDisplay" id="cartdiv">
+      <a href='/cart'>
         <button type="button" className="btn btn-default btn-sm">
           <span className="glyphicon glyphicon-shopping-cart" />{" "}
-          { props.cart.length > 0 ? `${props.cart.length} Items in Cart` : 'No Items in Cart'}
+          {props.cart.length > 0 ? (
+            `${props.cart.length} Items in Cart`
+          ) : (
+            "No Items in Cart"
+          )}
         </button>
+        </a>
+      </div>
+
+      <div className="homeButton" id="homebuttondiv">
+      <a href='/'>
+        <button type="button" className="btn btn-default btn-sm">
+          <span className="glyphicon glyphicon-home" /> Home
+        </button>
+        </ a>
       </div>
     </nav>
   );
