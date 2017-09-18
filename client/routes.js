@@ -4,7 +4,7 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, ProductList, ViewCart, CheckoutOrder, ReviewForm, AdminPortal, SingleProductProfile} from './components'
+import {Main, Login, Signup, UserHome, ProductList, ViewCart, Checkout, SingleReview, ReviewForm, AdminPortal, singleProductProfile} from './components'
 import NavbarRouter from './components/navbar'
 import {me, getProductsThunk, fetchCategories, getCartItemsThunk, fetchReviews} from './store'
 
