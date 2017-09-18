@@ -49,7 +49,7 @@ function Navbar(props) {
         <button type="button" className="btn btn-default btn-sm">
           <span className="glyphicon glyphicon-home" /> Home
         </button>
-        </ a>
+        </a>
       </div>
     </nav>
   );
