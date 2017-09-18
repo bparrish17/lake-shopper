@@ -4,9 +4,9 @@ import { NavLink, withRouter } from "react-router-dom";
 import Category from "../store/category";
 
 function Navbar(props) {
-  console.log("props", props)
+  console.log("HELLO", props)
   return (
-    <nav className="navbar navbar-default navbar-fixed-top">
+    <nav>
       <div className="dropdown">
         <button
           className="btn btn-default dropdown-toggle"

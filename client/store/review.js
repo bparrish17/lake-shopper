@@ -29,7 +29,7 @@ const addReview = review => {
  */
 export const fetchReviews = product => dispatch =>
   axios
-    .get(`/api/products/${product.id}/reviews`)
+    .get(`/api/reviews/${product.id}`)
     .then(result => result.data)
     .then(reviews => {
       dispatch(getReviews(reviews));
@@ -37,14 +37,15 @@ export const fetchReviews = product => dispatch =>
     .catch(error => console.log("Unable to fetch reviews", error));
 
 
-export const postReview = product => dispatch =>
-  axios
-    .post(`/api/products/${product.id}/reviews`, review)
-    .then(result => result.data)
-    .then(newReview => {
-      dispatch(addReview(newReview));
-    })
-    .catch(error => console.log("Unable to add review", error));
+export const postReview = (product, review) => 
+  dispatch =>
+    axios
+      .post(`/api/${product.id}/reviews`, review)
+      .then(result => result.data)
+      .then(newReview => {
+        dispatch(addReview(newReview));
+      })
+      .catch(error => console.log("Unable to add review", error));
 
 /**
  * REDUCER
