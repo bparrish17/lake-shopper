@@ -32,6 +32,7 @@ function Navbar(props) {
         </ul>
       </div>
       <div className="cartDisplay" id="cartdiv">
+      <a href='/cart'>
         <button type="button" className="btn btn-default btn-sm">
           <span className="glyphicon glyphicon-shopping-cart" />{" "}
           {props.cart.length > 0 ? (
@@ -40,6 +41,7 @@ function Navbar(props) {
             "No Items in Cart"
           )}
         </button>
+        </a>
       </div>
 
       <div className="homeButton" id="homebuttondiv">
