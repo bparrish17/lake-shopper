@@ -24,9 +24,11 @@ const ViewCart = (props) => {
         <div>      
             <div id="temp">
             </div>
+            <div className="col-xs-1"></div>
             <div className="row container-fluid">
                 <div className="col-xs-9">
                 <h1 id="your-cart-header">Your Cart</h1>
+                <hr />
                 {
                     props.cart.map(product => {
                         return (
@@ -77,13 +79,16 @@ const ViewCart = (props) => {
                             <input 
                             type="text" 
                             className="input-quantity form-control" 
-                            value={total}>
+                            value={total}
+                            readOnly>
                             </input>
-                        <span className="input-group-addon">Total</span>
+                        <span className="cart-total input-group-addon">Total</span>
                     </li>
                 </ul>
                 </div>
             </div>
+            <div className="col-xs-2"></div>
+            
         </div>
     );
 }

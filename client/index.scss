@@ -38,8 +38,14 @@ img-fluid {
   border: 10px;
 }
 
-#our-products-container {
-  background-color: #1414C2;
+.single-product {
+  margin: 4%;
+  background-color: rgba(202, 200, 198, 0.29);
+  padding-bottom: 10px;
+}
+
+.our-products-container {
+  background-color: #1a3026;
   height: 50px;
 }
 
@@ -121,6 +127,9 @@ img-fluid {
   font-size: 14px;
   height: 100%;
   padding-top: 9px;
+}
+.cart-total {
+  width: 24%;
 }
 
 #cartdiv {
