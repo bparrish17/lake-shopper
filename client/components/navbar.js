@@ -6,7 +6,7 @@ import Category from "../store/category";
 function Navbar(props) {
   console.log("props", props);
   return (
-    <nav>
+    <nav className="navbar navbar-default navbar-fixed-top">
       <div className="dropdown">
         <button
           className="btn btn-default dropdown-toggle"
