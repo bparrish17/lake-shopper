@@ -21,7 +21,7 @@ function SingleProduct (props) {
                 onClick={() => addToCart(product.id)}
                 >Add To Cart</button>
 
-                <NavLink to={`/product/${product.id}`} activeClassName="active">
+                <NavLink to={`/products/${product.id}`} activeClassName="active">
                     <button type="button" id="view-details-btn" className="btn btn-outline-info">View Details</button>
                 </NavLink>
             </div>

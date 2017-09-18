@@ -10,6 +10,7 @@ const GET_CART = "GET_CART";
 const REMOVE_ITEM = "REMOVE_ITEM";
 const ADD_TO_CART = "ADD_TO_CART";
 const EDIT_ITEM_QUANTITY = "EDIT_ITEM_QUANTITY";
+const EDIT_ITEM_FAILURE = "EDIT_ITEM_FAILURE";
 
 /**
  * ACTION CREATORS
@@ -39,6 +40,13 @@ const editItem = cart => {
   return {
     type: EDIT_ITEM_QUANTITY,
     cart
+  }
+}
+
+const editItemFailure = error => {
+  return {
+    type: EDIT_ITEM_FAILURE,
+    error
   }
 }
 
@@ -76,6 +84,17 @@ export const addToCartThunk = (itemId) =>
           dispatch(addToCart(ourCart));
       })
 
+export const editItemThunk = (itemId, newQuantity) => 
+    dispatch => 
+      axios.put(`/api/cart/${itemId}`, {newQuantity})
+      .then(result => result.data)
+      .then(ourCart => {
+        dispatch(editItem(ourCart))
+      })
+      .catch(err => {
+        dispatch(editItemFailure(err));
+      })
+
 /**
  * REDUCER
  */
@@ -87,6 +106,10 @@ export default function reducer(state = cart, action) {
       return action.cart;
     case ADD_TO_CART:
       return action.cart;
+    case EDIT_ITEM_QUANTITY:
+      return action.cart;
+    case EDIT_ITEM_FAILURE:
+      return action.error;
     default:
       return state;
   }

@@ -51,7 +51,9 @@ const createApp = () => {
     if(!req.session.cart) {
       req.session.cart = [];
     }
-    console.log('REQ SESSION CART', req.session.cart);
+    console.log('REQ SESSION', req.session)
+    console.log('REQ USER', req.user);
+    // console.log('REQ', req)
     next();
   })
 

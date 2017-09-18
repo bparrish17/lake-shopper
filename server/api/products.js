@@ -57,29 +57,3 @@ router.put('/:id', (req, res, next) => {
     .then(updatedProduct => res.json(updatedProduct))
     .catch(next);
 });
-
-//REVIEWS
-// post review on this product
-
-router.post('/:id/reviews', (req, res, next) => {
-  let currentId = req.params.id;
-  req.body.productId = currentId;
-  Review.create(req.body)
-  .then(result => res.send(result))
-  .catch(next);
-})
-
-// get all of the reviews for this product
-
-router.get('/:id/reviews', (req, res, next) => {
-  let currentId = req.params.id
-  Review.findAll({ where: { productId: currentId } })
-  .then(review => {
-    if (review){
-      res.json(review);
-    } else {
-      res.sendStatus(404);
-    }
-  })
-  .catch(next)
-})

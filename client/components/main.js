@@ -16,7 +16,7 @@ import ViewCart from './ViewCart'
  */
 const Main = (props) => {
   const {children, handleClick, isLoggedIn, products, categories, cart} = props
-  console.log("categories", categories)
+  //console.log("categories", categories)
   return (
     <div>
       <div id="mycarousel" className="carousel slide" data-ride="carousel">
@@ -33,7 +33,7 @@ const Main = (props) => {
         </div>
       </div>
 
-      <div id="our-products-container" className="row container-fluid">
+      <div className="our-products-container row container-fluid">
         <Link to="/cart"><button type="button" className="btn btn-default">View Cart</button></Link>
       </div>
       <div className="row container-fluid">
@@ -41,7 +41,7 @@ const Main = (props) => {
       {
         props.products.map(product => {
           return (
-            <div className="col-xs-3" key={product.id}>
+            <div className="single-product col-xs-3" key={product.id}>
               <SingleProduct product={product}/>
             </div>
           )

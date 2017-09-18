@@ -13,8 +13,6 @@ const mapStateToProps = (state) => {
 
   
 export const ProductList = (props) => {
-    console.log('THESE ARE PROPS', props);
-    console.log('THIS STATE');
     return (
         <div>
             <h1>ProductList Component Says Hey</h1>
