@@ -3,33 +3,98 @@ import {NavLink} from 'react-router-dom';
 import store from '../store';
 import {connect} from 'react-redux';
 
-function EditProduct (props) {
-  const {products, addToCart} = props;
+class EditProduct extends Component (props) {
+  const {products} = props;
+
+  constructor(props){
+    super(props)
+    this.state = {
+      newName: '',
+      newPrice: '',
+      newDescription: '',
+      newImage: '',
+      newQuantity: '',
+      categoryId:
+    }
+
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(event){
+    const value = event.target.value;
+
+    this.setState({
+      [event.target.name]: value
+    })
+  }
+
   let product = props.product;
 
   let productId = this.props.match.params.id
 
-  return (
-    <div>
-        <li id="product-comp">
-            <h3 id="product-name-price">{product.name}</h3>
-            <img src={`${product.image}`} className="img-responsive"/>
-            <h4 id="product-name-price">${product.price}</h4>
-            <div className="row container-fluid">
-                <button
-                type="button"
-                id="add-to-cart-btn"
-                className="btn btn-outline-info"
-                onClick={() => addToCart(product.id)}
-                >Add To Cart</button>
+  render () {
 
-                <NavLink to={`/product/${product.id}`} activeClassName="active">
-                    <button type="button" id="view-details-btn" className="btn btn-outline-info">View Details</button>
-                </NavLink>
+    const handleChange = this.handleChange;
+    const handleSubmit = this.handleSubmit;
+
+    const campuses = this.state.campuses;
+
+    return (
+      <div>
+          <form onSubmit={handleSubmit}>
+            <div>
+              <label>Edit Product: </label>
+                <br></br>
+                <input
+                  type="text"
+                  name="newName"
+                  value= {this.state.newName}
+                  placeholder="Enter new product name"
+                  onChange={handleChange} />
+                <br></br>
+                <input
+                  type="text"
+                  name="newPrice"
+                  value= {this.state.newPrice}
+                  placeholder="Enter new price"
+                  onChange={handleChange} />
+                <br></br>
+                <input
+                  type="text"
+                  name="newImage"
+                  value= {this.state.newImage}
+                  placeholder="Enter new image URL"
+                  onChange={handleChange} />
+                <br></br>
+                <input
+                  type="text"
+                  name="newDescription"
+                  value= {this.state.newDescription}
+                  placeholder="Enter new description"
+                  onChange={handleChange} />
+                <br></br>
+                <select onChange={(e) => this.setState({campusId : Number(e.target.value)})}>
+                  <option defaultValue>Select a Category</option>
+                  {
+                    categories.map(category => {
+                      return (
+                        <option key={category.id}
+                                name="category"
+                                value={category.id}
+                                > {category.name} </option>
+                      )
+                    })
+                  }
+                </select>
             </div>
-        </li>
-    </div>
-  );
+            <div className="form-group">
+              <button type="submit" className="button" >Edit Product</button>
+            </div>
+          </form>
+        </div>
+    )
+
+  }
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -39,17 +104,17 @@ const mapStateToProps = (state, ownProps) => {
         newPrice: state.newPrice,
         newDescription: state.newDescription,
         newImage: state.newImage,
-        newQuantity: state.newQuantity      
+        newQuantity: state.newQuantity
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-      addToCart(id) {
-        dispatch(addToCartThunk(id))
-      }
-    }
-}
+// const mapDispatchToProps = (dispatch) => {
+//     return {
+//       addToCart(id) {
+//         dispatch(addToCartThunk(id))
+//       }
+//     }
+// }
 
 const EditProductContainer = connect(mapStateToProps, mapDispatchToProps)(EditProduct);
 
