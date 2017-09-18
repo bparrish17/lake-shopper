@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const {Order} = require('../db/models')
+const {Order, User, Product} = require('../db/models')
 module.exports = router
 
 // get all orders - admin only
@@ -9,7 +9,7 @@ router.get('/', (req, res, next) => {
     error.status = 401
     return next(error);
   }
-  Order.findAll()
+  Order.findAll({include: [User, Product]})
     .then(orders => res.json(orders))
     .catch(next)
 })
