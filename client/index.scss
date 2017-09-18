@@ -46,6 +46,7 @@ img-fluid {
 
 .our-products-container {
   background-color: #1a3026;
+
   height: 50px;
 }
 
@@ -132,9 +133,9 @@ img-fluid {
   width: 24%;
 }
 
+
 #cartdiv {
   float: right;
-  
 }
 
 #signuplogin {
@@ -144,3 +145,9 @@ img-fluid {
 #temp {
   height: 60px;
 }
+
+#signup {
+  float: inherit;
+}
+
+
