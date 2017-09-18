@@ -5,22 +5,19 @@ import {connect} from 'react-redux';
 
 
 function SingleProductProfile (props) {
-
     const {products, categories} = props;
-
     let filteredArr = products.filter((product) => {
-        if(product.id === Number(props.match.params.productId)){
+        if(product.id === Number(props.match.params.id)){
             return product;
         }
     })
-
     //get categories for products
     //let productCategory = categories.filter(category => category.id === filteredArr[0].categoryId)[0].name;
     
 
   return (
     <div>
-       <ul>
+       
            {   
                filteredArr.map(product => {
                return (
@@ -38,7 +35,7 @@ function SingleProductProfile (props) {
                )
            })}
          
-       </ul> 
+      
     </div>
   );
 }
