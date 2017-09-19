@@ -35,6 +35,13 @@ router.post('/:productId', (req, res, next) => {
         .catch(next)
 })
 
+router.delete('/', (req, res, next) => {
+    console.log('***req.session.cart', req.session.cart)
+    req.session.cart = [];
+    console.log('***empty cart?', req.session.cart)
+    res.json(req.session.cart);
+})
+
 router.delete('/:productId', (req, res, next) => {
     let productId = Number(req.params.productId);
     let cart = Array.prototype.slice.call(req.session.cart);
@@ -59,10 +66,8 @@ router.put('/:productId', (req, res, next) => {
     let cart = Array.prototype.slice.call(req.session.cart);
     for(var i=0; i<cart.length; i++) {
         if(cart[i].id === productId) {
-            if(cart[i].quantity < newQuantity) res.sendStatus(404);
-            else {
-                cart[i].cartQuantity = newQuantity;
-            }
+            if(cart[i].quantity < newQuantity) res.json(req.session.cart);
+            else cart[i].cartQuantity = newQuantity;
         }
     }
     req.session.cart = cart

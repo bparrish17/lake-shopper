@@ -4,7 +4,6 @@ import store from '../store';
 import {connect} from 'react-redux';
 
 function SingleUser (props) {
-
     const {users} = props;
     let filteredUsers = users.filter((user) => {
         if(user.id === Number(props.match.params.userId)){
@@ -40,7 +39,15 @@ function SingleUser (props) {
 
 const mapStateToProps = (state, ownProps) => {
     return {
-        users: state.users
+        user: state.user
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        loadUser() {
+            dispatch(getUserPage());
+        }
     }
 };
 

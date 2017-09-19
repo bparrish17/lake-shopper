@@ -6,6 +6,7 @@ import {postOrder} from "./order";
  * ACTION TYPES
  */
 const GET_USER = "GET_USER";
+const GET_USER_PAGE = "GET_USER_PAGE";
 const REMOVE_USER = "REMOVE_USER";
 
 /**
@@ -17,6 +18,7 @@ const defaultUser = {};
  * ACTION CREATORS
  */
 const getUser = user => ({ type: GET_USER, user });
+const getUserPage = user => ({type: GET_USER_PAGE, user});
 const removeUser = () => ({ type: REMOVE_USER });
 
 /**
@@ -56,13 +58,15 @@ export const logout = () => dispatch =>
     .catch(err => console.log(err));
 
 export const postGuest = (info) => {
-  console.log('info[1]', info[1])
+  
   return dispatch => {
     axios.post('/api/users/', info[0])
       .then(res => {
+        console.log('this is res', res)
         return res.data
       })
       .then(posted => {
+        console.log('this is posted', posted)
         dispatch(postOrder({userId: posted.id, address: info[1].address}))
       })
       .catch(err => {
@@ -70,6 +74,14 @@ export const postGuest = (info) => {
       })
   }
 }
+export const getUserPageThunk = (user) =>
+  dispatch =>
+    axios.get(`/api/users/${user.id}`)
+      .then(res => res.data)
+      .then(user => {
+        dispatch(getUserPage(user))
+      })
+      .catch(err => console.log(err))
 
 /**
  * REDUCER
@@ -77,6 +89,8 @@ export const postGuest = (info) => {
 export default function(state = defaultUser, action) {
   switch (action.type) {
     case GET_USER:
+      return action.user;
+    case GET_USER_PAGE:
       return action.user;
     case REMOVE_USER:
       return defaultUser;

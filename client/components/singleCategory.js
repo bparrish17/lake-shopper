@@ -18,19 +18,23 @@ function SingleCategory(props) {
   console.log("prodsinCat", prodsinCat);
 
   return (
-	<div className="row container-fluid">
-      {/* do category checking below? cant render the all products component in main instead */}
-      {
-        prodsinCat.map(product => {
-          return (
-            <div className="single-product col-xs-3" key={product.id}>
-              <SingleProduct product={product}/>
-            </div>
-          )
-        })
-      }
-      <br />
+    <div>
+      <div className="temp">
       </div>
+      <div className="row container-fluid">
+          {/* do category checking below? cant render the all products component in main instead */}
+          {
+            prodsinCat.map(product => {
+              return (
+                <div className="single-product col-xs-3" key={product.id}>
+                  <SingleProduct product={product}/>
+                </div>
+              )
+            })
+          }
+          <br />
+      </div>
+    </div>
   );
 }
 

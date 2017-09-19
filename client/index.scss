@@ -19,11 +19,6 @@ body {
     display: block;
   }
 
-  nav a {
-    display: inline-block;
-    margin: 1em;
-    float: right;
-  }
 
   form div {
     margin: 1em;
@@ -35,6 +30,7 @@ img-fluid {
   width: 100%;
   height: auto;
 }
+
 
 #main-caption {
   text-align: center;
@@ -80,12 +76,23 @@ img-fluid {
 #add-to-cart-btn {
   float: left;
   width: 49%;
+  color: black;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   background-color: rgba(204, 202, 202, 0.68);
 }
+#add-to-cart-btn-disabled {
+  float: left;
+  width: 49%;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: #d9534f;
+}
+
 #view-details-btn {
   float: right;
   width: 49%;
@@ -147,13 +154,24 @@ img-fluid {
   width: 12%;
   font-size: 14px;
   height: 100%;
+  top: 0px;
+  padding-top: 8px;
 }
+
 .cart-total {
   width: 24%;
 }
 
 
 #cartdiv {
+  float: right;
+}
+
+#homebuttondiv{
+  float: right;
+}
+
+#loginsignup{
   float: right;
 }
 
@@ -171,7 +189,7 @@ img-fluid {
 .btn-primary {
   display: block;
   position: relative;
-  top: 60px;
+  top: 0px;
 }
 
 .temp {
@@ -185,6 +203,11 @@ img-fluid {
   position: fixed;
 }
 
+.navbar-default {
+  background-color: #c30808;
+  border-color: #c30808;
+}
+
 //reviews
 #star-select {
   width: 100%;
@@ -193,12 +216,17 @@ img-fluid {
   padding-left: 0px;
 }
 
+
 #review-form-title {
   padding-left: 12px;
 }
 
 #review-form {
   height: max-content;
+}
+
+.form-items {
+  top: 0px;
 }
 
 .form-container {
@@ -264,3 +292,10 @@ img-fluid {
   padding: 5%;
 }
 
+#homeButton{
+  display: block;
+}
+
+#navbar{
+  background-color: #F8F8F8;
+}

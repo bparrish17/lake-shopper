@@ -61,7 +61,7 @@ router.get('/:id', (req, res, next) => {
 
 // create order
 
-router.post('/', isAdmin, (req, res, next) => {
+router.post('/', (req, res, next) => {
   Order.create(req.body)
     .then(result => res.send(result))
     .catch(next);
