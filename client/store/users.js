@@ -43,8 +43,7 @@ const changeAdminStatus = user => {
  * THUNK CREATORS
  */
 export const fetchUsers = () => dispatch =>
-  axios
-    .get('/api/users')
+  axios.get('/api/users')
     .then(result => result.data)
     .then(users => {
       dispatch(getUsers(users))
@@ -52,8 +51,7 @@ export const fetchUsers = () => dispatch =>
     .catch(error => console.log('Unable to fetch users', error))
 
 export const postUser = user => dispatch =>
-  axios
-    .post('/api/users', user)
+  axios.post('/api/users', user)
     .then(result => result.data)
     .then(newUser => {
       dispatch(addUser(newUser))
@@ -61,16 +59,14 @@ export const postUser = user => dispatch =>
     .catch(error => console.log('Unable to add user', error))
 
 export const removeUser = user => dispatch =>
-  axios
-    .delete(`/api/users/${user.id}`)
+  axios.delete(`/api/users/${user.id}`)
     .then(() => {
       dispatch(deleteUser(user))
     })
     .catch(error => console.log('Unable to delete user', error))
 
 export const updateAdminStatus = user => dispatch =>
-  axios
-    .put(`/api/users/${user.id}`, user)
+  axios.put(`/api/users/${user.id}`, user)
     .then(() => {
       dispatch(changeAdminStatus(user))
     })
@@ -82,11 +78,11 @@ export default function reducer (state = defaultUsers, action) {
   switch (action.type) {
     case GET_USERS:
       return action.users
-    // case ADD_USER:
-    //   return [...state, action.user]
+    case ADD_USER:
+      return [...state, action.user]
     case DELETE_USER:
       return state.filter(user => user.id !== action.user.id)
-    case UPDATE_ADMIN_STATUS:
+    case CHANGE_ADMIN_STATUS:
       return state.map(
         user =>
           user.id === action.user.id ? action.user : user

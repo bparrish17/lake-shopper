@@ -4,6 +4,7 @@ const {isAdmin, isAuthenticated} = require('./gatekeepers');
 module.exports = router
 
 // get all orders - admin only
+
 router.get('/', isAdmin, (req, res, next) => {
   Order.findAll({include: [User, Product]})
     .then(orders => res.json(orders))

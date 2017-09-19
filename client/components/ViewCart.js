@@ -31,7 +31,9 @@ const ViewCart = (props) => {
                 }
                 <hr />
                 <ul className="cart-item-list list-group">
+                    <NavLink to="/checkout" activeClassName="active">
                     <li className="cart-checkout btn btn-primary">Checkout</li>
+                    </NavLink>
                     <li className="cart-subtotal input-group">
                         <span className="input-group-addon">$</span>
                             <input 

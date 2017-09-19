@@ -1,5 +1,6 @@
 import axios from "axios";
 import history from "../history";
+import {postOrder} from "./order";
 
 /**
  * ACTION TYPES
@@ -54,11 +55,15 @@ export const logout = () => dispatch =>
     })
     .catch(err => console.log(err));
 
-export const postGuest = (email) => {
+export const postGuest = (info) => {
+  console.log('info[1]', info[1])
   return dispatch => {
-    axios.post('/api/users/', email)
+    axios.post('/api/users/', info[0])
       .then(res => {
         return res.data
+      })
+      .then(posted => {
+        dispatch(postOrder({userId: posted.id, address: info[1].address}))
       })
       .catch(err => {
         console.log(err)
