@@ -80,12 +80,24 @@ img-fluid {
 #add-to-cart-btn {
   float: left;
   width: 49%;
+  color: black;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
   background-color: rgba(204, 202, 202, 0.68);
 }
+#add-to-cart-btn-disabled {
+  float: left;
+  width: 49%;
+  color: black;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+  background-color: #d9534f;
+}
+
 #view-details-btn {
   float: right;
   width: 49%;

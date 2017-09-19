@@ -3,7 +3,6 @@ import {NavLink} from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import store from '../store';
 import {connect} from 'react-redux';
-import SingleProduct from './singleProduct'
 import {removeItemThunk, editItemThunk} from '../store/cart';
 
 const CartItem = (props) => { 
@@ -53,6 +52,7 @@ const CartItem = (props) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         removeItem(id) {
+            event.preventDefault();
             dispatch(removeItemThunk(id))
         }, 
         editItem(event) {
@@ -63,5 +63,5 @@ const mapDispatchToProps = (dispatch) => {
         }
     }
 }
-const CartItemContainer = connect(mapDispatchToProps)(CartItem);
+const CartItemContainer = connect(null, mapDispatchToProps)(CartItem);
 export default CartItemContainer;

@@ -58,7 +58,7 @@ function Navbar(props) {
             isLoggedIn
               ? <div>
                 {/* The navbar will show these links after you log in */}
-                <a href='#' onClick={handleClick}>Logout</a>
+                {/*<a href='#' onClick={handleClick}>Logout</a>*/}
               </div>
               : <div id="loginsignup" className="signup">
                 {/* The navbar will show these links before you log in */}
