@@ -16,9 +16,6 @@ class Routes extends Component {
     this.props.loadInitialData()
   }
 
-  componentWillMount(){
-    this.props.loadInitialData()
-  }
 
   render () {
     const {isLoggedIn, products, categories} = this.props
@@ -77,7 +74,9 @@ export default connect(mapState, mapDispatch)(Routes)
  */
 Routes.propTypes = {
   loadInitialData: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  isLoggedIn: PropTypes.bool.isRequired,
+  //products: PropTypes.INSERT_TYPE_HERE.isRequired,
+  //categories: PropTypes.INSERT_TYPE_HERE.isRequired,
 }
 
 //LOG IN STUFF TAKEN OUT OF RENDER METHOD AND PLACED HERE FOR NOW
