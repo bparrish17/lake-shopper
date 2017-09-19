@@ -1,5 +1,6 @@
 const router = require('express').Router()
 const {Product, Review, Category} = require('../db/models')
+const {isAdmin} = require('./gatekeepers');
 module.exports = router
 
 // TO DO: get by category
@@ -32,7 +33,7 @@ router.get('/:id', (req, res, next) => {
 
 // add product
 
-router.post('/', (req, res, next) => {
+router.post('/', isAdmin, (req, res, next) => {
   //req.body.categoryId = 1;
   Product.create(req.body)
     .then(result => {
@@ -44,7 +45,7 @@ router.post('/', (req, res, next) => {
 
 // edit product
 
-router.put('/:id', (req, res, next) => {
+router.put('/:id', isAdmin, (req, res, next) => {
   var currentId = req.params.id;
   Product.findById(currentId)
     .then(product => {

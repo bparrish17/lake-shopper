@@ -5,21 +5,15 @@ import {connect} from 'react-redux';
 import {postReview} from '../store/review';
 
 const ReviewForm = (props) => { 
-    console.log('REVIEW PROPS', props)
     let product = props.product;
     let addReview = props.addReview;
     return (
-        <div className="col-xs-6">      
-            <form name={product.id} onSubmit={addReview}>
-                <div className="row container-fluid">
-                    <ul>
+        <div>
+            <form id="review-form" name={product.id} onSubmit={addReview}>
                     <div className="form-group">
-                        <label htmlFor="email">Email address</label>
-                        <input type="email" name="email" className="form-control" id="input-email" placeholder="Enter email"></input>
-                    </div>
-                    <div className="form-group">
-                    <label for="exampleSelect1">Your Rating: </label>
+                    <label htmlFor="exampleSelect1">Your Rating: </label>
                         <select name="rating" className="form-control" id="star-select">
+                            <option value="selected disabled hidden">Choose a Rating: </option>
                             <option>0.5 Stars</option>
                             <option>1 Star</option>
                             <option>1.5 Stars</option>
@@ -33,12 +27,10 @@ const ReviewForm = (props) => {
                         </select>
                     </div>
                     <div className="form-group">
-                        <label for="exampleTextarea">Enter Review Here (Must be at least 150 Chars)</label>
+                        <label htmlFor="exampleTextarea">Enter Review Here (Must be at least 150 Chars)</label>
                         <textarea name="comment" className="form-control" id="exampleTextarea" rows="10"></textarea>
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
-                    </ul>
-                </div>
             </form>
         </div>
       );
@@ -57,11 +49,12 @@ const mapDispatchToProps = (dispatch) => {
         addReview(event) {
             event.preventDefault()
             const productId = event.target.name;
-            // const email = event.target.email.value;
             let ratingNum = event.target.rating.value.split(' ')[0];
+            if(ratingNum == 'selected') alert('Please Rate This Item to Submit Review');
             const rating = (ratingNum*2).toString();
             const comment = event.target.comment.value;
             dispatch(postReview(productId, rating, comment))
+            document.getElementById("review-form").reset();
         }
     }
 }
@@ -71,8 +64,13 @@ const ReviewFormContainer = connect(mapStateToProps, mapDispatchToProps)(ReviewF
 export default ReviewFormContainer;
 
 
+//<ul className="review-list">
 //<div class="card">
 // <div class="card-block">
 // <h4 class="card-title">Card title</h4>
 // <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
 // <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+//<div className="form-group">
+// <label htmlFor="email">Email address</label>
+// <input type="email" name="email" className="form-control" id="input-email" placeholder="Enter email"></input>
+// </div>

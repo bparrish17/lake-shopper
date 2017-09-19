@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom';
 import store from '../store';
 import {connect} from 'react-redux';
 
-export default class EditProduct extends Component {
+class AddProduct extends Component {
 
   constructor(props){
     super(props)
@@ -13,7 +13,7 @@ export default class EditProduct extends Component {
       newDescription: '',
       newImage: '',
       newQuantity: '',
-      categoryId: 0
+      categoryId: 0,
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -29,6 +29,8 @@ export default class EditProduct extends Component {
 
   render () {
 
+    console.log(this.props)
+
     const handleChange = this.handleChange;
 
     const topPadding = {'padding-top': '100px'}
@@ -41,7 +43,7 @@ export default class EditProduct extends Component {
       <div style={topPadding}>
           <form>
             <div>
-              <label>Edit Product: </label>
+              <label>Add a Product: </label>
                 <br></br>
                 <input
                   type="text"
@@ -51,7 +53,7 @@ export default class EditProduct extends Component {
                   onChange={handleChange} />
                 <br></br>
                 <input
-                  type="text"
+                  type="number"
                   name="newPrice"
                   value= {this.state.newPrice}
                   placeholder="Enter new price"
@@ -71,10 +73,10 @@ export default class EditProduct extends Component {
                   placeholder="Enter new description"
                   onChange={handleChange} />
                 <br></br>
-                {/* <select onChange={(e) => this.setState({categoryId : Number(e.target.value)})}>
+                { <select onChange={(e) => this.setState({categoryId : Number(e.target.value)})}>
                   <option defaultValue>Select a Category</option>
                   {
-                    categories.map(category => {
+                    this.props.categories.map(category => {
                       return (
                         <option key={category.id}
                                 name="categoryId"
@@ -83,10 +85,10 @@ export default class EditProduct extends Component {
                       )
                     })
                   }
-                </select> */}
+                </select>}
             </div>
             <div className="form-group">
-              <button type="submit" className="button" >Edit Product</button>
+              <button type="submit" className="button" >Submit</button>
             </div>
           </form>
         </div>
@@ -95,39 +97,20 @@ export default class EditProduct extends Component {
   }
 }
 
-// const mapStateToProps = (state, ownProps) => {
-//     return {
-//         products: state.products,
-//         newProductName: state.newProductName,
-//         newPrice: state.newPrice,
-//         newDescription: state.newDescription,
-//         newImage: state.newImage,
-//         newQuantity: state.newQuantity
-//     }
-// };
+const mapStateToProps = (state, ownProps) => {
+  return {
+    categories: state.categories,
+    products: state.products
+  }
+}
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//       addToCart(id) {
-//         dispatch(addToCartThunk(id))
-//       }
-//     }
-// }
+const mapDispatch = (dispatch) => {
+  return {
+    loadInitialData () {
+      dispatch(fetchOrders())
+      dispatch(fetchUsers())
+    }
+  }
+}
 
-// const EditProductContainer = connect(mapStateToProps, mapDispatchToProps)(EditProduct);
-
-// export default EditProductContainer;
-
-
-    // let filteredArr = props.studentsList.filter((student) => {
-    //     if(student.id === Number(props.match.params.studentId)){
-    //         return student;
-    //     }
-    // })
-
-    //get student's campus
-    //let studentCampus = campusList.filter(campus => campus.id === filteredArr[0].campusId)[0].name;
-
-    // console.log('studentCampus', studentCampus)
-    // console.log('***filteredArr', filteredArr);
-    // console.log('campuslist', campusList)
+export default connect(mapStateToProps)(AddProduct)
