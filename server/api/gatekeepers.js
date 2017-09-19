@@ -1,7 +1,7 @@
 
 
 const isAuthenticated = (req, res, next) => {
-    if(!req.isAuthenticated()) {
+    if(!req.user) {
       const error = new Error('Get out!');
       error.status = 401
       return next(error);

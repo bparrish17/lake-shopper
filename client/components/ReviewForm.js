@@ -37,7 +37,7 @@ class ReviewForm extends Component {
                             </select>
                         </div>
                         <div className="form-items form-group">
-                            <label htmlFor="exampleTextarea">Enter Review Here (Must be at least 150 Chars)</label>
+                            <label htmlFor="exampleTextarea">Enter Review Here (Must be at least 100 Chars)</label>
                             <textarea onChange={(event) => this.setState({comment: event.target.value })} name="comment" className="form-control" id="exampleTextarea" rows="10"></textarea>
                         </div>
                         {
@@ -45,7 +45,7 @@ class ReviewForm extends Component {
                                 || this.state.comment.length < 150) 
                             ? <div>
                                 <div className="alert alert-warning" role="alert">
-                                    Please enter a Star Rating and Comment Longer Than 150 Characters
+                                    Please enter a Star Rating and Comment Longer Than 100 Characters
                                 </div>
                                 <button type="submit" className="btn btn-primary" disabled>Submit</button>
                               </div>
