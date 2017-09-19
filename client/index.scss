@@ -9,11 +9,6 @@ body {
     display: block;
   }
 
-  nav a {
-    display: inline-block;
-    margin: 1em;
-    float: right;
-  }
 
   form div {
     margin: 1em;
@@ -25,6 +20,7 @@ img-fluid {
   width: 100%;
   height: auto;
 }
+
 
 #main-caption {
   text-align: center;
@@ -137,6 +133,14 @@ img-fluid {
   float: right;
 }
 
+#homebuttondiv{
+  float: right;
+}
+
+#loginsignup{
+  float: right;
+}
+
 #signuplogin {
   margin-left: 120px;
 }
@@ -165,6 +169,11 @@ img-fluid {
   position: fixed;
 }
 
+.navbar-default {
+  background-color: #c30808;
+  border-color: #c30808;
+}
+
 //reviews
 #star-select {
   width: 100%;
@@ -183,4 +192,10 @@ img-fluid {
 }
 
 
+#homeButton{
+  display: block;
+}
 
+#navbar{
+  background-color: #F8F8F8;
+}
