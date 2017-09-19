@@ -9,16 +9,15 @@ const ReviewForm = (props) => {
     let product = props.product;
     let addReview = props.addReview;
     return (
-        <div className="col-xs-6">      
-            <form name={product.id} onSubmit={addReview}>
-                <div className="row container-fluid">
-                    <ul>
+        <div>
+            <h3>Leave a Review for '{product.name}'</h3>
+            <form id="review-form" name={product.id} onSubmit={addReview}>
                     <div className="form-group">
                         <label htmlFor="email">Email address</label>
                         <input type="email" name="email" className="form-control" id="input-email" placeholder="Enter email"></input>
                     </div>
                     <div className="form-group">
-                    <label for="exampleSelect1">Your Rating: </label>
+                    <label htmlFor="exampleSelect1">Your Rating: </label>
                         <select name="rating" className="form-control" id="star-select">
                             <option>0.5 Stars</option>
                             <option>1 Star</option>
@@ -33,12 +32,10 @@ const ReviewForm = (props) => {
                         </select>
                     </div>
                     <div className="form-group">
-                        <label for="exampleTextarea">Enter Review Here (Must be at least 150 Chars)</label>
+                        <label htmlFor="exampleTextarea">Enter Review Here (Must be at least 150 Chars)</label>
                         <textarea name="comment" className="form-control" id="exampleTextarea" rows="10"></textarea>
                     </div>
                     <button type="submit" className="btn btn-primary">Submit</button>
-                    </ul>
-                </div>
             </form>
         </div>
       );
@@ -71,6 +68,7 @@ const ReviewFormContainer = connect(mapStateToProps, mapDispatchToProps)(ReviewF
 export default ReviewFormContainer;
 
 
+//<ul className="review-list">
 //<div class="card">
 // <div class="card-block">
 // <h4 class="card-title">Card title</h4>

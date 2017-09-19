@@ -5,16 +5,17 @@ import {connect} from 'react-redux';
 // import {addToCartThunk} from '../store/cart';
 
 function SingleReview (props) {
-    let product = props.product;
+    let review = props.review;
     return (
         <div>      
             <div className="card">
                 <div className="card-block">
-                    <h4 className="card-title">Card title</h4>
-                    <h6 className="card-subtitle mb-2 text-muted">Card subtitle</h6>
-                    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                    <h4 className="card-title">Review {review.id}</h4>
+                    <h6 className="card-subtitle mb-2 text-muted">Rating: {review.rating} Stars</h6>
+                    <p className="card-text">{review.comments}</p>
                 </div>
             </div>
+            <hr />
         </div>
     );
 }
@@ -28,12 +29,12 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-      addToCart(id) {
+      fetchReviews(id) {
         dispatch(addToCartThunk(id))
       }
     }
 }
 
-const SingleProductContainer = connect(mapStateToProps, mapDispatchToProps)(SingleProduct);
+const SingleReviewContainer = connect(mapStateToProps, mapDispatchToProps)(SingleReview);
 
-export default SingleProductContainer;
+export default SingleReviewContainer;
