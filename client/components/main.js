@@ -6,6 +6,7 @@ import {logout} from '../store'
 import {getProductsThunk} from '../store/product'
 import NavbarRouter from './navbar'
 import SingleProduct from './singleProduct'
+import SingleCategory from './singleCategory'
 import ViewCart from './ViewCart'
 
 /**
