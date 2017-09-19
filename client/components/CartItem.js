@@ -8,8 +8,8 @@ import {removeItemThunk, editItemThunk} from '../store/cart';
 
 const CartItem = (props) => { 
     const product = props.product;
-    const removeItem = props.removeItem;
     const editItem = props.editItem;
+    const removeItem = props.removeItem;
     return (
         <ul className="cart-item-list list-group" key={product.id}>
         <li className="cart-item-name list-group-item">{product.name}</li>
@@ -50,13 +50,6 @@ const CartItem = (props) => {
     )
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-        products: state.products,
-        cart: state.cart
-    }
-};
-
 const mapDispatchToProps = (dispatch) => {
     return {
         removeItem(id) {
@@ -70,5 +63,5 @@ const mapDispatchToProps = (dispatch) => {
         }
     }
 }
-const CartItemContainer = connect(mapStateToProps, mapDispatchToProps)(CartItem);
+const CartItemContainer = connect(mapDispatchToProps)(CartItem);
 export default CartItemContainer;

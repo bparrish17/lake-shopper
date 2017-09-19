@@ -14,6 +14,7 @@ const ReviewForm = (props) => {
                     <div className="form-group">
                     <label htmlFor="exampleSelect1">Your Rating: </label>
                         <select name="rating" className="form-control" id="star-select">
+                            <option value="selected disabled hidden">Choose a Rating: </option>
                             <option>0.5 Stars</option>
                             <option>1 Star</option>
                             <option>1.5 Stars</option>
@@ -49,11 +50,12 @@ const mapDispatchToProps = (dispatch) => {
         addReview(event) {
             event.preventDefault()
             const productId = event.target.name;
-            // const email = event.target.email.value;
             let ratingNum = event.target.rating.value.split(' ')[0];
+            if(ratingNum == 'selected') alert('Please Rate This Item to Submit Review');
             const rating = (ratingNum*2).toString();
             const comment = event.target.comment.value;
             dispatch(postReview(productId, rating, comment))
+            document.getElementById("review-form").reset();
         }
     }
 }

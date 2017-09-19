@@ -1,8 +1,9 @@
 const router = require('express').Router()
 const {Review} = require('../db/models')
+const {isAuthenticated} = require('./gatekeepers');
 module.exports = router
 
-router.post('/:productId', (req, res, next) => {
+router.post('/:productId', isAuthenticated, (req, res, next) => {
     let currentId = req.params.productId;
     req.body.productId = currentId;
     Review.create(req.body)

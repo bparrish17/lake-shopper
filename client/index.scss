@@ -42,6 +42,7 @@ img-fluid {
   margin: 4%;
   background-color: rgba(202, 200, 198, 0.29);
   padding-bottom: 10px;
+  height: 400px;
 }
 
 .our-products-container {
@@ -54,6 +55,17 @@ img-fluid {
   text-align: center;
   color: white;
 }
+
+.product-buttons {
+  bottom: 10px;
+  position: absolute;
+  width: 100%;
+}
+
+.product-image {
+  vertical-align: middle;
+}
+
 #product-name-price {
   text-align: center;
 }
@@ -187,4 +199,10 @@ img-fluid {
 
 .product-info {
   height: 375px;
+}
+.product-img {
+  padding-left: 0px;
+  padding-top: 25px;
+  padding-right: 20px;
+  padding-bottom: 0px;
 }

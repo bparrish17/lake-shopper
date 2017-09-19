@@ -3,7 +3,7 @@ const {User} = require('../db/models')
 module.exports = router
 
 router.get('/', (req, res, next) => {
-  if(!req.user.dataValues.isAdmin) {
+  if(req.user && !req.user.dataValues.isAdmin) {
     const error = new Error('Why are you snooping? Go buy a boat!');
     error.status = 401
     return next(error);

@@ -3,8 +3,6 @@ import {NavLink} from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import store from '../store';
 import {connect} from 'react-redux';
-import SingleProduct from './singleProduct'
-import {removeItemThunk, editItemThunk} from '../store/cart';
 import CartItem from './CartItem';
 
 const ViewCart = (props) => { 
@@ -58,6 +56,14 @@ const mapStateToProps = (state, ownProps) => {
     }
 };
 
+const ViewCartContainer = connect(mapStateToProps)(ViewCart);
+export default ViewCartContainer;
+
+
+//EDIT/REMOVE FUNCTIONALITY MOVED TO CARTITEM
+// const removeItem = props.removeItem;
+// const editItem = props.editItem;
+
 // const mapDispatchToProps = (dispatch) => {
 //     return {
 //         removeItem(id) {
@@ -71,10 +77,3 @@ const mapStateToProps = (state, ownProps) => {
 //         }
 //     }
 // }
-
-const ViewCartContainer = connect(mapStateToProps)(ViewCart);
-export default ViewCartContainer;
-
-
-    // const removeItem = props.removeItem;
-    // const editItem = props.editItem;
