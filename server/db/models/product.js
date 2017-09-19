@@ -14,17 +14,20 @@ const Product = db.define(
       allowNull: false
     },
     image: {
-      type: Sequelize.STRING,
+      type: Sequelize.TEXT,
       defaultValue:
         "http://www.familypoolfun.com/images/toys_swimaids/nt240.jpg",
+      validate: {
+        isUrl: true
+      }
     },
-    description: { 
-        type: Sequelize.TEXT, 
-        allowNull: false 
+    description: {
+        type: Sequelize.TEXT,
+        allowNull: false
     },
-    quantity: { 
-        type: Sequelize.INTEGER, 
-        allowNull: false 
+    quantity: {
+        type: Sequelize.INTEGER,
+        allowNull: false
     }
 });
 

@@ -34,7 +34,7 @@ class Routes extends Component {
                 <Route exact path = "/login" component={Login} />
                 <Route exact path="/addProduct" component={AddProduct} />
                 <Route exact path="/addCategory" component={AddCategory} />
-                <Route path="/editProduct/:id" component={EditProduct} />
+                <Route path="/editProduct/:productId" component={EditProduct} />
                 <Route path="/products/:productId" component={SingleProductProfile} />
                 <Route path="/categories/:categoryId" component={SingleCategory} />
             </Switch>

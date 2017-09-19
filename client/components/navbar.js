@@ -5,7 +5,7 @@ import Category from "../store/category";
 
 function Navbar(props) {
   console.log("props", props);
-  const {isLoggedIn} = props;
+  const {isLoggedIn, handleClick} = props;
   return (
     <nav className="navbar navbar-default navbar-fixed-top">
       <div className="dropdown">
@@ -70,7 +70,7 @@ function Navbar(props) {
 
     </nav>
 
-    
+
   );
 }
 
