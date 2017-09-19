@@ -2,10 +2,11 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { NavLink, withRouter } from "react-router-dom";
 import Category from "../store/category";
+import {logout} from "../store";
 
 function Navbar(props) {
   console.log("props", props);
-  const {isLoggedIn} = props;
+  const {isLoggedIn, handleClick} = props;
   return (
     <nav className="navbar navbar-default navbar-fixed-top">
       <div className="dropdown">
@@ -82,7 +83,15 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const NavbarRouter = withRouter(connect(mapStateToProps)(Navbar));
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleClick () {
+      dispatch(logout())
+    }, 
+  }
+}
+
+const NavbarRouter = withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
 export default NavbarRouter;
 
 // {Categories.map(category => {
