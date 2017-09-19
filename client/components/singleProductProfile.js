@@ -29,28 +29,37 @@ class SingleProductProfile extends Component {
                 return (
                     <div key={product.id}>
                         <ul>
-                            <div className="col-xs-6">
-                                <img src={`${product.image}`} />
-                            </div>
-                            <div className="col-xs-6">
-                            <span>Name: {product.name} Price: {product.price} Description: {product.description}
-                                <button type="button" className="btn btn-outline-info">Add To Cart</button>
-                                <NavLink to={`/products/${product.id}`} activeClassName="active">
-                                    <button type="button" className="btn btn-outline-info">Checkout</button>
-                                </NavLink>
-                            </span>
+                            <div className="row container-fluid">
+                                <div className="col-xs-6">
+                                    <img src={`${product.image}`} />
+                                </div>
+                                <div className="product-info col-xs-6">
+                                    <h1>{product.name}</h1>
+                                    <h3>${product.price}</h3>
+                                    <hr />
+                                    <h4>{product.description}</h4>
+                                    <div className="single-product-buttons">
+                                        <button type="button" className="btn btn-outline-info">Add To Cart</button>
+                                        <NavLink to={`/products/${product.id}`} activeClassName="active">
+                                            <button type="button" className="btn btn-outline-info">Checkout</button>
+                                        </NavLink>
+                                    </div>
+                                </div>
                             </div>
                         </ul>
+                        <hr />
                         <div className="col-xs-6">
                             <h3>Reviews</h3>
                             {
-                                reviews.map(review => {
+                                reviews.length
+                                ? reviews.map(review => {
                                     return (
                                         <div key={review.id}>
                                             <SingleReview review={review} />
                                         </div>
                                     )
                                 })
+                                : <h3>There are no reviews for this product</h3>
                             }
                         </div>
                         <div className="col-xs-6">

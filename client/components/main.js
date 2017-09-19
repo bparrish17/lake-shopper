@@ -34,7 +34,6 @@ const Main = (props) => {
       </div>
 
       <div className="our-products-container row container-fluid">
-        <Link to="/cart"><button type="button" className="btn btn-default">View Cart</button></Link>
       </div>
       <div className="row container-fluid">
       {/* do category checking below? cant render the all products component in main instead */}

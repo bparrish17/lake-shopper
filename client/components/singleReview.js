@@ -11,7 +11,7 @@ function SingleReview (props) {
             <div className="card">
                 <div className="card-block">
                     <h4 className="card-title">Review {review.id}</h4>
-                    <h6 className="card-subtitle mb-2 text-muted">Rating: {review.rating} Stars</h6>
+                    <h6 className="card-subtitle mb-2 text-muted">Rating: {(review.rating)/2} Stars</h6>
                     <p className="card-text">{review.comments}</p>
                 </div>
             </div>

@@ -23,7 +23,7 @@ const ViewCart = (props) => {
     console.log('viewcart component was hit')
     return (
         <div>      
-            <div id="temp">
+            <div className="temp">
             </div>
             <div className="col-xs-1"></div>
             <div className="row container-fluid">
@@ -88,8 +88,6 @@ const ViewCart = (props) => {
                 </ul>
                 </div>
             </div>
-            <div className="col-xs-2"></div>
-            
         </div>
     );
 }
