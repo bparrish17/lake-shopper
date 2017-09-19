@@ -5,17 +5,12 @@ import {connect} from 'react-redux';
 import {postReview} from '../store/review';
 
 const ReviewForm = (props) => { 
-    console.log('REVIEW PROPS', props)
     let product = props.product;
     let addReview = props.addReview;
     return (
         <div>
             <h3>Leave a Review for '{product.name}'</h3>
             <form id="review-form" name={product.id} onSubmit={addReview}>
-                    <div className="form-group">
-                        <label htmlFor="email">Email address</label>
-                        <input type="email" name="email" className="form-control" id="input-email" placeholder="Enter email"></input>
-                    </div>
                     <div className="form-group">
                     <label htmlFor="exampleSelect1">Your Rating: </label>
                         <select name="rating" className="form-control" id="star-select">
@@ -74,3 +69,7 @@ export default ReviewFormContainer;
 // <h4 class="card-title">Card title</h4>
 // <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
 // <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+//<div className="form-group">
+// <label htmlFor="email">Email address</label>
+// <input type="email" name="email" className="form-control" id="input-email" placeholder="Enter email"></input>
+// </div>
