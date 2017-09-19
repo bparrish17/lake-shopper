@@ -90,7 +90,6 @@ img-fluid {
 #add-to-cart-btn-disabled {
   float: left;
   width: 49%;
-  color: black;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   border-top-left-radius: 0;
@@ -159,7 +158,10 @@ img-fluid {
   width: 12%;
   font-size: 14px;
   height: 100%;
+  top: 0px;
+  padding-top: 8px;
 }
+
 .cart-total {
   width: 24%;
 }
@@ -183,7 +185,7 @@ img-fluid {
 .btn-primary {
   display: block;
   position: relative;
-  top: 60px;
+  top: 0px;
 }
 
 .temp {
@@ -205,12 +207,17 @@ img-fluid {
   padding-left: 0px;
 }
 
+
 #review-form-title {
   padding-left: 12px;
 }
 
 #review-form {
   height: max-content;
+}
+
+.form-items {
+  top: 0px;
 }
 
 .form-container {

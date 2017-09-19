@@ -60,9 +60,7 @@ router.put('/:productId', (req, res, next) => {
     for(var i=0; i<cart.length; i++) {
         if(cart[i].id === productId) {
             if(cart[i].quantity < newQuantity) res.json(req.session.cart);
-            else {
-                cart[i].cartQuantity = newQuantity;
-            }
+            else cart[i].cartQuantity = newQuantity;
         }
     }
     req.session.cart = cart

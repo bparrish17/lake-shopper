@@ -4,36 +4,57 @@ import store from '../store';
 import {connect} from 'react-redux';
 import {postReview} from '../store/review';
 
-const ReviewForm = (props) => { 
-    let product = props.product;
-    let addReview = props.addReview;
-    return (
-        <div>
-            <form id="review-form" name={product.id} onSubmit={addReview}>
-                    <div className="form-group">
-                    <label htmlFor="exampleSelect1">Your Rating: </label>
-                        <select name="rating" className="form-control" id="star-select">
-                            <option value="selected disabled hidden">Choose a Rating: </option>
-                            <option>0.5 Stars</option>
-                            <option>1 Star</option>
-                            <option>1.5 Stars</option>
-                            <option>2 Stars</option>
-                            <option>2.5 Stars</option>
-                            <option>3 Stars</option>
-                            <option>3.5 Stars</option>
-                            <option>4 Stars</option>
-                            <option>4.5 Stars</option>
-                            <option>5 Stars</option>
-                        </select>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="exampleTextarea">Enter Review Here (Must be at least 150 Chars)</label>
-                        <textarea name="comment" className="form-control" id="exampleTextarea" rows="10"></textarea>
-                    </div>
-                    <button type="submit" className="btn btn-primary">Submit</button>
-            </form>
-        </div>
-      );
+class ReviewForm extends Component { 
+    constructor(props) {
+        super(props);
+        this.state = {
+            star: '',
+            comment: ''
+        }
+        this.addReview = this.props.addReview.bind(this)
+    }
+
+    render() {
+        let product = this.props.product;
+        let addReview = this.props.addReview;
+        return (
+            <div>
+                <form id="review-form" name={product.id} onSubmit={(event) => addReview(event, this.state.star, this.state.comment)}>
+                        <div className="form-items form-group">
+                        <label htmlFor="exampleSelect1">Your Rating: </label>
+                            <select onChange={(event) => this.setState({star: event.target.value })} name="rating" className="form-control" id="star-select">
+                                <option value="selected disabled hidden">Choose a Rating: </option>
+                                <option>0.5 Stars</option>
+                                <option>1 Star</option>
+                                <option>1.5 Stars</option>
+                                <option>2 Stars</option>
+                                <option>2.5 Stars</option>
+                                <option>3 Stars</option>
+                                <option>3.5 Stars</option>
+                                <option>4 Stars</option>
+                                <option>4.5 Stars</option>
+                                <option>5 Stars</option>
+                            </select>
+                        </div>
+                        <div className="form-items form-group">
+                            <label htmlFor="exampleTextarea">Enter Review Here (Must be at least 150 Chars)</label>
+                            <textarea onChange={(event) => this.setState({comment: event.target.value })} name="comment" className="form-control" id="exampleTextarea" rows="10"></textarea>
+                        </div>
+                        {
+                            ((!this.state.star.length || this.state.star == 'selected disabled hidden') 
+                                || this.state.comment.length < 150) 
+                            ? <div>
+                                <div className="alert alert-warning" role="alert">
+                                    Please enter a Star Rating and Comment Longer Than 150 Characters
+                                </div>
+                                <button type="submit" className="btn btn-primary" disabled>Submit</button>
+                              </div>
+                            : <button type="submit" className="btn btn-primary">Submit</button>
+                        }
+                </form>
+            </div>
+          );
+    }
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -46,15 +67,13 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        addReview(event) {
-            event.preventDefault()
+        addReview(event, star, comment) {
             const productId = event.target.name;
-            let ratingNum = event.target.rating.value.split(' ')[0];
-            if(ratingNum == 'selected') alert('Please Rate This Item to Submit Review');
+            let ratingNum = star.split(' ')[0];
             const rating = (ratingNum*2).toString();
-            const comment = event.target.comment.value;
             dispatch(postReview(productId, rating, comment))
-            document.getElementById("review-form").reset();
+            // document.getElementById("review-form").reset();
+            event.preventDefault()
         }
     }
 }

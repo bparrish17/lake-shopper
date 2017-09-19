@@ -6,6 +6,7 @@ module.exports = router
 router.post('/:productId', isAuthenticated, (req, res, next) => {
     let currentId = req.params.productId;
     req.body.productId = currentId;
+    req.body.userId = req.user.dataValues.id;
     Review.create(req.body)
     .then(result => res.send(result))
     .catch(next);
