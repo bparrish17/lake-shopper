@@ -92,7 +92,7 @@ export const editItemThunk = (itemId, newQuantity) =>
         dispatch(editItem(ourCart))
       })
       .catch(err => {
-        dispatch(editItemFailure(err));
+        console.log("ERROR!!!");
       })
 
 /**

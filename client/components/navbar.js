@@ -53,7 +53,6 @@ function Navbar(props) {
           </button>
         </NavLink>
       </div>
-
       <div id="signuplogin" className="signup navbar-fixed-top navbar-right">
         {isLoggedIn ? (
           <div>

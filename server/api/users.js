@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
 const {isAdmin, isAuthenticated} = require('./gatekeepers');
+const {Order, Review} = require('../db/models')
 module.exports = router
 
 router.get('/', isAdmin, (req, res, next) => {
@@ -19,11 +20,34 @@ router.get('/', isAdmin, (req, res, next) => {
 // create users
 
 router.get('/:id', (req, res, next) => {
-  var currentId = req.params.id;
-
-  User.findOne({ where: {id: currentId}})
-    .then(user => res.json(user))
-    .catch(next)
+  let currentId = Number(req.params.id);
+  let userId = Number(req.user.dataValues.id);
+  let result = [];
+  //this is absolutely atrocious, the but the includes request don't work the other way
+  //because sequelize
+  if(userId === currentId) {
+    User.findById(userId)
+    .then(user => {
+      result.push(user);
+    })
+    .then(
+    Review.findAll({where: {userId}})
+    .then(reviews => {
+      result.push(reviews);
+    })
+    .then(
+    Order.findAll({where: {userId}})
+    .then(orders => {
+      result.push(orders);
+      res.json(result)
+    })
+    )
+    .catch(next))
+  } else {
+    const error = new Error('Cannot View Other User Pages');
+    error.status = 401
+    return next(error);
+  }
 })
 
 router.post('/', function(req, res, next){

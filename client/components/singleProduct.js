@@ -16,12 +16,22 @@ function SingleProduct (props) {
                 </div>
                 <h4 id="product-name-price">${product.price}</h4>
                 <div className="product-buttons row container-fluid">
-                    <button 
-                    type="button" 
-                    id="add-to-cart-btn" 
-                    className="btn btn-outline-info"
-                    onClick={() => addToCart(product.id)}
-                    >Add To Cart</button>
+                    { !product.quantity 
+                        ? <button 
+                            type="button" 
+                            id="add-to-cart-btn-disabled" 
+                            className="btn btn-outline-info"
+                            disabled
+                            >Out of Stock
+                          </button>
+                        : <button 
+                            type="button" 
+                            id="add-to-cart-btn" 
+                            className="btn btn-outline-info"
+                            onClick={() => addToCart(product.id)}
+                            >Add To Cart
+                        </button>
+                    }
 
                     <NavLink to={`/products/${product.id}`} activeClassName="active">
                         <button type="button" id="view-details-btn" className="btn btn-outline-info">View Details</button>
