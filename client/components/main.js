@@ -82,7 +82,8 @@ export default withRouter(connect(mapState, mapDispatch)(Main))
 Main.propTypes = {
   children: PropTypes.object,
   handleClick: PropTypes.func.isRequired,
-  isLoggedIn: PropTypes.bool.isRequired
+  //products: Proptypes.INSERT_TYPE_HERE.isRequired,
+  //categories: Proptypes.INSERT_TYPE_HERE.isRequired,
 }
 
 //<Navbar />
