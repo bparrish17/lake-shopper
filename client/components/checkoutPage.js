@@ -29,7 +29,7 @@ class Checkout extends React.Component {
         e.preventDefault()
         let email = this.state.newEmailEntry
         let address = this.state.newAddressEntry
-        this.props.handlePost({email})
+        this.props.handlePost([{email}, {address}])
         this.setState({newEmailEntry: '',
                        newAddressEntry: ''})
     }
@@ -38,7 +38,6 @@ class Checkout extends React.Component {
 
         const handleSubmit = this.handleSubmit
         const handleChange = this.handleChange
-        console.log('propsCart***', this.props.cart)
         return (
             <form onSubmit={handleSubmit} className="checkout-form">
                 <div className="form-group">
@@ -84,24 +83,25 @@ const mapStateToProps = function (state, ownProps) {
 const mapDispatchToProps = function (dispatch, ownProps) {
     return ({
 
-        getCartDetails (e) {
-            dispatch(getCartItemsThunk())
-        },
-
-        handlePost(email) {
+        handlePost(info) {
 
             // check if user exist through email
             // create new guest user in db, use userid for order
 
             // *** FOR GUESTS ***
 
-            dispatch(postGuest(email));
+            dispatch(postGuest(info));
+
 
             
             // AFTER DISPATCH TO DB
-            
-            ownProps.history.push('/');
+        
+            //ownProps.history.push('/');
 
+        },
+
+        handleRemoveCart() {
+            
         }
     })
 }
