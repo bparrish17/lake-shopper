@@ -33,9 +33,6 @@ const Main = (props) => {
         </div>
       </div>
 
-      <div className="our-products-container row container-fluid">
-        <Link to="/cart"><button type="button" className="btn btn-default">View Cart</button></Link>
-      </div>
       <div className="row container-fluid">
       {/* do category checking below? cant render the all products component in main instead */}
       {
@@ -49,21 +46,6 @@ const Main = (props) => {
       }
       <br />
       </div>
-        <div id="signuplogin" className = "signup navbar-fixed-top navbar-right">
-          {
-            isLoggedIn
-              ? <div>
-                {/* The navbar will show these links after you log in */}
-                <Link to='/home'>Home</Link>
-                <a href='#' onClick={handleClick}>Logout</a>
-              </div>
-              : <div id="loginsignup" className="signup">
-                {/* The navbar will show these links before you log in */}
-                <Link to='/login'>Login</Link>
-                <Link to='/signup'>Sign Up</Link>
-              </div>
-          }
-        </div>
         <hr />
         {children}
       </div>
