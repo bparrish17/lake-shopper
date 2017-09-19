@@ -59,7 +59,7 @@ router.put('/:productId', (req, res, next) => {
     let cart = Array.prototype.slice.call(req.session.cart);
     for(var i=0; i<cart.length; i++) {
         if(cart[i].id === productId) {
-            if(cart[i].quantity < newQuantity) res.sendStatus(404);
+            if(cart[i].quantity < newQuantity) res.json(req.session.cart);
             else {
                 cart[i].cartQuantity = newQuantity;
             }
