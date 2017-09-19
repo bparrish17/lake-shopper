@@ -44,7 +44,7 @@ class SingleProductProfile extends Component {
                                             : <button id="profile-add-to-cart" type="button" className="btn btn-outline-info">Add To Cart</button>
 
                                         }
-                                        <NavLink to={`/products/${product.id}`} activeClassName="active">
+                                        <NavLink to="/checkout" activeClassName="active">
                                             <button id="checkout-button" type="button" className="btn btn-outline-info">Checkout</button>
                                         </NavLink>
                                     </div>

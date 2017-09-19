@@ -54,14 +54,18 @@ export const fetchOrder = order => dispatch =>
     })
     .catch(error => console.log("Unable to fetch order", error));
 
-export const postOrder = order => dispatch =>
-  axios
-    .post('/api/orders', order)
+export const postOrder = order => {
+  console.log('post order was hit', order)
+  return dispatch => {
+    return axios.post('/api/orders', order)
     .then(result => result.data)
     .then(newOrder => {
       dispatch(addOrder(newOrder));
     })
     .catch(error => console.log("Unable to add order", error));
+  }
+  
+}
 
 /**
  * REDUCER

@@ -6,7 +6,7 @@ import {logout} from "../store";
 
 function Navbar(props) {
   console.log("props", props);
-  const {isLoggedIn, handleClick} = props;
+  const {isLoggedIn, handleClick, handleRemoveCart} = props;
   return (
     <nav className="navbar navbar-default navbar-fixed-top">
       <div className="dropdown">
@@ -58,7 +58,7 @@ function Navbar(props) {
           <div>
             {/* The navbar will show these links after you log in */}
             <a href="#" onClick={handleClick}>
-            <button type="button" className="btn btn-default btn-sm">
+            <button type="button" className="btn btn-default btn-sm" >
           <span className="glyphicon glyphicon-log-out"></span> Log out
         </button>
             </a>

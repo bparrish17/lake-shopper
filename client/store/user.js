@@ -58,13 +58,15 @@ export const logout = () => dispatch =>
     .catch(err => console.log(err));
 
 export const postGuest = (info) => {
-  console.log('info[1]', info[1])
+  
   return dispatch => {
     axios.post('/api/users/', info[0])
       .then(res => {
+        console.log('this is res', res)
         return res.data
       })
       .then(posted => {
+        console.log('this is posted', posted)
         dispatch(postOrder({userId: posted.id, address: info[1].address}))
       })
       .catch(err => {

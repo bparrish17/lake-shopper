@@ -11,6 +11,7 @@ const REMOVE_ITEM = "REMOVE_ITEM";
 const ADD_TO_CART = "ADD_TO_CART";
 const EDIT_ITEM_QUANTITY = "EDIT_ITEM_QUANTITY";
 const EDIT_ITEM_FAILURE = "EDIT_ITEM_FAILURE";
+const DELETE_CART = "DELETE_CART";
 
 /**
  * ACTION CREATORS
@@ -47,6 +48,13 @@ const editItemFailure = error => {
   return {
     type: EDIT_ITEM_FAILURE,
     error
+  }
+}
+
+const deleteCart = cart => {
+  return {
+    type: DELETE_CART,
+    cart
   }
 }
 
@@ -95,6 +103,18 @@ export const editItemThunk = (itemId, newQuantity) =>
         console.log("ERROR!!!");
       })
 
+//remove entire cart after submit
+
+export const removeCart = () => {
+  return dispatch => {
+    return axios.delete('/api/cart/')
+    .then(result => result.data)
+    .then(empty => {
+      dispatch(deleteCart(empty))
+    })
+}
+}
+
 /**
  * REDUCER
  */
@@ -107,6 +127,8 @@ export default function reducer(state = cart, action) {
     case ADD_TO_CART:
       return action.cart;
     case EDIT_ITEM_QUANTITY:
+      return action.cart;
+    case DELETE_CART:
       return action.cart;
     case EDIT_ITEM_FAILURE:
       return action.error;
