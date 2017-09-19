@@ -29,33 +29,15 @@ class Checkout extends React.Component {
         e.preventDefault()
         let email = this.state.newEmailEntry
         let address = this.state.newAddressEntry
-        this.props.handlePost({email})
+        this.props.handlePost([{email}, {address}])
         this.setState({newEmailEntry: '',
                        newAddressEntry: ''})
     }
-
-    /*
-
-    IF USER EXIST:
-    create new order and use his userid
-    IMPLEMENTATION:
-    - get user info as props (set statetoProps)
-    - filter that user with email written in form, if there is a match, extract that id
-    - dispatch(newOrder and use user id)
-
-    IF GUEST:
-    create a new user with guest access and use that new user id for orders
-    IMPLEMENTATION:
-    -dispatch(newuser)
-    -dispatch(newOrder and use that newuser id)
-
-    */
 
     render() {
 
         const handleSubmit = this.handleSubmit
         const handleChange = this.handleChange
-
         return (
             <form onSubmit={handleSubmit} className="checkout-form">
                 <div className="form-group">
@@ -68,6 +50,22 @@ class Checkout extends React.Component {
                 </div>
                 <div className="form-group">
                 </div>
+                <div className="cart-details">
+                <h3> Your Cart </h3>
+                <ul>
+                    {
+                        this.props.cart.map(cart => {
+                            return (
+                                <li key={cart.id}>
+                                    <span>
+                                        <p>Name: {cart.name} Price: {cart.price}</p>
+                                    </span>
+                                </li>
+                            )
+                        })
+                    }
+                </ul>
+                </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
         );
@@ -78,25 +76,32 @@ class Checkout extends React.Component {
 const mapStateToProps = function (state, ownProps) {
     return {
         user: state.user,
+        cart: state.cart,
     }
 }
 
 const mapDispatchToProps = function (dispatch, ownProps) {
     return ({
-        handlePost(email) {
+
+        handlePost(info) {
 
             // check if user exist through email
             // create new guest user in db, use userid for order
 
             // *** FOR GUESTS ***
 
-            dispatch(postGuest(email));
+            dispatch(postGuest(info));
+
 
             
             // AFTER DISPATCH TO DB
+        
+            //ownProps.history.push('/');
 
-            ownProps.history.push('/');
+        },
 
+        handleRemoveCart() {
+            
         }
     })
 }
