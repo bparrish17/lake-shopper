@@ -1,13 +1,9 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
+const {isAdmin, isAuthenticated} = require('./gatekeepers');
 module.exports = router
 
-router.get('/', (req, res, next) => {
-  // if(!req.user.dataValues.isAdmin) {
-  //   const error = new Error('Why are you snooping? Go buy a boat!');
-  //   error.status = 401
-  //   return next(error);
-  // }
+router.get('/', isAdmin, (req, res, next) => {
   User.findAll({
     // explicitly select only the id and email fields - even though
     // users' passwords are encrypted, it won't help if we just
@@ -36,7 +32,7 @@ router.post('/', function(req, res, next){
     .catch(next);
 });
 
-router.put('/:id', function(req, res, next){
+router.put('/:id', isAdmin, function(req, res, next){
   var currentId = req.params.id;
   User.findById(currentId)
     .then(user => {
@@ -53,7 +49,7 @@ router.put('/:id', function(req, res, next){
     .catch(next);
 });
 
-router.delete('/:id', function(req, res, next){
+router.delete('/:id', isAdmin, function(req, res, next){
   var currentId = req.params.id;
 
   User.destroy({ where: { id: currentId }})

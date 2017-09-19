@@ -28,12 +28,14 @@ const Main = (props) => {
                 className="img-responsive">
             </img>
             <div id="main-caption" className="carousel-caption">
-              Lake Shopper
+              <strong><em>Lake Shopper</em></strong>
             </div>
           </div>
         </div>
       </div>
 
+      <div className="our-products-container row container-fluid">
+      </div>
       <div className="row container-fluid">
       {/* do category checking below? cant render the all products component in main instead */}
       {
