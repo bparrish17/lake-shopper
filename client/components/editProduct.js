@@ -30,13 +30,15 @@ export default class EditProduct extends Component {
   render () {
 
     const handleChange = this.handleChange;
+
+    const topPadding = {'padding-top': '100px'}
     // const handleSubmit = this.handleSubmit;
 
     // const productId = this.props.match.params.id
 
 
     return (
-      <div>
+      <div style={topPadding}>
           <form>
             <div>
               <label>Edit Product: </label>
