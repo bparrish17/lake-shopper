@@ -9,7 +9,6 @@ const ReviewForm = (props) => {
     let addReview = props.addReview;
     return (
         <div>
-            <h3>Leave a Review for '{product.name}'</h3>
             <form id="review-form" name={product.id} onSubmit={addReview}>
                     <div className="form-group">
                     <label htmlFor="exampleSelect1">Your Rating: </label>

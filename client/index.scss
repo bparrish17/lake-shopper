@@ -1,3 +1,13 @@
+// @font-face {
+//   font-family: 'MyWebFont';
+//   src: url('webfont.eot'); /* IE9 Compat Modes */
+//   src: url('webfont.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+//        url('webfont.woff2') format('woff2'), /* Super Modern Browsers */
+//        url('webfont.woff') format('woff'), /* Pretty Modern Browsers */
+//        url('webfont.ttf')  format('truetype'), /* Safari, Android, iOS */
+//        url('webfont.svg#svgFontName') format('svg'); /* Legacy iOS */
+// }
+
 body {
   font-family: sans-serif;
 
@@ -62,12 +72,10 @@ img-fluid {
   width: 100%;
 }
 
-.product-image {
-  vertical-align: middle;
-}
 
 #product-name-price {
   text-align: center;
+  transform: translateY(-2px);
 }
 #add-to-cart-btn {
   float: left;
@@ -184,6 +192,11 @@ img-fluid {
 .review-list {
   padding-left: 0px;
 }
+
+#review-form-title {
+  padding-left: 12px;
+}
+
 #review-form {
   height: max-content;
 }
@@ -205,4 +218,26 @@ img-fluid {
   padding-top: 25px;
   padding-right: 20px;
   padding-bottom: 0px;
+}
+
+.product-image-container {
+  height: 265px;
+}
+
+.product-image {
+  display: block;
+  margin: auto;
+  height: auto;
+  max-height: 100%;
+}
+
+.product-img-thumb {
+  margin: auto;
+  display: block;
+  height: 90%;
+}
+
+#checkout-button {
+  background-color: rgba(204, 202, 202, 0.68);
+  width: 100px;
 }

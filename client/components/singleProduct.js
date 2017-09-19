@@ -11,7 +11,9 @@ function SingleProduct (props) {
         <div>      
             <li id="product-comp">
                 <h3 id="product-name-price">{product.name}</h3>
-                <img src={`${product.image}`} className="product-image img-thumbnail"/>
+                <div className="product-image-container">
+                    <img src={`${product.image}`} className="product-image img-thumbnail"/>
+                </div>
                 <h4 id="product-name-price">${product.price}</h4>
                 <div className="product-buttons row container-fluid">
                     <button 

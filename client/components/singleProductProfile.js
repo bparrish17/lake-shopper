@@ -31,10 +31,10 @@ class SingleProductProfile extends Component {
                         <ul>
                             <div className="row container-fluid">
                                 <div className="product-img col-xs-6">
-                                    <img className="img-thumbnail" src={`${product.image}`} />
+                                    <img className="product-img-thumb img-thumbnail" src={`${product.image}`} />
                                 </div>
                                 <div className="product-info col-xs-6">
-                                    <h1>{product.name}</h1>
+                                    <h1><strong>{product.name}</strong></h1>
                                     <h3>${product.price}</h3>
                                     <hr />
                                     <h4>{product.description}</h4>
@@ -45,7 +45,7 @@ class SingleProductProfile extends Component {
 
                                         }
                                         <NavLink to={`/products/${product.id}`} activeClassName="active">
-                                            <button type="button" className="btn btn-outline-info">Checkout</button>
+                                            <button id="checkout-button" type="button" className="btn btn-outline-info">Checkout</button>
                                         </NavLink>
                                     </div>
                                 </div>
@@ -66,6 +66,9 @@ class SingleProductProfile extends Component {
                             }
                         </div>
                         <div className="add-review col-xs-6">
+                        <div id="review-form-title">
+                            <h3>Leave a Review for <strong>{product.name}</strong></h3>
+                        </div>
                         { isLoggedIn
                             ? <ReviewForm product={product} />
                             : <div>
