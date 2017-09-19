@@ -27,7 +27,7 @@ const Main = (props) => {
                 className="img-responsive">
             </img>
             <div id="main-caption" className="carousel-caption">
-              Lake Shopper
+              <strong><em>Lake Shopper</em></strong>
             </div>
           </div>
         </div>

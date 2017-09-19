@@ -212,12 +212,14 @@ img-fluid {
 
 .product-info {
   height: 375px;
+  padding-left: 0px;
 }
 .product-img {
   padding-left: 0px;
   padding-top: 25px;
-  padding-right: 20px;
+  padding-right: 25px;
   padding-bottom: 0px;
+  height: 375px;
 }
 
 .product-image-container {
@@ -234,10 +236,20 @@ img-fluid {
 .product-img-thumb {
   margin: auto;
   display: block;
-  height: 90%;
+  height: auto;
+  max-height: 100%;
 }
 
 #checkout-button {
   background-color: rgba(204, 202, 202, 0.68);
   width: 100px;
+}
+
+#profile-add-to-cart {
+  background-color: rgba(204, 202, 202, 0.68);
+  margin-right: 2px;
+}
+
+.product-info-container {
+  padding-left: 0px;
 }

@@ -29,7 +29,7 @@ class SingleProductProfile extends Component {
                 return (
                     <div key={product.id}>
                         <ul>
-                            <div className="row container-fluid">
+                            <div className="product-info-container row container-fluid">
                                 <div className="product-img col-xs-6">
                                     <img className="product-img-thumb img-thumbnail" src={`${product.image}`} />
                                 </div>
@@ -41,7 +41,7 @@ class SingleProductProfile extends Component {
                                     <div className="single-product-buttons">
                                         {   !product.quantity 
                                             ? <button type="button" className="btn btn-danger" disabled>Out of Stock</button>
-                                            : <button type="button" className="btn btn-outline-info">Add To Cart</button>
+                                            : <button id="profile-add-to-cart" type="button" className="btn btn-outline-info">Add To Cart</button>
 
                                         }
                                         <NavLink to={`/products/${product.id}`} activeClassName="active">
@@ -62,7 +62,9 @@ class SingleProductProfile extends Component {
                                         </div>
                                     )
                                 })
-                                : <h3>There are no reviews for this product</h3>
+                                : <div className="alert alert-info" role="alert">
+                                    There Are No Reviews For This Product
+                                </div>
                             }
                         </div>
                         <div className="add-review col-xs-6">
@@ -72,9 +74,8 @@ class SingleProductProfile extends Component {
                         { isLoggedIn
                             ? <ReviewForm product={product} />
                             : <div>
-                                <h3>Leave a Review for '{product.name}'</h3>
                                 <div className="alert alert-danger" role="alert">
-                                    <strong>Oh No!</strong> You must be logged in to submit a review
+                                    You must be logged in to submit a review
                                 </div>
                               </div>
                         }
