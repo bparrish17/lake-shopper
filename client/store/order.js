@@ -25,12 +25,13 @@ const getOrder = order => {
   };
 };
 
-const addReview = order => {
+const addOrder = order => {
   return {
     type: ADD_ORDER,
-    review
+    order
   };
 };
+
 
 /**
  * THUNK CREATORS
