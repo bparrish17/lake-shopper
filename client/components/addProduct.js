@@ -3,17 +3,17 @@ import {NavLink} from 'react-router-dom';
 import store from '../store';
 import {connect} from 'react-redux';
 
-export default class AddProduct extends Component {
+class AddProduct extends Component {
 
   constructor(props){
     super(props)
     this.state = {
       newName: '',
-      newPrice: 0,
+      newPrice: '',
       newDescription: '',
       newImage: '',
       newQuantity: '',
-      categoryId: 0
+      categoryId: 0,
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -29,14 +29,18 @@ export default class AddProduct extends Component {
 
   render () {
 
+    console.log(this.props)
+
     const handleChange = this.handleChange;
+
+    const topPadding = {'padding-top': '100px'}
     // const handleSubmit = this.handleSubmit;
 
     // const productId = this.props.match.params.id
 
 
     return (
-      <div>
+      <div style={topPadding}>
           <form>
             <div>
               <label>Add a Product: </label>
@@ -69,10 +73,10 @@ export default class AddProduct extends Component {
                   placeholder="Enter new description"
                   onChange={handleChange} />
                 <br></br>
-                {/* <select onChange={(e) => this.setState({categoryId : Number(e.target.value)})}>
+                { <select onChange={(e) => this.setState({categoryId : Number(e.target.value)})}>
                   <option defaultValue>Select a Category</option>
                   {
-                    categories.map(category => {
+                    this.props.categories.map(category => {
                       return (
                         <option key={category.id}
                                 name="categoryId"
@@ -81,10 +85,10 @@ export default class AddProduct extends Component {
                       )
                     })
                   }
-                </select> */}
+                </select>}
             </div>
             <div className="form-group">
-              <button type="submit" className="button" >Edit Product</button>
+              <button type="submit" className="button" >Submit</button>
             </div>
           </form>
         </div>
@@ -92,3 +96,21 @@ export default class AddProduct extends Component {
 
   }
 }
+
+const mapStateToProps = (state, ownProps) => {
+  return {
+    categories: state.categories,
+    products: state.products
+  }
+}
+
+const mapDispatch = (dispatch) => {
+  return {
+    loadInitialData () {
+      dispatch(fetchOrders())
+      dispatch(fetchUsers())
+    }
+  }
+}
+
+export default connect(mapStateToProps)(AddProduct)

@@ -15,12 +15,13 @@ class AdminPortal extends Component {
 
     console.log('*** ADMIN PORTAL ***')
     console.log(this.props)
-    console.log('git')
+
+    const topPadding = {'padding-top': '100px'}
 
     // const {products, orders, users} = props
 
     return (
-      <div>
+      <div style={topPadding}>
         <font size='5'>Users</font>
         <table id="userTable" className="table">
           <thead>
@@ -72,7 +73,7 @@ class AdminPortal extends Component {
                     <td>{product.price}</td>
                     <td>{product.quantity}</td>
                     <td>
-                      <NavLink to={`product/${product.id}/edit`} >
+                      <NavLink to={`editProduct/${product.id}`} >
                         <button type="button" className="btn btn-outline-danger">Update</button>
                       </NavLink>
                     </td>
@@ -113,6 +114,13 @@ class AdminPortal extends Component {
             }
           </tbody>
         </table>
+
+        <NavLink to={'addProduct'} >
+          <button type="button" className="btn btn-outline-danger">Add Product</button>
+        </NavLink>
+        <NavLink to={'addCategory'} >
+          <button type="button" className="btn btn-outline-danger">Add Category</button>
+        </NavLink>
       </div>
     )
   }
@@ -134,19 +142,5 @@ const mapDispatch = (dispatch) => {
     }
   }
 }
-
-// const mapDispatchToProps = function (dispatch, ownProps) {
-//   return {
-//     handleChange(evt) {
-//       dispatch(writeChannelName(evt.target.value));
-//     },
-//     handleSubmit(evt) {
-//       evt.preventDefault();
-//       const name = evt.target.channelName.value;
-//       dispatch(postChannel({ name }, ownProps.history));
-//       dispatch(writeChannelName(''));
-//     }
-//   };
-// };
 
 export default connect(mapStateToProps, mapDispatch)(AdminPortal)
