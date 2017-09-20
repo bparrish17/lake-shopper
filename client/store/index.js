@@ -10,8 +10,9 @@ import reviews from './review'
 import email from './email'
 import address from './address'
 import users from './users'
+import orderCart from './orderCart'
 
-const reducer = combineReducers({user, products, categories, orders, reviews, cart, email, address, users})
+const reducer = combineReducers({user, products, categories, orders, reviews, cart, email, address, users, orderCart})
 const middleware = applyMiddleware(thunkMiddleware, createLogger({collapsed: true}))
 const store = createStore(reducer, middleware)
 
@@ -25,3 +26,4 @@ export * from './review'
 export * from './email'
 export * from './address'
 export * from './users'
+export * from './orderCart'
