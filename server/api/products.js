@@ -35,17 +35,7 @@ router.get('/:id', (req, res, next) => {
 
 // ALTERED FOR ADMIN - COMMENTED OUT FOR TESTING
 //
-// router.post('/', isAdmin, (req, res, next) => {
-//   //req.body.categoryId = 1;
-//   Product.create(req.body)
-//     .then(result => {
-//       return result.addCategory(req.body.categoryId)
-//     })
-//     .then(result => res.send(result))
-//     .catch(next);
-// });
-
-router.post('/', (req, res, next) => {
+router.post('/', isAdmin, (req, res, next) => {
   //req.body.categoryId = 1;
   Product.create(req.body)
     .then(result => {
@@ -55,23 +45,19 @@ router.post('/', (req, res, next) => {
     .catch(next);
 });
 
-// edit product
-
-// router.put('/:id', isAdmin, (req, res, next) => {
-//   var currentId = req.params.id;
-//   Product.findById(currentId)
-//     .then(product => {
-//       if (product) {
-//         return product.update(req.body, { returning: true })
-//       } else {
-//         res.sendStatus(404)
-//       }
+// router.post('/', (req, res, next) => {
+//   //req.body.categoryId = 1;
+//   Product.create(req.body)
+//     .then(result => {
+//       return result.addCategory(req.body.categoryId)
 //     })
-//     .then(updatedProduct => res.json(updatedProduct))
+//     .then(result => res.send(result))
 //     .catch(next);
 // });
 
-router.put('/:id', (req, res, next) => {
+// edit product
+
+router.put('/:id', isAdmin, (req, res, next) => {
   var currentId = req.params.id;
   Product.findById(currentId)
     .then(product => {
@@ -84,3 +70,17 @@ router.put('/:id', (req, res, next) => {
     .then(updatedProduct => res.json(updatedProduct))
     .catch(next);
 });
+
+// router.put('/:id', (req, res, next) => {
+//   var currentId = req.params.id;
+//   Product.findById(currentId)
+//     .then(product => {
+//       if (product) {
+//         return product.update(req.body, { returning: true })
+//       } else {
+//         res.sendStatus(404)
+//       }
+//     })
+//     .then(updatedProduct => res.json(updatedProduct))
+//     .catch(next);
+// });

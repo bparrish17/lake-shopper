@@ -36,17 +36,17 @@ router.get('/:categoryId/products', (req, res, next) => {
 
 // COMMENTED OUT TEMPORARILY TO ALLOW TESTING WHILE CAN'T LOG IN
 //
-// router.post('/', isAdmin, (req, res, next) => {
-//     Category.create(req.body)
-//     .then(category => res.status(201).json(category))
-//     .catch(next)
-// })
-
-router.post('/', (req, res, next) => {
+router.post('/', isAdmin, (req, res, next) => {
     Category.create(req.body)
     .then(category => res.status(201).json(category))
     .catch(next)
 })
+
+// router.post('/', (req, res, next) => {
+//     Category.create(req.body)
+//     .then(category => res.status(201).json(category))
+//     .catch(next)
+// })
 
 router.put('/:id', (req, res, next) => {
     const currentId = req.params.id;
@@ -62,15 +62,15 @@ router.delete('/:id', (req, res, next) => {
 })
 
 // COMMENTED OUT TEMPORARILY TO ALLOW TESTING WHILE CAN'T LOG IN
-// router.put('/:id', isAdmin, (req, res, next) => {
-//     const currentId = req.params.id;
-//     Category.update(req.body, {where: {id: currentId, returning: true}})
-//     .then(category => res.json(category[1]))
-//     .catch(next)
-// })
-//
-// router.delete('/:id', isAdmin, (req, res, next) => {
-//     const currentId = req.params.id;
-//     Category.destroy({where: {id: currentId}})
-//     .then(() => res.sendStatus(204))
-// })
+router.put('/:id', isAdmin, (req, res, next) => {
+    const currentId = req.params.id;
+    Category.update(req.body, {where: {id: currentId, returning: true}})
+    .then(category => res.json(category[1]))
+    .catch(next)
+})
+
+router.delete('/:id', isAdmin, (req, res, next) => {
+    const currentId = req.params.id;
+    Category.destroy({where: {id: currentId}})
+    .then(() => res.sendStatus(204))
+})
