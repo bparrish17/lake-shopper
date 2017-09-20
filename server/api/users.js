@@ -4,6 +4,7 @@ const {isAdmin, isAuthenticated} = require('./gatekeepers');
 const {Order, Review} = require('../db/models')
 module.exports = router
 
+// COMMENTED OUT TO TEST BASIC FUNCTIONALITY
 router.get('/', isAdmin, (req, res, next) => {
   User.findAll({
     // explicitly select only the id and email fields - even though
@@ -15,6 +16,17 @@ router.get('/', isAdmin, (req, res, next) => {
     .catch(next)
 })
 
+// router.get('/', (req, res, next) => {
+//   User.findAll({
+//     // explicitly select only the id and email fields - even though
+//     // users' passwords are encrypted, it won't help if we just
+//     // send everything to anyone who asks!
+//     attributes: ['id', 'email']
+//   })
+//     .then(users => res.json(users))
+//     .catch(next)
+// })
+
 // additions
 
 // create users
@@ -22,23 +34,23 @@ router.get('/', isAdmin, (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   let currentId = Number(req.params.id);
   let userId = Number(req.user.dataValues.id);
-  let result = [];
-  //this is absolutely atrocious, the but the includes request don't work the other way
+  let result = {};
+  //this is absolutely atrocious, but the includes request don't work the other way
   //because sequelize
   if(userId === currentId) {
     User.findById(userId)
     .then(user => {
-      result.push(user);
+      result['user'] = user;
     })
     .then(
     Review.findAll({where: {userId}})
     .then(reviews => {
-      result.push(reviews);
+      result['reviews'] = reviews;
     })
     .then(
     Order.findAll({where: {userId}})
     .then(orders => {
-      result.push(orders);
+      result['orders'] = orders;
       res.json(result)
     })
     )
@@ -56,6 +68,7 @@ router.post('/', function(req, res, next){
     .catch(next);
 });
 
+// COMMENTED OUT TEMPORARILY TO ALLOW TESTING WHILE CAN'T LOG IN
 router.put('/:id', isAdmin, function(req, res, next){
   var currentId = req.params.id;
   User.findById(currentId)
@@ -73,7 +86,34 @@ router.put('/:id', isAdmin, function(req, res, next){
     .catch(next);
 });
 
-router.delete('/:id', isAdmin, function(req, res, next){
+// router.put('/:id', function(req, res, next){
+//   var currentId = req.params.id;
+//   User.findById(currentId)
+//     .then(user => {
+//       if (user) {
+//         return user.update(req.body, { returning: true })
+//       } else {
+//         res.sendStatus(404)
+//       }
+//     })
+//     .then(updatedUser => {
+//       console.log('updatedUser', updatedUser)
+//       res.json(updatedUser)
+//     })
+//     .catch(next);
+// });
+
+
+// COMMENTED OUT TEMPORARILY TO ALLOW TESTING WHILE CAN'T LOG IN
+// router.delete('/:id', isAdmin, function(req, res, next){
+//   var currentId = req.params.id;
+//
+//   User.destroy({ where: { id: currentId }})
+//     .then(result => res.sendStatus(204))
+//     .catch(next);
+// });
+
+router.delete('/:id', function(req, res, next){
   var currentId = req.params.id;
 
   User.destroy({ where: { id: currentId }})

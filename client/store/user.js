@@ -73,15 +73,16 @@ export const postGuest = (info) => {
   }
 }
 
+
 export const postUserCheckout = (info) => {
   return dispatch => {
     dispatch(postOrder({userId: info[0], address: info[1].address}))
   }
 }
 
-export const getUserPageThunk = (user) =>
+export const getUserPageThunk = (userId) =>
   dispatch =>
-    axios.get(`/api/users/${user.id}`)
+    axios.get(`/api/users/${userId}`)
       .then(res => res.data)
       .then(user => {
         dispatch(getUserPage(user))

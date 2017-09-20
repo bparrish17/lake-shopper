@@ -69,7 +69,6 @@ const mapDispatch = (dispatch) => {
     handleSubmit(event){
       event.preventDefault();
       const name = event.target.newCategory.value
-      console.log(name)
       dispatch(postCategory( { name } ))
     }
   }
