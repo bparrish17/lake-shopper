@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { postGuest, removeCart, postUserCheckout} from '../store'
+import { postGuest, removeCart, postUserCheckout, postOrderCart} from '../store'
 
 
 // *** SMART COMPONENT ***
@@ -36,10 +36,17 @@ class Checkout extends React.Component {
         e.preventDefault()
         let email = this.state.newEmailEntry
         let address = this.state.newAddressEntry
+        let userCart = []
+
+        for(let i =0; i < this.props.cart.length; i++){
+            userCart.push(this.props.cart[i].id)
+        }
         
         email === this.props.user.email ?
         this.props.handleUserPost([this.props.user.id, {address}]) :
         this.props.handlePost([{email}, {address}])
+        
+        //this.props.handleOrderCart(userCart)
         
         this.setState({newEmailEntry: '',
                        newAddressEntry: ''})
@@ -132,13 +139,16 @@ const mapDispatchToProps = function (dispatch, ownProps) {
         },
 
         handleUserPost(info) {
-            console.log('user post hit')
             dispatch(postUserCheckout(info))
             ownProps.history.push('/')
         },
 
         handleRemoveCart() {
             dispatch(removeCart())
+        },
+
+        handleOrderCart(cartItems) {
+            dispatch(postOrderCart(cartItems))
         }
     })
 }

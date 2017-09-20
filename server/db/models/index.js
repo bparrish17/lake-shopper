@@ -29,7 +29,7 @@ Product.belongsToMany(Category, { through: 'productCategory' })
 Order.belongsToMany(Product, { through: 'orderProduct'})
 Product.belongsToMany(Order, { through: 'orderProduct'});
 
-OrderCart.belongsTo(User)
+OrderCart.belongsTo(Order)
 //redundancies?
 
 module.exports = {
