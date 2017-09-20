@@ -46,7 +46,7 @@ class Checkout extends React.Component {
         this.props.handleUserPost([this.props.user.id, {address}]) :
         this.props.handlePost([{email}, {address}])
         
-        //this.props.handleOrderCart(userCart)
+        this.props.handleOrderCart(userCart)
         
         this.setState({newEmailEntry: '',
                        newAddressEntry: ''})
@@ -119,7 +119,6 @@ class Checkout extends React.Component {
 
 
 const mapStateToProps = function (state, ownProps) {
-    
     return {
         user: state.user,
         cart: state.cart,

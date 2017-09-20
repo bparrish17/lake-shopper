@@ -57,7 +57,7 @@ export const fetchOrderCart = orderCart => dispatch =>
 export const postOrderCart = orderCart => {
     console.log('orderCart', orderCart)
   return dispatch => {
-    return axios.post('/api/ordercart', orderCart)
+    return axios.post('/api/ordercart', {cartItems: orderCart})
     .then(result => result.data)
     .then(newOrderCart => {
       dispatch(addOrderCart(newOrderCart));
