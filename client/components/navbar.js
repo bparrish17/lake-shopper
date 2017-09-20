@@ -8,10 +8,6 @@ function Navbar(props) {
   console.log("props", props);
   const {isLoggedIn, handleClick, handleRemoveCart} = props;
 
-  function calculateItemsAmount(){
-    props.cart.reduce((acc, el) => { return acc.cartQuantity + el.cartQuantity })
-  }
-
   return (
     <nav className="navbar navbar-default navbar-fixed-top">
       <div className="dropdown">
