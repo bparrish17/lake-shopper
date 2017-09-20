@@ -38,7 +38,7 @@ function Navbar(props) {
           <button type="button" className="btn btn-default btn-sm">
             <span className="glyphicon glyphicon-shopping-cart" />{" "}
             {props.cart.length > 0 ? (
-              `${props.cart.length} Items in Cart`
+              `${props.cart.reduce((acc, el) => { return acc.cartQuantity + el.cartQuantity })} Item(s) in Cart`
             ) : (
               "No Items in Cart"
             )}
