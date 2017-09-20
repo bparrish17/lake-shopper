@@ -7,6 +7,7 @@ import {logout} from "../store";
 function Navbar(props) {
   console.log("props", props);
   const {isLoggedIn, handleClick, handleRemoveCart} = props;
+
   return (
     <nav className="navbar navbar-default navbar-fixed-top">
       <div className="dropdown">
@@ -34,18 +35,18 @@ function Navbar(props) {
         </ul>
       </div>
       <div className="cartDisplay" id="cartdiv">
-        <NavLink to="/cart">
-          <button type="button" className="btn btn-default btn-sm">
-            <span className="glyphicon glyphicon-shopping-cart" />{" "}
-            {props.cart.length > 0 ? (
-              `${props.cart.reduce((acc, el) => { return acc.cartQuantity + el.cartQuantity })} Item(s) in Cart`
-            ) : (
-              "No Items in Cart"
-            )}
-          </button>
-        </NavLink>
+     
+      <NavLink to="/cart">
+      <button type="button" className="btn btn-default btn-sm">
+        <span className="glyphicon glyphicon-shopping-cart" />{" "}
+        {props.cart.length > 0 ? (
+          `${props.cart.length} Item(s) in Cart`
+        ) : (
+          "No Items in Cart"
+        )}
+      </button>
+    </NavLink>
       </div>
-
       <div className="homeButton" id="homebuttondiv">
         <NavLink to="/">
           <button type="button" className="btn btn-default btn-sm">
