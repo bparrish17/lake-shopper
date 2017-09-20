@@ -22,23 +22,23 @@ router.get('/', isAdmin, (req, res, next) => {
 router.get('/:id', (req, res, next) => {
   let currentId = Number(req.params.id);
   let userId = Number(req.user.dataValues.id);
-  let result = [];
-  //this is absolutely atrocious, the but the includes request don't work the other way
+  let result = {};
+  //this is absolutely atrocious, but the includes request don't work the other way
   //because sequelize
   if(userId === currentId) {
     User.findById(userId)
     .then(user => {
-      result.push(user);
+      result['user'] = user;
     })
     .then(
     Review.findAll({where: {userId}})
     .then(reviews => {
-      result.push(reviews);
+      result['reviews'] = reviews;
     })
     .then(
     Order.findAll({where: {userId}})
     .then(orders => {
-      result.push(orders);
+      result['orders'] = orders;
       res.json(result)
     })
     )
