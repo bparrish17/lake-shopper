@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { postGuest } from '../store'
+import { postGuest, removeCart } from '../store'
 
 
 // *** SMART COMPONENT ***
@@ -32,6 +32,7 @@ class Checkout extends React.Component {
         this.props.handlePost([{email}, {address}])
         this.setState({newEmailEntry: '',
                        newAddressEntry: ''})
+        this.props.handleRemoveCart()
     }
 
     render() {
@@ -91,17 +92,13 @@ const mapDispatchToProps = function (dispatch, ownProps) {
             // *** FOR GUESTS ***
 
             dispatch(postGuest(info));
-
-
-            
             // AFTER DISPATCH TO DB
-        
-            //ownProps.history.push('/');
-
+            ownProps.history.push('/');
+            
         },
 
         handleRemoveCart() {
-            
+            dispatch(removeCart())
         }
     })
 }
