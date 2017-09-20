@@ -62,11 +62,9 @@ export const postGuest = (info) => {
   return dispatch => {
     axios.post('/api/users/', info[0])
       .then(res => {
-        console.log('this is res', res)
         return res.data
       })
       .then(posted => {
-        console.log('this is posted', posted)
         dispatch(postOrder({userId: posted.id, address: info[1].address}))
       })
       .catch(err => {
