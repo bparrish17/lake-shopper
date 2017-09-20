@@ -17,7 +17,7 @@ class Checkout extends React.Component {
     }
 
     handleChange(e) {
-
+        
         let name = e.target.name;
         name === 'emailName' ?
             this.setState({ newEmailEntry: e.target.value }) :
@@ -36,7 +36,7 @@ class Checkout extends React.Component {
     }
 
     render() {
-
+        
         const handleSubmit = this.handleSubmit
         const handleChange = this.handleChange
         return (
@@ -59,13 +59,18 @@ class Checkout extends React.Component {
                             return (
                                 <li key={cart.id}>
                                     <span>
-                                        <p>Name: {cart.name} Price: {cart.price}</p>
+                                        <p>Name: {cart.name} Price: {cart.price} Quantity: {cart.cartQuantity} Total: ${cart.cartQuantity*cart.price}</p>
                                     </span>
                                 </li>
                             )
                         })
                     }
                 </ul>
+                <div>
+                    <p>Total Purchase: {this.props.cart.reduce((sum, cart) => {
+                        return sum + (cart.cartQuantity*cart.price)
+                        }, 0)}</p>
+                </div>
                 </div>
                 <button type="submit" className="btn btn-primary">Submit</button>
             </form>
@@ -75,6 +80,8 @@ class Checkout extends React.Component {
 
 
 const mapStateToProps = function (state, ownProps) {
+    console.log('cart***', state.cart)
+    console.log('user***', state.user)
     return {
         user: state.user,
         cart: state.cart,
@@ -85,11 +92,6 @@ const mapDispatchToProps = function (dispatch, ownProps) {
     return ({
 
         handlePost(info) {
-
-            // check if user exist through email
-            // create new guest user in db, use userid for order
-
-            // *** FOR GUESTS ***
 
             dispatch(postGuest(info));
             // AFTER DISPATCH TO DB
