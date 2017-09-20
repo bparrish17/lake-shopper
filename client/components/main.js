@@ -6,6 +6,7 @@ import {logout} from '../store'
 import {getProductsThunk} from '../store/product'
 import NavbarRouter from './navbar'
 import SingleProduct from './singleProduct'
+import EditOrder from './EditOrder'
 import SingleCategory from './singleCategory'
 import ViewCart from './ViewCart'
 
@@ -16,7 +17,7 @@ import ViewCart from './ViewCart'
  *  rendered out by the component's `children`.
  */
 const Main = (props) => {
-  const {children, handleClick, isLoggedIn, products, categories, cart} = props
+  const {children, handleClick, isLoggedIn, products, categories, cart, orders} = props
   //console.log("categories", categories)
   return (
     <div>
@@ -63,7 +64,8 @@ const mapState = (state) => {
     isLoggedIn: !!state.user.id,
     products: state.products, 
     cart: state.cart,
-    categories: state.categories
+    categories: state.categories,
+    orders: state.orders
   }
 }
 
