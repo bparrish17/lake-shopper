@@ -96,8 +96,8 @@ class AdminPortal extends Component {
             </tr>
           </thead>
           <tbody>
-            {
-              this.props.orders.map(order => {
+            { this.props.orders.orders.length
+              ? this.props.orders.orders.map(order => {
                 return (
                   <tr key={order.id}>
                     <th scope="row">{order.id}</th>
@@ -111,6 +111,7 @@ class AdminPortal extends Component {
                   </tr>
                 )
               })
+              : <div></div>
             }
           </tbody>
         </table>
