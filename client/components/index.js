@@ -14,6 +14,7 @@ export {default as SingleProductProfile} from './singleProductProfile';
 export {default as SingleCategory} from './singleCategory';
 export {default as AdminPortal} from './adminPortal'
 export {default as EditProduct} from './editProduct'
+export {default as EditOrder} from './editOrder'
 export {default as AddProduct} from './addProduct'
 export {default as AddCategory} from './addCategory'
 export {Login, Signup} from './auth-form'

@@ -4,7 +4,7 @@ import {Router} from 'react-router'
 import {Route, Switch} from 'react-router-dom'
 import PropTypes from 'prop-types'
 import history from './history'
-import {Main, Login, Signup, UserHome, ProductList, ViewCart, Checkout, SingleReview, ReviewForm, AdminPortal, SingleProductProfile, EditProduct, AddProduct, AddCategory, SingleCategory, SingleUser} from './components'
+import {Main, Login, Signup, UserHome, ProductList, ViewCart, Checkout, SingleReview, ReviewForm, AdminPortal, SingleProductProfile, EditProduct, AddProduct, AddCategory, SingleCategory, SingleUser, EditOrder} from './components'
 import NavbarRouter from './components/navbar'
 import {me, getProductsThunk, fetchCategories, getCartItemsThunk, fetchReviews} from './store'
 
@@ -35,6 +35,7 @@ class Routes extends Component {
                 <Route exact path="/addProduct" component={AddProduct} />
                 <Route exact path="/addCategory" component={AddCategory} />
                 <Route path="/editProduct/:productId" component={EditProduct} />
+                <Route path="/editOrder" component={EditOrder} />
                 <Route path="/products/:productId" component={SingleProductProfile} />
                 <Route path="/categories/:categoryId" component={SingleCategory} />
                 <Route path="/users/:userId" component={SingleUser} />
