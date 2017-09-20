@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
 import store from '../store';
 import {connect} from 'react-redux';
+import {postProduct} from '../store';
 
 class AddProduct extends Component {
 
@@ -41,7 +42,7 @@ class AddProduct extends Component {
 
     return (
       <div style={topPadding}>
-          <form>
+          <form onSubmit={this.props.handleSubmit}>
             <div>
               <label>Add a Product: </label>
                 <br></br>
@@ -73,6 +74,13 @@ class AddProduct extends Component {
                   placeholder="Enter new description"
                   onChange={handleChange} />
                 <br></br>
+                <input
+                  type="text"
+                  name="newQuantity"
+                  value= {this.state.newQuantity}
+                  placeholder="Enter new quantity"
+                  onChange={handleChange} />
+                <br></br>
                 { <select onChange={(e) => this.setState({categoryId : Number(e.target.value)})}>
                   <option defaultValue>Select a Category</option>
                   {
@@ -80,7 +88,7 @@ class AddProduct extends Component {
                       return (
                         <option key={category.id}
                                 name="categoryId"
-                                value={category.id}
+                                value={this.state.categoryId}
                                 > {category.name} </option>
                       )
                     })
@@ -106,11 +114,23 @@ const mapStateToProps = (state, ownProps) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    loadInitialData () {
-      dispatch(fetchOrders())
-      dispatch(fetchUsers())
+    handleSubmit(event){
+      event.preventDefault();
+      const name = event.target.newName.value;
+      const price = Number(event.target.newPrice.value);
+      const image = event.target.newImage.value;
+      const description = event.target.newDescription.value;
+      const quantity = Number(event.target.newQuantity.value);
+      // const category = Number(event.target.categoryId.value);
+      dispatch(postProduct( {
+        name,
+        price,
+        image,
+        description,
+        quantity
+      } ))
     }
   }
 }
 
-export default connect(mapStateToProps)(AddProduct)
+export default connect(mapStateToProps, mapDispatch)(AddProduct)

@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom';
 import store from '../store';
 import {connect} from 'react-redux';
+import {updateProduct} from '../store';
 
-export default class EditProduct extends Component {
+class EditProduct extends Component {
 
   constructor(props){
     super(props)
@@ -29,6 +30,9 @@ export default class EditProduct extends Component {
 
   render () {
 
+
+    const id = this.props.match.params.productId
+
     const handleChange = this.handleChange;
 
     const topPadding = {'padding-top': '100px'}
@@ -39,7 +43,7 @@ export default class EditProduct extends Component {
 
     return (
       <div style={topPadding}>
-          <form>
+          <form onSubmit={this.props.handleSubmit}>
             <div>
               <label>Edit Product: </label>
                 <br></br>
@@ -51,7 +55,7 @@ export default class EditProduct extends Component {
                   onChange={handleChange} />
                 <br></br>
                 <input
-                  type="text"
+                  type="number"
                   name="newPrice"
                   value= {this.state.newPrice}
                   placeholder="Enter new price"
@@ -71,19 +75,26 @@ export default class EditProduct extends Component {
                   placeholder="Enter new description"
                   onChange={handleChange} />
                 <br></br>
-                {/* <select onChange={(e) => this.setState({categoryId : Number(e.target.value)})}>
+                <input
+                  type="number"
+                  name="newQuantity"
+                  value= {this.state.newQuantity}
+                  placeholder="Enter new quantity"
+                  onChange={handleChange} />
+                <br></br>
+                { <select onChange={(e) => this.setState({categoryId : Number(e.target.value)})}>
                   <option defaultValue>Select a Category</option>
                   {
-                    categories.map(category => {
+                    this.props.categories.map(category => {
                       return (
                         <option key={category.id}
                                 name="categoryId"
-                                value={category.id}
+                                value={this.state.categoryId}
                                 > {category.name} </option>
                       )
                     })
                   }
-                </select> */}
+                </select>}
             </div>
             <div className="form-group">
               <button type="submit" className="button" >Edit Product</button>
@@ -95,28 +106,40 @@ export default class EditProduct extends Component {
   }
 }
 
-// const mapStateToProps = (state, ownProps) => {
-//     return {
-//         products: state.products,
-//         newProductName: state.newProductName,
-//         newPrice: state.newPrice,
-//         newDescription: state.newDescription,
-//         newImage: state.newImage,
-//         newQuantity: state.newQuantity
-//     }
-// };
+const mapStateToProps = (state, ownProps) => {
+  return {
+    categories: state.categories,
+    products: state.products
+  }
+}
 
-// const mapDispatchToProps = (dispatch) => {
-//     return {
-//       addToCart(id) {
-//         dispatch(addToCartThunk(id))
-//       }
-//     }
-// }
+const mapDispatch = (dispatch, ownProps) => {
+  return {
+    handleSubmit(event){
+      event.preventDefault();
 
-// const EditProductContainer = connect(mapStateToProps, mapDispatchToProps)(EditProduct);
+      const id = Number(ownProps.match.params.productId)
+      const name = event.target.newName.value;
+      const price = Number(event.target.newPrice.value);
+      const image = event.target.newImage.value;
+      const description = event.target.newDescription.value;
+      const quantity = Number(event.target.newQuantity.value);
+      // const category = Number(event.target.categoryId.value);
+      dispatch(updateProduct( {
+        id,
+        name,
+        price,
+        image,
+        description,
+        quantity
+      } ))
+    }
+  }
+}
 
-// export default EditProductContainer;
+const EditProductContainer = connect(mapStateToProps, mapDispatch)(EditProduct);
+
+export default EditProductContainer;
 
 
     // let filteredArr = props.studentsList.filter((student) => {
