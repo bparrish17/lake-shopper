@@ -20,3 +20,5 @@ export {default as AddCategory} from './addCategory'
 export {Login, Signup} from './auth-form'
 export {default as Checkout} from './CheckoutPage'
 export {default as singleProductProfile} from './singleProductProfile'
+
+console.log('changes for merge')
