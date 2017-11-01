@@ -19,10 +19,13 @@ If you want to run the server and/or webpack separately, you can also `npm run s
 
 ## Contributors
 
-Dominic Garcia
-Brian Parrish
-Alex Press
-David Eiber
+- Dominic Garcia
+
+- Brian Parrish
+
+- Alex Press
+
+- David Eiber
 
 Boilermaker by Fullstack Academy
 
