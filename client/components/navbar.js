@@ -4,10 +4,8 @@ import { NavLink, withRouter } from "react-router-dom";
 import Category from "../store/category";
 import {logout} from "../store";
 
-function Navbar(props) {
-  console.log("props", props);
+const Navbar = (props) => {
   const {isLoggedIn, handleClick, handleRemoveCart} = props;
-
   return (
     <nav id="navbar" className="navbar navbar-default navbar-fixed-top">
       <button
@@ -31,26 +29,6 @@ function Navbar(props) {
           );
         })}
       </ul>
-      <div className="navbar-headers cartDisplay" id="cartdiv">
-        <NavLink to="/cart">
-          <button type="button" className="navbar-buttons btn btn-default btn-sm">
-            <span className="glyphicon glyphicon-shopping-cart" />{" "}
-            {props.cart.length > 0 ? (
-              `${props.cart.reduce((acc, el) => { return acc.cartQuantity + el.cartQuantity })} Item(s) in Cart`
-            ) : (
-              "No Items in Cart"
-            )}
-          </button>
-        </NavLink>
-      </div>
-
-      <div className="navbar-headers homeButton" id="homebuttondiv">
-        <NavLink to="/">
-          <button type="button" id="home-button" className="navbar-buttons btn btn-default btn-sm">
-            <span className="glyphicon glyphicon-home" /> Home
-          </button>
-        </NavLink>
-      </div>
       <div id="signuplogin" className="navbar-headers signup">
         {isLoggedIn ? (
             <button type="button" className="login-buttons navbar-buttons btn btn-default btn-sm" onClick={handleClick}>
@@ -65,13 +43,30 @@ function Navbar(props) {
                 <span className="glyphicon glyphicon-log-in" /> Log in
               </button>
             </NavLink>
-       
-            
             <NavLink to="/signup">  <button type="button" className="login-buttons navbar-buttons btn btn-default btn-sm">
-          <span className="glyphicon glyphicon-user"></span> Sign-Up 
+            <span className="glyphicon glyphicon-user"></span> Sign-Up 
           </button></NavLink>
         </div>
         )}
+      </div>
+      <div className="navbar-headers cartDisplay" id="cartdiv">
+        <NavLink to="/cart">
+          <button type="button" className="navbar-buttons btn btn-default btn-sm">
+            <span className="glyphicon glyphicon-shopping-cart" />{" "}
+            {props.cart.length > 0 
+              ? `${props.cart.length} Item(s) in Cart`
+              : "No Items in Cart"
+            }
+          </button>
+        </NavLink>
+      </div>
+
+      <div className="navbar-headers homeButton" id="homebuttondiv">
+        <NavLink to="/">
+          <button type="button" id="home-button" className="navbar-buttons btn btn-default btn-sm">
+            <span className="glyphicon glyphicon-home" /> Home
+          </button>
+        </NavLink>
       </div>
     </nav>
 
@@ -96,10 +91,3 @@ const mapDispatchToProps = (dispatch) => {
 
 const NavbarRouter = withRouter(connect(mapStateToProps, mapDispatchToProps)(Navbar));
 export default NavbarRouter;
-
-// {Categories.map(category => {
-//   <li key={category.id}>
-//     <NavLink to={`/categories/${category.id}`}>{category.name}</NavLink>
-//   </li>
-// })}
-//<NavLink to={`/categories/${category.id}`}>{category.name}</NavLink>

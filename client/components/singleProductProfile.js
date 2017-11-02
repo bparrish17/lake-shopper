@@ -54,7 +54,7 @@ class SingleProductProfile extends Component {
                         <hr />
                         <div className="col-xs-6">
                             <h3>Reviews</h3>
-                            {   reviews.length
+                            {reviews.length
                                 ? reviews.map(review => {
                                     return (
                                         <div key={review.id}>
@@ -62,7 +62,7 @@ class SingleProductProfile extends Component {
                                         </div>
                                     )
                                 })
-                                : <div className="alert alert-info" role="alert">
+                                : <div id="no-reviews" className="alert alert-info" role="alert">
                                     There Are No Reviews For This Product
                                 </div>
                             }

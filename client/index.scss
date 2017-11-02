@@ -189,6 +189,7 @@ img-fluid {
 
 #loginsignup{
   float: right;
+  height: 100%;
 }
 
 #signuplogin {
@@ -197,6 +198,7 @@ img-fluid {
 
 .login-buttons {
   width: 100px;
+  float: right;
 }
 
 .form-group {
@@ -241,6 +243,11 @@ img-fluid {
 
 #review-form {
   height: max-content;
+}
+
+#no-reviews {
+  width: 80%;
+  text-align: left;
 }
 
 .form-items {
