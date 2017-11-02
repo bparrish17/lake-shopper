@@ -6,9 +6,10 @@ import {logout} from '../store'
 import {getProductsThunk} from '../store/product'
 import NavbarRouter from './navbar'
 import SingleProduct from './singleProduct'
-import EditOrder from './EditOrder'
+import EditOrder from './editOrder'
 import SingleCategory from './singleCategory'
 import ViewCart from './ViewCart'
+import Carousel from './carousel'
 
 /**
  * COMPONENT
@@ -21,22 +22,7 @@ const Main = (props) => {
   //console.log("categories", categories)
   return (
     <div>
-      <div id="mycarousel" className="carousel slide" data-ride="carousel">
-        <div className="carousel-inner">
-          <div className="item active">
-            <img src="http://rvcoutdoors.com/lake-raystown-resort/wp-content/uploads/2013/11/lake-raystown-resort-pennsylvania.jpg" 
-                alt="" 
-                className="img-responsive">
-            </img>
-            <div id="main-caption" className="carousel-caption">
-              <strong><em>Lake Shopper</em></strong>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="our-products-container row container-fluid">
-      </div>
+      <Carousel text={'Lake Shopper'} />
       <div className="row container-fluid">
       {/* do category checking below? cant render the all products component in main instead */}
       {

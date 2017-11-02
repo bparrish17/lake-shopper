@@ -68,7 +68,7 @@ class Checkout extends React.Component {
                            className="form-control" 
                            aria-describedby="nameHelp" 
                            placeholder="Enter your Email" />
-                    {this.state.dirtyEmail && !this.state.newEmailEntry.length ? 
+                    {!this.state.newEmailEntry.length ? 
                         <p className="errorEmail alert alert-danger" >please enter your email</p> :
                         <p></p>
                     }
@@ -82,7 +82,7 @@ class Checkout extends React.Component {
                            className="form-control" 
                            aria-describedby="emailHelp" 
                            placeholder="Enter your Address" />
-                    {this.state.dirtyAddress && !this.state.newAddressEntry.length ? 
+                    {!this.state.newAddressEntry.length ? 
                         <p className="dirtyAddress alert alert-danger" >please enter your address</p> :
                         <p></p>
                         

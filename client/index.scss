@@ -162,13 +162,29 @@ img-fluid {
   width: 24%;
 }
 
+#category-button {
+  width: 120px;
+}
+
+#category-caret {
+  width: 9px;
+  height: 9px;
+  margin-right: 5px;
+}
+
+.open>#category-dropdown {
+  margin-left: 100px;
+}
 
 #cartdiv {
   float: right;
 }
 
 #homebuttondiv{
-  float: right;
+  float: left;
+}
+#home-button {
+  width: 100px;
 }
 
 #loginsignup{
@@ -176,9 +192,12 @@ img-fluid {
 }
 
 #signuplogin {
-  margin-left: 120px;
+  float: right;
 }
 
+.login-buttons {
+  width: 100px;
+}
 
 .form-group {
   display: block;
@@ -204,8 +223,7 @@ img-fluid {
 }
 
 .navbar-default {
-  background-color: #c30808;
-  border-color: #c30808;
+  background-color: #1a3026;
 }
 
 //reviews
@@ -306,4 +324,18 @@ img-fluid {
 
 #navbar{
   background-color: #F8F8F8;
+  height: 0px;
+  margin-bottom: 0px;
+  border-bottom: 0px;
+}
+
+.navbar-buttons {
+  height: 100%;
+  border-radius: 0px;
+  border-color: #eee;
+  font-size: 14px;
+}
+
+.navbar-headers {
+  height: 100%;
 }
