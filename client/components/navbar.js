@@ -7,6 +7,7 @@ import {logout} from "../store";
 function Navbar(props) {
   console.log("props", props);
   const {isLoggedIn, handleClick, handleRemoveCart} = props;
+
   return (
     <nav id="navbar" className="navbar navbar-default navbar-fixed-top">
       <button
