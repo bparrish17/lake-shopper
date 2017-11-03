@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Grace Shopper Project'!",
   "engines": {
-    "node": ">= 7.0.0"
+    "node": "9.0.0"
   },
   "main": "index.js",
   "scripts": {
