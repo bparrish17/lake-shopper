@@ -37,7 +37,9 @@ class SingleProductProfile extends Component {
                                     <h1><strong>{product.name}</strong></h1>
                                     <h3>${product.price}</h3>
                                     <hr />
-                                    <h4>{product.description}</h4>
+                                    <div id="product-description">
+                                        <h4>{product.description}</h4>
+                                    </div>
                                     <div className="single-product-buttons">
                                         {   !product.quantity 
                                             ? <button type="button" className="btn btn-danger" disabled>Out of Stock</button>

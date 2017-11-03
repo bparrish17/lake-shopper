@@ -71,8 +71,14 @@ img-fluid {
 
 #product-name-price {
   text-align: center;
+  font-weight: 600;
   transform: translateY(-2px);
 }
+
+#product-description {
+  padding-bottom: 5px;
+}
+
 #add-to-cart-btn {
   float: left;
   width: 49%;
