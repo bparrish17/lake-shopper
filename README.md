@@ -4,7 +4,7 @@ A full eCommerce Site featuring authentication, cart persistence, checkout, and 
 
 Check out the currently deployed version at: 
 
-https://lake-shopper.herokuapp.com/
+https://lakeshopper.herokuapp.com/
 
 ## Setup
 
